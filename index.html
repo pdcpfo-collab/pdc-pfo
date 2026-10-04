@@ -3,65 +3,54 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1628">
-
+<meta name="theme-color" content="#073d80">
 <title>PDC–PFO | Perawatan Fasilitas Operasi</title>
 
 <style>
 :root{
-  --navy:#062c62;
-  --navy2:#073d80;
+  --navy:#073d80;
+  --navy2:#062c62;
   --blue:#0877e8;
   --yellow:#ffd400;
   --red:#ef3028;
   --green:#0aaa58;
   --ink:#102b50;
-  --muted:#6b7a90;
-  --line:#dce6f0;
+  --muted:#687b91;
+  --line:#dbe6ef;
   --soft:#eef7ff;
 }
 
 *{box-sizing:border-box}
 
-html{
-  scroll-behavior:smooth;
-}
+html{scroll-behavior:smooth}
 
 body{
   margin:0;
-  background:linear-gradient(
-    180deg,
-    #dff0ff 0,
-    #f7fbff 48%,
-    #eaf4ff 100%
-  );
+  background:linear-gradient(180deg,#e2f2ff 0,#f8fbff 55%,#eaf4ff 100%);
   color:var(--ink);
-  font-family:
-    Inter,
-    system-ui,
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    sans-serif;
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
+
+button,input,select,textarea{font:inherit}
+
+button{cursor:pointer}
 
 .watermark{
   position:fixed;
-  inset:-10%;
+  inset:-15%;
   z-index:0;
   pointer-events:none;
   display:grid;
   grid-template-columns:repeat(4,1fr);
   align-content:space-around;
   transform:rotate(-22deg);
-  opacity:.045;
+  opacity:.035;
   overflow:hidden;
 }
 
 .watermark span{
   font-size:28px;
   font-weight:950;
-  color:#173b67;
   white-space:nowrap;
   text-align:center;
 }
@@ -71,33 +60,23 @@ body{
   z-index:1;
   max-width:1024px;
   margin:auto;
-  padding:0 18px 18px;
+  padding:0 16px 20px;
 }
 
-/* ================= HERO ================= */
-
+/* HERO */
 .hero{
   position:relative;
   overflow:hidden;
-  margin:0;
-  border-radius:0;
-  min-height:500px;
+  min-height:480px;
   background:#063a83 url('pfo_refinery_bg.png') center/cover no-repeat;
-  box-shadow:0 12px 28px #07346c22;
+  box-shadow:0 12px 30px #07346c25;
 }
 
 .hero:before{
   content:"";
   position:absolute;
   inset:0;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(3,37,83,.95) 0%,
-      rgba(5,59,123,.78) 40%,
-      rgba(0,0,0,.08) 72%,
-      rgba(0,0,0,.12) 100%
-    );
+  background:linear-gradient(90deg,rgba(3,37,83,.96),rgba(5,59,123,.78) 42%,rgba(0,0,0,.08));
 }
 
 .hero:after{
@@ -106,100 +85,90 @@ body{
   left:0;
   right:0;
   bottom:0;
-  height:80px;
-  background:
-    linear-gradient(
-      180deg,
-      transparent,
-      rgba(2,28,58,.85)
-    );
-  z-index:2;
+  height:90px;
+  background:linear-gradient(180deg,transparent,rgba(2,28,58,.85));
 }
 
 .hero-content{
   position:relative;
   z-index:4;
-  width:57%;
-  padding:42px 22px 60px;
+  width:58%;
+  padding:42px 25px 60px;
 }
 
 .eyebrow{
+  color:#fff;
   font-size:15px;
   font-weight:950;
   letter-spacing:.12em;
-  color:#fff;
-  text-transform:uppercase;
 }
 
 .brandline{
   display:inline-block;
   margin-top:6px;
+  padding:7px 15px;
   background:var(--yellow);
   color:#072c5b;
-  padding:7px 15px;
   border-radius:0 0 10px 10px;
-  font-size:16px;
+  font-size:15px;
   font-weight:950;
 }
 
 .hero h1{
-  font-size:50px;
-  line-height:.98;
-  letter-spacing:-.035em;
-  margin:42px 0 12px;
+  margin:42px 0 13px;
   color:#fff;
+  font-size:49px;
+  line-height:.98;
+  letter-spacing:-.04em;
   text-transform:uppercase;
-  text-shadow:0 4px 12px #0004;
-}
-
-.hero h1::first-line{
-  background:var(--red);
+  text-shadow:0 4px 12px #0005;
 }
 
 .hero p{
   display:inline-block;
+  max-width:490px;
+  margin:0;
+  padding:13px 18px;
   background:#fff;
   color:#12355b;
-  padding:14px 20px;
-  border-radius:0 18px 18px 0;
-  font-size:18px;
-  line-height:1.35;
-  font-weight:850;
-  max-width:480px;
-  box-shadow:0 8px 20px #0002;
+  border-radius:0 17px 17px 0;
+  font-size:17px;
+  line-height:1.4;
+  font-weight:800;
 }
 
 .hero-badge{
   display:inline-block;
   margin-top:14px;
+  padding:12px 18px;
   background:var(--red);
   color:#fff;
+  border-radius:13px;
+  font-size:16px;
   font-weight:950;
-  font-size:18px;
-  padding:13px 20px;
-  border-radius:14px;
-  box-shadow:0 9px 20px #0003;
 }
 
 .hero-call{
-  display:inline-block;
+  display:block;
+  width:max-content;
   margin-top:8px;
+  padding:9px 15px;
   background:#fff;
   color:#0b3152;
-  font-weight:950;
-  padding:10px 17px;
-  border-radius:12px;
+  border-radius:11px;
+  font-size:14px;
+  font-weight:900;
 }
 
 .hero-worker{
   position:absolute;
   right:-3%;
-  bottom:-2px;
+  bottom:0;
+  z-index:3;
   width:58%;
-  height:93%;
+  height:94%;
   object-fit:contain;
   object-position:center bottom;
-  z-index:3;
   filter:drop-shadow(0 14px 15px #001b3c55);
 }
 
@@ -208,99 +177,87 @@ body{
   right:16px;
   top:16px;
   z-index:9;
-  background:#fff;
-  color:#073d80;
-  border-radius:12px;
   padding:9px 12px;
-  font-weight:900;
-  font-size:12px;
+  background:#fff;
+  color:var(--navy);
+  border-radius:11px;
   text-decoration:none;
+  font-size:12px;
+  font-weight:950;
   box-shadow:0 5px 15px #0003;
 }
 
-/* ================= QUICK NAV ================= */
-
+/* QUICK NAV */
 .quicknav{
   position:relative;
   z-index:6;
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  background:#063b7b;
-  color:#fff;
-  border-radius:20px;
   margin:-18px 8px 0;
-  box-shadow:0 13px 26px #06264a35;
   overflow:hidden;
+  background:#063b7b;
   border:2px solid #fff;
+  border-radius:19px;
+  color:#fff;
+  box-shadow:0 13px 26px #06264a35;
 }
 
 .quicknav div{
+  padding:14px 4px;
   text-align:center;
-  padding:15px 5px;
-  border-right:1px solid #ffffff70;
+  border-right:1px solid #ffffff55;
+  font-size:13px;
   font-weight:950;
-  font-size:14px;
 }
 
-.quicknav div:last-child{
-  border-right:0;
-}
+.quicknav div:last-child{border-right:0}
 
 .quickicon{
   display:block;
-  font-size:32px;
+  margin-bottom:5px;
+  font-size:27px;
   line-height:1;
-  margin-bottom:6px;
-  filter:grayscale(1) brightness(0) invert(1);
 }
 
-/* ================= CARD ================= */
-
+/* CARD */
 .card{
-  background:#fff;
-  border:2px solid #e4edf5;
-  border-radius:28px;
-  padding:28px 34px;
   margin:18px 8px 0;
+  padding:28px 32px;
+  background:#fff;
+  border:1px solid #e0eaf2;
+  border-radius:27px;
   box-shadow:0 12px 32px #12304c16;
 }
 
 .section-head{
   display:flex;
+  gap:15px;
   align-items:flex-start;
-  gap:16px;
 }
 
 .section-icon{
-  width:62px;
-  height:62px;
-  flex:0 0 62px;
-  border-radius:15px;
-  background:
-    linear-gradient(
-      135deg,
-      #0b8df0,
-      #07417f
-    );
-  color:#fff;
+  flex:0 0 60px;
+  width:60px;
+  height:60px;
   display:grid;
   place-items:center;
-  font-size:31px;
-  box-shadow:0 8px 17px #0b5aa633;
+  background:linear-gradient(135deg,#0b8df0,#07417f);
+  border-radius:15px;
+  color:#fff;
+  font-size:30px;
 }
 
 .section-title{
-  font-size:40px;
+  margin:7px 0 5px;
+  font-size:38px;
   line-height:1;
   font-weight:950;
-  margin:7px 0 7px;
 }
 
 .note{
-  font-size:17px;
   color:var(--muted);
-  line-height:1.42;
-  margin-top:3px;
+  font-size:15px;
+  line-height:1.45;
 }
 
 .grid{
@@ -310,71 +267,72 @@ body{
   margin-top:8px;
 }
 
+.full{grid-column:1/-1}
+
 label{
   display:block;
-  font-size:16px;
-  font-weight:950;
   margin:18px 0 8px;
+  font-size:15px;
+  font-weight:950;
 }
 
-input,
-select,
-textarea{
+input,select,textarea{
   width:100%;
-  padding:16px 18px;
+  padding:15px 16px;
   border:1px solid var(--line);
-  border-radius:15px;
+  border-radius:14px;
   background:#fff;
   color:var(--ink);
-  font:inherit;
-  font-size:17px;
+  font-size:16px;
   outline:none;
   box-shadow:0 2px 6px #17365c08;
 }
 
-input:focus,
-select:focus,
-textarea:focus{
+input:focus,select:focus,textarea:focus{
   border-color:#4f99db;
   box-shadow:0 0 0 4px #1769aa12;
 }
 
 textarea{
-  min-height:125px;
+  min-height:120px;
   resize:vertical;
 }
 
-.full{
-  grid-column:1/-1;
-}
-
-/* ================= PHOTO ================= */
-
+/* FOTO */
 .photo-box{
-  border:1px dashed #9eb8d0;
-  background:#eef7ff;
-  border-radius:17px;
   padding:15px;
+  background:#f1f8ff;
+  border:1px dashed #a7bfd3;
+  border-radius:17px;
 }
 
 .photo-actions{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:8px;
+  margin-top:12px;
 }
 
 .photo-btn{
-  background:#edf6ff;
+  min-height:52px;
+  padding:12px;
+  background:#fff;
   color:#07518a;
   border:2px solid #cfe3f4;
+  border-radius:13px;
+  font-weight:900;
+  box-shadow:0 3px 8px #164d7810;
+}
+
+.photo-btn:active{
+  transform:scale(.98);
 }
 
 .photo-count{
+  margin-top:9px;
+  color:#60758b;
   font-size:13px;
   font-weight:800;
-  color:#5d7188;
-  margin-top:8px;
 }
 
 .photo-preview-grid{
@@ -386,92 +344,124 @@ textarea{
 
 .photo-item{
   position:relative;
-  background:#eef5fa;
-  border-radius:14px;
   overflow:hidden;
+  background:#eef5fa;
   border:1px solid #d4e2ed;
+  border-radius:13px;
 }
 
 .photo-item img{
+  display:block;
   width:100%;
   height:145px;
   object-fit:cover;
-  display:block;
-  cursor:pointer;
 }
 
 .photo-remove{
   position:absolute;
-  right:7px;
   top:7px;
-  width:31px!important;
-  height:31px;
+  right:7px;
+  width:32px!important;
+  height:32px;
   padding:0!important;
+  border:0!important;
   border-radius:50%!important;
   background:#d92f2f!important;
   color:#fff!important;
+  font-size:20px!important;
 }
 
 .report-preview{
   display:none;
   margin-top:14px;
-  background:#f5f9fc;
-  border:1px solid #dbe8f2;
-  border-radius:17px;
   padding:12px;
+  background:#f6f9fc;
+  border:1px solid #dbe8f2;
+  border-radius:15px;
 }
 
 .report-preview img{
-  width:100%;
-  border-radius:12px;
   display:block;
-  cursor:pointer;
+  width:100%;
+  border-radius:11px;
 }
 
-/* ================= DUTY ================= */
-
+/* DUTY */
 .duty-public{
-  margin-top:18px;
-  border:1px solid #dce7ef;
-  border-radius:15px;
-  padding:14px;
+  margin-top:20px;
+  padding:15px;
   background:#fff;
+  border:1px solid #dce7ef;
+  border-radius:16px;
 }
 
-.duty-box{
-  background:#eaf8ef;
-  border:1px solid #b9e6c8;
-  color:#166534;
-  border-radius:14px;
-  padding:14px;
+.duty-title{
+  margin-bottom:10px;
+  font-size:15px;
   font-weight:950;
 }
 
+.duty-active{
+  padding:15px;
+  background:#eaf8ef;
+  border:1px solid #b9e6c8;
+  border-radius:14px;
+  color:#166534;
+  font-size:18px;
+  font-weight:950;
+}
+
+.duty-info{
+  margin-top:10px;
+  padding:11px;
+  background:#eef7ff;
+  border-radius:12px;
+  color:#52708b;
+  font-size:13px;
+  line-height:1.4;
+}
+
+/* BUTTONS */
 .send{
-  background:var(--green);
+  width:100%;
+  min-height:56px;
+  margin-top:13px;
+  border:0;
+  border-radius:14px;
+  background:linear-gradient(135deg,#0aaa58,#078c48);
   color:#fff;
-  box-shadow:0 9px 20px #138a4b28;
+  font-size:17px;
+  font-weight:950;
+  box-shadow:0 8px 18px #138a4b30;
+}
+
+.send:active{
+  transform:scale(.99);
 }
 
 .send:disabled{
   opacity:.6;
-  cursor:not-allowed;
 }
 
 .ghost{
-  background:#edf4fa;
-  color:#164d78;
+  width:100%;
+  min-height:47px;
   margin-top:9px;
+  border:1px solid #d7e3ec;
+  border-radius:13px;
+  background:#f1f6fa;
+  color:#315876;
+  font-size:14px;
+  font-weight:900;
 }
 
-/* ================= RESULT ================= */
-
 .result{
+  margin-top:13px;
   padding:13px;
   border-radius:12px;
-  margin-top:12px;
   background:#effaf3;
   color:#166534;
+  font-size:14px;
   line-height:1.5;
 }
 
@@ -489,118 +479,113 @@ textarea{
   display:none!important;
 }
 
-/* ================= FOOTER ================= */
-
 .footer{
-  text-align:center;
   padding:18px 0 8px;
-  font-size:14px;
+  text-align:center;
   color:#52667e;
+  font-size:13px;
   font-weight:900;
 }
 
-/* ================= MOBILE ================= */
-
+/* MOBILE */
 @media(max-width:700px){
 
   .wrap{
-    padding:0 9px 12px;
+    padding:0 8px 14px;
   }
 
   .hero{
-    min-height:430px;
+    min-height:425px;
     border-radius:0 0 24px 24px;
-    background-position:center;
   }
 
   .hero-content{
-    width:64%;
-    padding:25px 15px 52px;
+    width:65%;
+    padding:25px 14px 52px;
   }
 
   .eyebrow{
-    font-size:12px;
+    font-size:11px;
   }
 
   .brandline{
-    font-size:13px;
-    padding:6px 11px;
+    padding:6px 10px;
+    font-size:11px;
   }
 
   .hero h1{
-    font-size:33px;
-    margin:28px 0 12px;
+    margin:27px 0 11px;
+    font-size:32px;
   }
 
   .hero p{
-    font-size:13px;
+    max-width:255px;
     padding:10px 12px;
-    max-width:260px;
+    font-size:12px;
   }
 
   .hero-badge{
-    font-size:13px;
-    padding:10px 13px;
+    padding:9px 12px;
+    font-size:12px;
   }
 
   .hero-call{
-    font-size:11px;
-    padding:8px 10px;
+    padding:7px 10px;
+    font-size:10px;
   }
 
   .hero-worker{
-    width:63%;
-    height:83%;
     right:-5%;
-    bottom:0;
+    width:64%;
+    height:83%;
   }
 
   .admin-link{
-    top:10px;
-    right:10px;
-    font-size:10px;
+    top:9px;
+    right:9px;
     padding:7px 9px;
+    font-size:10px;
   }
 
   .quicknav{
-    margin:-15px 3px 0;
-    border-radius:17px;
+    margin:-14px 3px 0;
+    border-radius:16px;
   }
 
   .quicknav div{
-    font-size:10px;
-    padding:11px 2px;
+    padding:10px 2px;
+    font-size:9px;
   }
 
   .quickicon{
-    font-size:23px;
-    margin-bottom:4px;
+    font-size:21px;
   }
 
   .card{
-    padding:20px 16px;
+    margin:14px 3px 0;
+    padding:19px 15px;
     border-radius:22px;
-    margin:15px 3px 0;
   }
 
   .section-icon{
-    width:48px;
-    height:48px;
-    flex-basis:48px;
-    font-size:24px;
+    flex-basis:46px;
+    width:46px;
+    height:46px;
+    font-size:23px;
   }
 
   .section-title{
+    margin-top:5px;
     font-size:27px;
   }
 
   .note{
-    font-size:13px;
+    font-size:12px;
   }
 
   .grid{
     grid-template-columns:1fr;
-    gap:2px;
+    gap:1px;
   }
 
   .full{
@@ -608,23 +593,30 @@ textarea{
   }
 
   label{
-    font-size:14px;
     margin-top:16px;
+    font-size:14px;
   }
 
-  input,
-  select,
-  textarea{
+  input,select,textarea{
+    padding:14px;
     font-size:16px;
-    padding:14px 15px;
   }
 
   .photo-actions{
     grid-template-columns:1fr;
+    gap:8px;
   }
 
-  .footer{
-    font-size:12px;
+  .photo-btn{
+    min-height:50px;
+  }
+
+  .photo-preview-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .duty-active{
+    font-size:17px;
   }
 }
 </style>
@@ -632,70 +624,28 @@ textarea{
 
 <body>
 
-<!-- WATERMARK -->
 <div class="watermark" aria-hidden="true">
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
-  <span>PDC PFO</span>
+  <span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span>
+  <span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span>
+  <span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span>
+  <span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span>
 </div>
 
 <div class="wrap">
 
-<!-- ================= HERO ================= -->
+<section class="hero">
 
-<section class="hero" id="lapor">
-
-  <a class="admin-link" href="/admin.html">
-    🔐 ADMIN
-  </a>
+  <a class="admin-link" href="/admin.html">🔐 ADMIN</a>
 
   <img
     class="hero-worker"
     src="pfo_worker_cutout.png"
-    alt="Pekerja fasilitas operasi menunjuk ke laporan"
+    alt="Pekerja fasilitas operasi"
   >
 
   <div class="hero-content">
 
-    <div class="eyebrow">
-      PDC – PFO
-    </div>
+    <div class="eyebrow">PDC – PFO</div>
 
     <div class="brandline">
       PERAWATAN FASILITAS OPERASI
@@ -709,7 +659,7 @@ textarea{
     <p>
       Silakan laporkan di sini.
       Isi temuan dengan jelas.
-      Laporan otomatis diteruskan kepada koordinator yang sedang ON DUTY.
+      Sistem otomatis meneruskan laporan kepada koordinator yang bertugas.
     </p>
 
     <div class="hero-badge">
@@ -723,9 +673,7 @@ textarea{
   </div>
 </section>
 
-<!-- ================= QUICK NAV ================= -->
-
-<div class="quicknav" aria-label="Jenis fasilitas">
+<div class="quicknav">
 
   <div>
     <span class="quickicon">⚙️</span>
@@ -749,27 +697,18 @@ textarea{
 
 </div>
 
-<!-- ================= FORM ================= -->
-
 <section class="card">
 
   <div class="section-head">
 
-    <div class="section-icon">
-      📝
-    </div>
+    <div class="section-icon">📝</div>
 
     <div>
-
-      <div class="section-title">
-        Buat Laporan
-      </div>
+      <div class="section-title">Buat Laporan</div>
 
       <div class="note">
-        Isi temuan dengan jelas.
-        Sistem otomatis meneruskan laporan kepada koordinator yang sedang ON DUTY.
+        Isi laporan dengan jelas dan sertakan foto bila diperlukan.
       </div>
-
     </div>
 
   </div>
@@ -778,19 +717,13 @@ textarea{
 
     <div class="grid">
 
-      <!-- LOKASI -->
-
       <div>
 
-        <label>
-          Lokasi
-        </label>
+        <label>Lokasi</label>
 
         <select id="location" required>
 
-          <option value="">
-            Pilih lokasi
-          </option>
+          <option value="">Pilih lokasi</option>
 
           <option>Lab</option>
           <option>Portacamp</option>
@@ -813,13 +746,9 @@ textarea{
 
       </div>
 
-      <!-- NOMOR KAMAR -->
-
       <div id="roomBox" class="hidden">
 
-        <label id="roomLabel">
-          Nomor Kamar / Mess
-        </label>
+        <label id="roomLabel">Nomor Kamar</label>
 
         <input
           id="room"
@@ -829,13 +758,9 @@ textarea{
 
       </div>
 
-      <!-- LOKASI LAINNYA -->
-
       <div id="otherBox" class="full hidden">
 
-        <label>
-          Lokasi lainnya
-        </label>
+        <label>Lokasi lainnya</label>
 
         <input
           id="other"
@@ -844,164 +769,91 @@ textarea{
 
       </div>
 
-      <!-- KATEGORI -->
-
       <div>
 
-        <label>
-          Kategori Pekerjaan
-        </label>
+        <label>Kategori Pekerjaan</label>
 
         <select id="category" required>
 
-          <option value="">
-            Pilih kategori
-          </option>
-
-          <option>
-            AC / HVAC
-          </option>
-
-          <option>
-            Listrik & Penerangan
-          </option>
-
-          <option>
-            Plumbing / Air
-          </option>
-
-          <option>
-            Civil / Bangunan
-          </option>
-
-          <option>
-            Pengecatan
-          </option>
-
-          <option>
-            Pintu & Jendela
-          </option>
-
-          <option>
-            Furniture & Interior
-          </option>
-
-          <option>
-            Atap & Plafon
-          </option>
-
-          <option>
-            Drainase & Area
-          </option>
-
-          <option>
-            Housekeeping / Kebersihan
-          </option>
-
-          <option>
-            Taman & Landscape
-          </option>
-
-          <option>
-            Fasilitas Umum
-          </option>
-
-          <option>
-            Lainnya
-          </option>
+          <option value="">Pilih kategori</option>
+          <option>AC / HVAC</option>
+          <option>Listrik & Penerangan</option>
+          <option>Plumbing / Air</option>
+          <option>Civil / Bangunan</option>
+          <option>Pengecatan</option>
+          <option>Pintu & Jendela</option>
+          <option>Furniture & Interior</option>
+          <option>Atap & Plafon</option>
+          <option>Drainase & Area</option>
+          <option>Housekeeping / Kebersihan</option>
+          <option>Taman & Landscape</option>
+          <option>Fasilitas Umum</option>
+          <option>Lainnya</option>
 
         </select>
 
       </div>
 
-      <!-- PRIORITAS -->
-
       <div>
 
-        <label>
-          Prioritas
-        </label>
+        <label>Prioritas</label>
 
         <select id="priority">
 
-          <option value="Low">
-            Low
-          </option>
-
-          <option value="Medium">
-            Medium
-          </option>
-
-          <option value="High">
-            High
-          </option>
+          <option value="Low">Low</option>
+          <option value="Medium">Medium</option>
+          <option value="High">High</option>
 
         </select>
 
-        <div
-          id="priorityNote"
-          class="note"
-          style="margin-top:6px"
-        >
+        <div id="priorityNote" class="note" style="margin-top:6px">
           Low: tidak mengganggu fungsi utama.
-          Masih aman digunakan dan dapat dijadwalkan.
         </div>
 
       </div>
 
-      <!-- URAIAN -->
-
       <div class="full">
 
-        <label>
-          Uraian Temuan
-        </label>
+        <label>Uraian Temuan</label>
 
         <textarea
           id="description"
           required
-          placeholder="Jelaskan kondisi yang ditemukan, misalnya: AC tidak dingin, lampu mati, plafon bocor, saluran air tersumbat, rumput terlalu tinggi, dll."
+          placeholder="Jelaskan kondisi yang ditemukan..."
         ></textarea>
 
       </div>
-
-      <!-- PELAPOR -->
 
       <div>
 
         <label>
           Nama Pelapor
-          <span class="note">
-            (wajib)
-          </span>
+          <span class="note">(wajib)</span>
         </label>
 
         <input
           id="reporter"
           required
-          placeholder="Wajib diisi nama pelapor"
+          placeholder="Nama pelapor"
         >
 
       </div>
 
     </div>
 
-    <!-- ================= FOTO ================= -->
+    <!-- FOTO -->
 
-    <div class="full" style="margin-top:18px">
+    <div style="margin-top:18px">
 
       <label>
         📷 Foto Kerusakan / Temuan
-        <span class="note">
-          (maksimal 4)
-        </span>
+        <span class="note">(maksimal 4)</span>
       </label>
 
       <div class="photo-box">
 
         <div class="note">
-          Pilih foto dari galeri atau ambil langsung dengan kamera.
-          Foto akan masuk ke laporan.
+          Pilih foto yang jelas atau ambil langsung dengan kamera.
         </div>
 
         <div class="photo-actions">
@@ -1040,38 +892,19 @@ textarea{
           hidden
         >
 
-        <div
-          id="photoCount"
-          class="photo-count"
-        >
+        <div id="photoCount" class="photo-count">
           Belum ada foto
         </div>
 
-        <div class="photo-count">
-          Foto laporan akan dikompres otomatis agar ringan untuk penyimpanan server.
-        </div>
+        <div id="photoPreview" class="photo-preview-grid"></div>
 
-        <div
-          id="photoPreview"
-          class="photo-preview-grid"
-        ></div>
+        <div id="reportPreview" class="report-preview">
 
-        <div
-          id="reportPreview"
-          class="report-preview"
-        >
-
-          <div
-            style="font-weight:900;margin-bottom:8px"
-          >
-            🖼️ Preview Gambar Laporan —
-            klik gambar untuk melihat besar
+          <div style="font-weight:900;margin-bottom:8px">
+            🖼️ Preview Laporan
           </div>
 
-          <img
-            id="reportImage"
-            alt="Preview laporan"
-          >
+          <img id="reportImage" alt="Preview laporan">
 
         </div>
 
@@ -1079,47 +912,30 @@ textarea{
 
     </div>
 
-    <br>
-
-    <!-- ================= KOORDINATOR AKTIF ================= -->
+    <!-- DUTY -->
 
     <div class="duty-public">
 
-      <div
-        style="font-size:14px;font-weight:950;margin-bottom:8px"
-      >
+      <div class="duty-title">
         👷 KOORDINATOR BERTUGAS
       </div>
 
-      <div
-        id="publicDuty"
-        class="duty-box"
-      >
-        ⏳ Memuat koordinator ON DUTY...
+      <div id="publicDuty" class="duty-active">
+        ⏳ Memuat...
       </div>
 
-      <div
-        class="note"
-        style="
-          margin-top:10px;
-          background:#eef7ff;
-          border-radius:12px;
-          padding:12px
-        "
-      >
-        📷 Foto akan masuk ke dokumentasi laporan.
+      <div class="duty-info">
         Laporan otomatis diteruskan kepada koordinator yang sedang ON DUTY.
       </div>
 
     </div>
 
-    <!-- ================= SEND ================= -->
+    <!-- SEND -->
 
     <button
       class="send"
       type="button"
       id="sendBtn"
-      style="margin-top:12px"
     >
       📲 KIRIM LAPORAN
     </button>
@@ -1129,7 +945,7 @@ textarea{
       type="button"
       id="clear"
     >
-      Bersihkan Form
+      ↩️ Bersihkan Form
     </button>
 
     <div id="result"></div>
@@ -1146,112 +962,82 @@ textarea{
 
 <script>
 
-/* =========================================================
-   CONFIG
-========================================================= */
-
 const $ = id => document.getElementById(id);
 
 const COORDINATORS = {
-
   Handoko:{
     name:"HANDOKO",
     phone:"6282255033886"
   },
-
   Mustangin:{
     name:"MUSTANGIN",
     phone:"6282278155926"
   }
-
 };
 
-let selectedPhotos = [];
-let reportBlob = null;
-let reportData = null;
-let appConfig = null;
+let selectedPhotos=[];
+let reportBlob=null;
+let reportData=null;
 
-/* =========================================================
-   LOAD CONFIG / DUTY
-========================================================= */
+/* DUTY */
 
-async function loadConfig(){
+async function loadDuty(){
 
-  const box = $("publicDuty");
+  const box=$("publicDuty");
 
   try{
 
-    const r = await fetch(
+    const r=await fetch(
       "/api/config",
-      {
-        cache:"no-store"
-      }
+      {cache:"no-store"}
     );
 
     if(!r.ok){
-
-      throw new Error(
-        "Gagal mengambil konfigurasi duty"
-      );
-
+      throw new Error("Duty tidak tersedia");
     }
 
-    const cfg = await r.json();
-
-    appConfig = cfg;
-
-    const duty = cfg.duty;
+    const cfg=await r.json();
+    const duty=cfg.duty;
 
     if(
-      duty !== "Handoko" &&
-      duty !== "Mustangin"
+      duty!=="Handoko" &&
+      duty!=="Mustangin"
     ){
-
-      throw new Error(
-        "Koordinator ON DUTY belum ditentukan"
-      );
-
+      throw new Error("Belum ada koordinator aktif");
     }
 
-    const coord =
-      COORDINATORS[duty];
+    const coord=COORDINATORS[duty];
 
-    box.style.background = "#eaf8ef";
-    box.style.borderColor = "#b9e6c8";
-    box.style.color = "#166534";
+    box.innerHTML=
+      "🟢 "+coord.name+" — ON DUTY";
 
-    box.innerHTML =
-      "🟢 <b>"+
-      coord.name+
-      "</b> — ON DUTY";
+    box.style.background="#eaf8ef";
+    box.style.borderColor="#b9e6c8";
+    box.style.color="#166534";
 
   }catch(e){
 
-    box.style.background = "#fff4e5";
-    box.style.borderColor = "#f4c36a";
-    box.style.color = "#8a5a00";
+    box.innerHTML=
+      "⚠️ Koordinator belum tersedia";
 
-    box.innerHTML =
-      "⚠️ Koordinator ON DUTY belum dapat dimuat. Silakan coba lagi.";
+    box.style.background="#fff5e6";
+    box.style.borderColor="#f0c36d";
+    box.style.color="#8a5a00";
 
   }
-
 }
 
-loadConfig();
+loadDuty();
 
-/* =========================================================
-   LOCATION
-========================================================= */
+/* LOCATION */
 
 $("location").addEventListener(
   "change",
-  () => {
+  ()=>{
 
-    const v =
-      $("location").value;
+    const v=$("location").value;
 
-    const numbered = [
+    const numbered=[
       "Akomodasi A",
       "Akomodasi B",
       "Mess VIP"
@@ -1262,132 +1048,97 @@ $("location").addEventListener(
       !numbered
     );
 
+    $("otherBox").classList.toggle(
+      "hidden",
+      v!=="Lainnya"
+    );
+
     if(numbered){
 
-      $("roomLabel").textContent =
-        v === "Mess VIP"
+      $("roomLabel").textContent=
+        v==="Mess VIP"
           ? "Nomor Mess VIP"
           : "Nomor Kamar";
 
-      $("room").placeholder =
-        v === "Mess VIP"
+      $("room").placeholder=
+        v==="Mess VIP"
           ? "Contoh: 01"
           : "Contoh: 205";
 
     }else{
 
-      $("room").value = "";
+      $("room").value="";
 
     }
-
-    $("otherBox").classList.toggle(
-      "hidden",
-      v !== "Lainnya"
-    );
 
   }
 );
 
-/* =========================================================
-   ID LAPORAN
-========================================================= */
+/* ID */
 
 function pad(n){
-
-  return String(n).padStart(
-    2,
-    "0"
-  );
-
+  return String(n).padStart(2,"0");
 }
 
 function makeId(d){
 
-  return (
-    "PFO-" +
-    d.getFullYear() +
-    pad(d.getMonth()+1) +
-    pad(d.getDate()) +
-    "-" +
-    pad(d.getHours()) +
-    pad(d.getMinutes()) +
-    pad(d.getSeconds())
-  );
+  return "PFO-"+
+    d.getFullYear()+
+    pad(d.getMonth()+1)+
+    pad(d.getDate())+
+    "-"+
+    pad(d.getHours())+
+    pad(d.getMinutes())+
+    pad(d.getSeconds());
 
 }
 
-/* =========================================================
-   LOCATION TEXT
-========================================================= */
+/* LOCATION TEXT */
 
 function getLocationText(){
 
-  const lv =
-    $("location").value;
+  const lv=$("location").value;
 
-  let lokasi = lv;
+  let lokasi=lv;
 
-  if(
-    [
-      "Akomodasi A",
-      "Akomodasi B",
-      "Mess VIP"
-    ].includes(lv)
-  ){
+  if([
+    "Akomodasi A",
+    "Akomodasi B",
+    "Mess VIP"
+  ].includes(lv)){
 
-    lokasi +=
-      " — " +
+    lokasi+=" — "+
       (
-        lv === "Mess VIP"
-          ? "Nomor "
-          : "Kamar/Ruang "
-      ) +
+        lv==="Mess VIP"
+        ? "Nomor "
+        : "Kamar/Ruang "
+      )+
       $("room").value.trim();
 
   }
 
-  if(lv === "Lainnya"){
-
-    lokasi =
-      $("other").value.trim();
-
+  if(lv==="Lainnya"){
+    lokasi=$("other").value.trim();
   }
 
   return lokasi;
-
 }
 
-/* =========================================================
-   VALIDATE
-========================================================= */
+/* VALIDATE */
 
 function validate(){
 
-  const lv =
-    $("location").value;
+  const lv=$("location").value;
 
-  if(
-    !$("reporter").value.trim()
-  ){
-
-    alert(
-      "Nama pelapor wajib diisi."
-    );
-
+  if(!$("reporter").value.trim()){
+    alert("Nama pelapor wajib diisi.");
     $("reporter").focus();
-
     return false;
-
   }
 
   if(!lv){
-
-    alert(
-      "Silakan pilih lokasi."
-    );
-
+    alert("Silakan pilih lokasi.");
     return false;
-
   }
 
   if(
@@ -1398,248 +1149,142 @@ function validate(){
     ].includes(lv) &&
     !$("room").value.trim()
   ){
-
-    alert(
-      "Nomor wajib diisi untuk lokasi ini."
-    );
-
+    alert("Nomor wajib diisi untuk lokasi ini.");
     return false;
-
   }
 
   if(
-    lv === "Lainnya" &&
+    lv==="Lainnya" &&
     !$("other").value.trim()
   ){
-
-    alert(
-      "Silakan isi lokasi lainnya."
-    );
-
+    alert("Silakan isi lokasi lainnya.");
     return false;
-
   }
 
   if(!$("category").value){
-
-    alert(
-      "Silakan pilih kategori."
-    );
-
+    alert("Silakan pilih kategori.");
     return false;
-
   }
 
-  if(
-    !$("description").value.trim()
-  ){
-
-    alert(
-      "Uraian temuan wajib diisi."
-    );
-
+  if(!$("description").value.trim()){
+    alert("Uraian temuan wajib diisi.");
     return false;
-
   }
 
   if(!selectedPhotos.length){
-
-    alert(
-      "Tambahkan minimal 1 foto temuan."
-    );
-
+    alert("Tambahkan minimal 1 foto temuan.");
     return false;
-
   }
 
   return true;
-
 }
 
-/* =========================================================
-   ADD PHOTO
-========================================================= */
+/* PHOTOS */
 
 function addFiles(list){
 
-  for(
-    const f of [...list]
-  ){
+  for(const f of [...list]){
 
-    if(
-      !f.type.startsWith("image/")
-    ){
-
+    if(!f.type.startsWith("image/")){
       continue;
-
     }
 
-    if(
-      selectedPhotos.length >= 4
-    ){
-
+    if(selectedPhotos.length>=4){
       break;
-
     }
 
     selectedPhotos.push(f);
-
   }
 
   renderPhotos();
-
   buildReportPreview();
-
 }
-
-/* =========================================================
-   RENDER PHOTOS
-========================================================= */
 
 function renderPhotos(){
 
-  const box =
-    $("photoPreview");
+  const box=$("photoPreview");
 
-  box.innerHTML = "";
+  box.innerHTML="";
 
-  $("photoCount").textContent =
+  $("photoCount").textContent=
     selectedPhotos.length
-      ? `${selectedPhotos.length} foto dipilih (maksimal 4)`
+      ? selectedPhotos.length+
+        " foto dipilih"
       : "Belum ada foto";
 
-  selectedPhotos.forEach(
-    (f,i) => {
+  selectedPhotos.forEach((f,i)=>{
 
-      const item =
-        document.createElement(
-          "div"
-        );
+    const item=
+      document.createElement("div");
 
-      item.className =
-        "photo-item";
+    item.className="photo-item";
 
-      const img =
-        document.createElement(
-          "img"
-        );
+    const img=
+      document.createElement("img");
 
-      img.src =
-        URL.createObjectURL(f);
+    img.src=
+      URL.createObjectURL(f);
 
-      img.onclick =
-        () => window.open(
-          img.src,
-          "_blank"
-        );
-
-      const b =
-        document.createElement(
-          "button"
-        );
-
-      b.type = "button";
-
-      b.className =
-        "photo-remove";
-
-      b.textContent = "×";
-
-      b.onclick = () => {
-
-        selectedPhotos.splice(
-          i,
-          1
-        );
-
-        renderPhotos();
-
-        buildReportPreview();
-
-      };
-
-      item.append(
-        img,
-        b
+    img.onclick=()=>{
+      window.open(
+        img.src,
+        "_blank"
       );
+    };
 
-      box.append(
-        item
-      );
+    const btn=
+      document.createElement("button");
 
-    }
-  );
+    btn.type="button";
+    btn.className="photo-remove";
+    btn.textContent="×";
 
+    btn.onclick=()=>{
+
+      selectedPhotos.splice(i,1);
+
+      renderPhotos();
+      buildReportPreview();
+
+    };
+
+    item.append(img,btn);
+    box.append(item);
+
+  });
 }
 
-/* =========================================================
-   PHOTO INPUT
-========================================================= */
+$("galleryBtn").onclick=
+  ()=>$("galleryInput").click();
 
-$("galleryBtn").onclick =
-  () => $("galleryInput").click();
+$("cameraBtn").onclick=
+  ()=>$("cameraInput").click();
 
-$("cameraBtn").onclick =
-  () => $("cameraInput").click();
+$("galleryInput").onchange=e=>{
+  addFiles(e.target.files);
+  e.target.value="";
+};
 
-$("galleryInput").onchange =
-  e => {
+$("cameraInput").onchange=e=>{
+  addFiles(e.target.files);
+  e.target.value="";
+};
 
-    addFiles(
-      e.target.files
-    );
+/* CANVAS */
 
-    e.target.value = "";
+function drawCover(c,im,x,y,w,h){
 
-  };
-
-$("cameraInput").onchange =
-  e => {
-
-    addFiles(
-      e.target.files
-    );
-
-    e.target.value = "";
-
-  };
-
-/* =========================================================
-   DRAW IMAGE COVER
-========================================================= */
-
-function drawCover(
-  c,
-  im,
-  x,
-  y,
-  w,
-  h
-){
-
-  const r =
-    Math.max(
-      w/im.width,
-      h/im.height
-    );
-
-  const nw =
-    im.width * r;
-
-  const nh =
-    im.height * r;
-
-  c.save();
-
-  c.beginPath();
-
-  c.rect(
-    x,
-    y,
-    w,
-    h
+  const r=Math.max(
+    w/im.width,
+    h/im.height
   );
 
+  const nw=im.width*r;
+  const nh=im.height*r;
+
+  c.save();
+  c.beginPath();
+  c.rect(x,y,w,h);
   c.clip();
 
   c.drawImage(
@@ -1651,233 +1296,154 @@ function drawCover(
   );
 
   c.restore();
-
 }
 
-/* =========================================================
-   TEXT WRAP
-========================================================= */
+function wrap(c,t,x,y,max,lh){
 
-function wrap(
-  c,
-  t,
-  x,
-  y,
-  max,
-  lh
-){
+  const words=t.split(/\s+/);
+  let line="";
 
-  const words =
-    t.split(/\s+/);
+  for(const w of words){
 
-  let line = "";
-
-  for(
-    const w of words
-  ){
-
-    const test =
+    const test=
       line
-        ? line+" "+w
-        : w;
+      ? line+" "+w
+      : w;
 
     if(
-      c.measureText(test).width >
-      max &&
+      c.measureText(test).width>max &&
       line
     ){
 
-      c.fillText(
-        line,
-        x,
-        y
-      );
-
-      line = w;
-
-      y += lh;
+      c.fillText(line,x,y);
+      line=w;
+      y+=lh;
 
     }else{
 
-      line = test;
+      line=test;
 
     }
-
   }
 
   if(line){
-
-    c.fillText(
-      line,
-      x,
-      y
-    );
-
+    c.fillText(line,x,y);
   }
-
 }
 
-/* =========================================================
-   BUILD REPORT PREVIEW
-========================================================= */
+/* PREVIEW */
 
 async function buildReportPreview(){
 
-  if(
-    !selectedPhotos.length
-  ){
+  if(!selectedPhotos.length){
 
-    $("reportPreview").style.display =
-      "none";
-
-    reportBlob = null;
+    $("reportPreview").style.display="none";
+    reportBlob=null;
 
     return;
-
   }
 
-  const images =
+  const images=
     await Promise.all(
       selectedPhotos.map(
-        f =>
-          new Promise(
-            (resolve,reject) => {
+        f=>new Promise(
+          (resolve,reject)=>{
 
-              const im =
-                new Image();
+            const im=new Image();
 
-              im.onload =
-                () => resolve(im);
+            im.onload=()=>{
+              resolve(im);
+            };
 
-              im.onerror =
-                reject;
+            im.onerror=reject;
 
-              im.src =
-                URL.createObjectURL(f);
+            im.src=
+              URL.createObjectURL(f);
 
-            }
-          )
+          }
+        )
       )
     );
 
-  const now =
-    new Date();
+  const now=new Date();
 
-  const id =
-    makeId(now);
+  const id=makeId(now);
 
-  const data = {
+  reportData={
 
     id,
 
     reporter:
-      $("reporter").value.trim()
-      || "-",
+      $("reporter").value.trim()||"-",
 
     location:
-      getLocationText()
-      || "-",
+      getLocationText()||"-",
 
     category:
-      $("category").value
-      || "-",
+      $("category").value||"-",
 
     priority:
-      $("priority").value
-      .toUpperCase(),
+      $("priority").value.toUpperCase(),
 
     description:
-      $("description").value.trim()
-      || "-",
+      $("description").value.trim()||"-",
 
     date:
-      now.toLocaleString(
-        "id-ID"
-      )
+      now.toLocaleString("id-ID")
 
   };
 
-  reportData =
-    data;
+  const W=1200;
+  const pad=34;
+  const header=82;
+  const detail=390;
 
-  const W = 1200;
+  const cols=
+    images.length===1
+      ?1
+      :2;
 
-  const pad = 34;
+  const gap=14;
 
-  const header = 82;
-
-  const detail = 390;
-
-  const cols =
-    images.length === 1
-      ? 1
-      : 2;
-
-  const gap = 14;
-
-  const pw =
+  const pw=
     (
-      W -
-      pad*2 -
-      (cols-1)*gap
-    ) / cols;
+      W-pad*2-(cols-1)*gap
+    )/cols;
 
-  const ph =
-    images.length <= 2
-      ? 390
-      : 250;
+  const ph=
+    images.length<=2
+      ?390
+      :250;
 
-  const rows =
-    Math.ceil(
-      images.length/cols
-    );
+  const rows=
+    Math.ceil(images.length/cols);
 
-  const photoHeight =
-    rows*ph +
+  const photoHeight=
+    rows*ph+
     (rows-1)*gap;
 
-  const H =
-    header +
-    photoHeight +
-    detail +
+  const H=
+    header+
+    photoHeight+
+    detail+
     pad*2;
 
-  const canvas =
-    document.createElement(
-      "canvas"
-    );
+  const canvas=
+    document.createElement("canvas");
 
-  canvas.width = W;
-  canvas.height = H;
+  canvas.width=W;
+  canvas.height=H;
 
-  const c =
-    canvas.getContext("2d");
+  const c=canvas.getContext("2d");
 
-  c.fillStyle =
-    "#fff";
+  c.fillStyle="#fff";
+  c.fillRect(0,0,W,H);
 
-  c.fillRect(
-    0,
-    0,
-    W,
-    H
-  );
+  c.fillStyle="#073d80";
+  c.fillRect(0,0,W,header);
 
-  c.fillStyle =
-    "#073d80";
-
-  c.fillRect(
-    0,
-    0,
-    W,
-    header
-  );
-
-  c.fillStyle =
-    "#ffd400";
-
-  c.font =
-    "900 32px Arial";
+  c.fillStyle="#ffd400";
+  c.font="900 32px Arial";
 
   c.fillText(
     "PDC–PFO",
@@ -1885,11 +1451,8 @@ async function buildReportPreview(){
     34
   );
 
-  c.fillStyle =
-    "#fff";
-
-  c.font =
-    "900 25px Arial";
+  c.fillStyle="#fff";
+  c.font="900 25px Arial";
 
   c.fillText(
     "LAPORAN TEMUAN",
@@ -1897,103 +1460,82 @@ async function buildReportPreview(){
     67
   );
 
-  c.font =
-    "bold 16px Arial";
+  c.font="bold 16px Arial";
 
   c.fillText(
-    data.date,
+    reportData.date,
     W-290,
     36
   );
 
-  c.font =
-    "14px Arial";
+  c.font="14px Arial";
 
   c.fillText(
-    data.id,
+    reportData.id,
     W-290,
     61
   );
 
-  images.forEach(
-    (im,i) => {
+  images.forEach((im,i)=>{
 
-      const col =
-        i % cols;
+    const col=i%cols;
+    const row=Math.floor(i/cols);
 
-      const row =
-        Math.floor(
-          i / cols
-        );
+    drawCover(
+      c,
+      im,
+      pad+col*(pw+gap),
+      header+pad/2+row*(ph+gap),
+      pw,
+      ph
+    );
 
-      drawCover(
-        c,
-        im,
-        pad +
-          col *
-          (pw+gap),
+  });
 
-        header +
-          pad/2 +
-          row *
-          (ph+gap),
-
-        pw,
-        ph
-      );
-
-    }
-  );
-
-  let y =
-    header +
-    photoHeight +
-    pad +
+  let y=
+    header+
+    photoHeight+
+    pad+
     10;
 
-  c.fillStyle =
-    "#102b50";
-
-  c.font =
-    "bold 21px Arial";
+  c.fillStyle="#102b50";
+  c.font="bold 21px Arial";
 
   c.fillText(
-    "Pelapor: "+data.reporter,
+    "Pelapor: "+reportData.reporter,
     pad,
     y
   );
 
-  y += 32;
+  y+=32;
 
-  c.font =
-    "19px Arial";
+  c.font="19px Arial";
 
   c.fillText(
-    "Lokasi: "+data.location,
+    "Lokasi: "+reportData.location,
     pad,
     y
   );
 
-  y += 30;
+  y+=30;
 
   c.fillText(
-    "Kategori: "+data.category,
+    "Kategori: "+reportData.category,
     pad,
     y
   );
 
-  y += 30;
+  y+=30;
 
   c.fillText(
-    "Prioritas: "+data.priority,
+    "Prioritas: "+reportData.priority,
     pad,
     y
   );
 
-  y += 34;
+  y+=34;
 
-  c.font =
-    "bold 18px Arial";
+  c.font="bold 18px Arial";
 
   c.fillText(
     "Uraian:",
@@ -2001,25 +1543,21 @@ async function buildReportPreview(){
     y
   );
 
-  y += 26;
+  y+=26;
 
-  c.font =
-    "18px Arial";
+  c.font="18px Arial";
 
   wrap(
     c,
-    data.description,
+    reportData.description,
     pad,
     y,
     W-pad*2,
     27
   );
 
-  c.fillStyle =
-    "#07518a";
-
-  c.font =
-    "bold 14px Arial";
+  c.fillStyle="#07518a";
+  c.font="bold 14px Arial";
 
   c.fillText(
     "PDC–PFO • PERAWATAN FASILITAS OPERASI",
@@ -2027,68 +1565,59 @@ async function buildReportPreview(){
     H-18
   );
 
-  const makeBlob =
-    q =>
-      new Promise(
-        res =>
-          canvas.toBlob(
-            res,
-            "image/jpeg",
-            q
-          )
-      );
+  const makeBlob=
+    q=>new Promise(
+      resolve=>
+        canvas.toBlob(
+          resolve,
+          "image/jpeg",
+          q
+        )
+    );
 
-  let q = .82;
+  let q=.82;
 
-  let blob =
+  let blob=
     await makeBlob(q);
 
   while(
     blob &&
-    blob.size > 700*1024 &&
-    q > .45
+    blob.size>700*1024 &&
+    q>.45
   ){
 
-    q -= .06;
+    q-=.06;
 
-    blob =
+    blob=
       await makeBlob(q);
-
   }
 
   if(
     !blob ||
-    blob.size > 700*1024
+    blob.size>700*1024
   ){
 
-    reportBlob = null;
+    reportBlob=null;
 
-    $("result").className =
+    $("result").className=
       "result error";
 
-    $("result").textContent =
-      "Foto gabungan masih terlalu besar. Kurangi jumlah/foto lalu coba lagi.";
+    $("result").textContent=
+      "Foto terlalu besar. Kurangi foto lalu coba lagi.";
 
     return;
-
   }
 
-  reportBlob =
-    blob;
+  reportBlob=blob;
 
-  $("reportImage").src =
-    URL.createObjectURL(
-      blob
-    );
+  $("reportImage").src=
+    URL.createObjectURL(blob);
 
-  $("reportPreview").style.display =
+  $("reportPreview").style.display=
     "block";
-
 }
 
-/* =========================================================
-   LIVE PREVIEW
-========================================================= */
+/* LIVE PREVIEW */
 
 [
   "reporter",
@@ -2098,82 +1627,64 @@ async function buildReportPreview(){
   "priority",
   "description",
   "other"
-].forEach(
-  id => {
+].forEach(id=>{
 
-    $(id).addEventListener(
-      "input",
-      () => {
+  $(id).addEventListener(
+    "input",
+    ()=>{
 
-        clearTimeout(
-          window._pv
+      clearTimeout(window._pv);
+
+      window._pv=
+        setTimeout(
+          buildReportPreview,
+          250
         );
 
-        window._pv =
-          setTimeout(
-            buildReportPreview,
-            250
-          );
+    }
+  );
 
-      }
-    );
+});
 
-  }
-);
-
-/* =========================================================
-   PRIORITY
-========================================================= */
+/* PRIORITY */
 
 $("priority").addEventListener(
   "change",
-  () => {
+  ()=>{
 
-    const v =
+    const v=
       $("priority").value;
 
-    $("priorityNote").textContent =
-      v === "Low"
-        ? "Low: tidak mengganggu fungsi utama. Masih aman digunakan dan dapat dijadwalkan."
+    $("priorityNote").textContent=
+      v==="Low"
+      ? "Low: tidak mengganggu fungsi utama."
 
-        : v === "Medium"
-        ? "Medium: mulai mengganggu kenyamanan atau fungsi fasilitas, tetapi masih dapat digunakan sementara."
+      : v==="Medium"
+      ? "Medium: mulai mengganggu kenyamanan atau fungsi fasilitas."
 
-        : "High: mengganggu fungsi utama atau berpotensi menyebabkan kerusakan lebih besar. Perlu segera ditindaklanjuti.";
+      : "High: mengganggu fungsi utama dan perlu segera ditindaklanjuti.";
 
   }
 );
 
-/* =========================================================
-   SEND REPORT
-========================================================= */
+/* SEND */
 
 async function sendReport(){
 
   if(!validate()){
-
     return;
-
   }
 
   if(!reportBlob){
-
     await buildReportPreview();
-
   }
 
   if(!reportBlob){
-
-    alert(
-      "Foto laporan belum siap."
-    );
-
+    alert("Foto laporan belum siap.");
     return;
-
   }
 
-  const fd =
-    new FormData();
+  const fd=new FormData();
 
   fd.append(
     "reporter",
@@ -2211,33 +1722,21 @@ async function sendReport(){
     reportData.id+".jpg"
   );
 
-  const btn =
-    $("sendBtn");
+  const btn=$("sendBtn");
 
-  btn.disabled =
-    true;
+  btn.disabled=true;
 
-  btn.textContent =
-    "⏳ MENYIMPAN LAPORAN...";
+  btn.textContent=
+    "⏳ MENGIRIM LAPORAN...";
 
-  $("result").className =
-    "result";
+  $("result").className="result";
 
-  $("result").innerHTML =
-    "⏳ Menyimpan laporan ke server...";
+  $("result").innerHTML=
+    "⏳ Menyimpan laporan...";
 
   try{
 
-    /*
-      =====================================================
-      PENTING
-
-      Server menentukan duty aktif.
-      User TIDAK memilih Handoko/Mustangin.
-      =====================================================
-    */
-
-    const r =
+    const r=
       await fetch(
         "/api/reports",
         {
@@ -2246,28 +1745,29 @@ async function sendReport(){
         }
       );
 
-    const j =
+    const j=
       await r.json();
 
     if(!r.ok){
 
       throw new Error(
-        j.error ||
+        j.error||
         "Gagal menyimpan laporan"
       );
 
     }
 
     /*
-      Ambil koordinator dari response server.
+      Server menentukan ON DUTY.
+      Tidak ada pilihan koordinator
+      dari halaman pelapor.
     */
 
-    const duty =
-      j.duty;
+    const duty=j.duty;
 
     if(
-      duty !== "Handoko" &&
-      duty !== "Mustangin"
+      duty!=="Handoko" &&
+      duty!=="Mustangin"
     ){
 
       throw new Error(
@@ -2276,12 +1776,12 @@ async function sendReport(){
 
     }
 
-    const coord =
-      j.coordinator ||
+    const coord=
+      j.coordinator||
       COORDINATORS[duty];
 
     if(
-      !coord ||
+      !coord||
       !coord.phone
     ){
 
@@ -2291,11 +1791,7 @@ async function sendReport(){
 
     }
 
-    /*
-      PESAN WHATSAPP
-    */
-
-    const text = [
+    const text=[
 
       "PDC–PFO | LAPORAN TEMUAN",
 
@@ -2335,116 +1831,84 @@ async function sendReport(){
 
     ].join("\n");
 
-    const wa =
-      "https://wa.me/" +
-      coord.phone +
-      "?text=" +
+    const wa=
+      "https://wa.me/"+
+      coord.phone+
+      "?text="+
       encodeURIComponent(text);
 
-    $("result").innerHTML =
+    $("result").innerHTML=
 
-      "<b>✓ Laporan tersimpan.</b><br>" +
-
-      "ID: <b>"+
-      j.id+
-      "</b><br>" +
-
-      "Koordinator ON DUTY: <b>"+
-      coord.name+
-      "</b><br>" +
-
-      '<a href="'+
-      j.imageUrl+
-      '" target="_blank">Buka gambar laporan</a>' +
-
-      "<br><br>" +
-
-      "WhatsApp akan dibuka otomatis.";
-
-    /*
-      Buka WhatsApp
-    */
+      "<b>✓ Laporan tersimpan.</b><br>"+
+      "ID: <b>"+j.id+"</b><br>"+
+      "Koordinator: <b>"+coord.name+
+      "</b><br><br>"+
+      "WhatsApp akan dibuka.";
 
     window.open(
       wa,
       "_blank"
     );
 
-    /*
-      Refresh setelah sebentar
-    */
-
     setTimeout(
-      () => location.reload(),
-      1500
+      ()=>location.reload(),
+      1800
     );
 
   }catch(e){
 
-    $("result").className =
+    $("result").className=
       "result error";
 
-    $("result").textContent =
-      "Gagal: "+
-      e.message;
+    $("result").textContent=
+      "Gagal: "+e.message;
 
-    btn.disabled =
-      false;
+    btn.disabled=false;
 
-    btn.textContent =
+    btn.textContent=
       "📲 KIRIM LAPORAN";
-
   }
-
 }
 
-/* =========================================================
-   SEND BUTTON
-========================================================= */
-
-$("sendBtn").onclick =
+$("sendBtn").onclick=
   sendReport;
 
-/* =========================================================
-   CLEAR FORM
-========================================================= */
+/* CLEAR */
 
-$("clear").onclick =
-  () => {
+$("clear").onclick=()=>{
 
-    $("form").reset();
+  $("form").reset();
 
-    selectedPhotos = [];
+  selectedPhotos=[];
 
-    reportBlob = null;
+  reportBlob=null;
 
-    reportData = null;
+  reportData=null;
 
-    renderPhotos();
+  renderPhotos();
 
-    $("roomBox")
-      .classList
-      .add("hidden");
+  $("roomBox")
+    .classList
+    .add("hidden");
 
-    $("otherBox")
-      .classList
-      .add("hidden");
+  $("otherBox")
+    .classList
+    .add("hidden");
 
-    $("reportPreview")
-      .style
-      .display = "none";
+  $("reportPreview")
+    .style
+    .display="none";
 
-    $("result").innerHTML = "";
+  $("result").innerHTML="";
 
-    $("sendBtn").disabled =
-      false;
+  $("sendBtn").disabled=false;
 
-    $("sendBtn").textContent =
-      "📲 KIRIM LAPORAN";
+  $("sendBtn").textContent=
+    "📲 KIRIM LAPORAN";
 
-    loadConfig();
+  loadDuty();
 
-  };
+};
 
 </script>
 
