@@ -9,7 +9,7 @@ binding = "ASSETS"
 [[d1_databases]]
 binding = "DB"
 database_name = "pdc-pfo"
-database_id = "GANTI_DENGAN_DATABASE_ID"
+database_id = "27d9b48a-0006-49af-822c-0a91b6af5015"
 migrations_dir = "migrations"
 
 [vars]
