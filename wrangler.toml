@@ -1,0 +1,19 @@
+name = "pdc-pfo"
+main = "src/worker.js"
+compatibility_date = "2026-10-01"
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "pdc-pfo"
+database_id = "GANTI_DENGAN_DATABASE_ID"
+migrations_dir = "migrations"
+
+
+[vars]
+APP_NAME = "PDC–PFO"
+APP_ORIGIN = "https://laporkankerusakan.pdcpfo.workers.dev"
+SETUP_ADMIN_EMAIL = "admin@contoh.com"

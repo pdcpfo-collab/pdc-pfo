@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1628">
+<title>PDC–PFO | Perawatan Fasilitas Operasi</title>
+<style>
+:root{--navy:#062c62;--navy2:#073d80;--blue:#0877e8;--yellow:#ffd400;--red:#ef3028;--green:#0aaa58;--ink:#102b50;--muted:#6b7a90;--line:#dce6f0;--soft:#eef7ff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#dff0ff 0,#f7fbff 48%,#eaf4ff 100%);color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.watermark{position:fixed;inset:-10%;z-index:0;pointer-events:none;display:grid;grid-template-columns:repeat(4,1fr);align-content:space-around;transform:rotate(-22deg);opacity:.045;overflow:hidden}.watermark span{font-size:28px;font-weight:950;color:#173b67;white-space:nowrap;text-align:center}.wrap{position:relative;z-index:1;max-width:1024px;margin:auto;padding:0 18px 18px}
+.hero{position:relative;overflow:hidden;margin:0;border-radius:0 0 0 0;min-height:500px;background:#063a83 url('pfo_refinery_bg.png') center/cover no-repeat;box-shadow:0 12px 28px #07346c22}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,37,83,.95) 0%,rgba(5,59,123,.78) 40%,rgba(0,0,0,.08) 72%,rgba(0,0,0,.12) 100%)}.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(180deg,transparent,rgba(2,28,58,.85));z-index:2}.hero-content{position:relative;z-index:4;width:57%;padding:42px 22px 60px}.eyebrow{font-size:15px;font-weight:950;letter-spacing:.12em;color:#fff;text-transform:uppercase}.brandline{display:inline-block;margin-top:6px;background:var(--yellow);color:#072c5b;padding:7px 15px;border-radius:0 0 10px 10px;font-size:16px;font-weight:950}.hero h1{font-size:50px;line-height:.98;letter-spacing:-.035em;margin:42px 0 12px;color:#fff;text-transform:uppercase;text-shadow:0 4px 12px #0004}.hero h1::first-line{background:var(--red)}.hero p{display:inline-block;background:#fff;color:#12355b;padding:14px 20px;border-radius:0 18px 18px 0;font-size:18px;line-height:1.35;font-weight:850;max-width:480px;box-shadow:0 8px 20px #0002}.hero-badge{display:inline-block;margin-top:14px;background:var(--red);color:#fff;font-weight:950;font-size:18px;padding:13px 20px;border-radius:14px;box-shadow:0 9px 20px #0003}.hero-call{display:inline-block;margin-top:8px;background:#fff;color:#0b3152;font-weight:950;padding:10px 17px;border-radius:12px}.hero-worker{position:absolute;right:-3%;bottom:-2px;width:58%;height:93%;object-fit:contain;object-position:center bottom;z-index:3;filter:drop-shadow(0 14px 15px #001b3c55)}
+.quicknav{position:relative;z-index:6;display:grid;grid-template-columns:repeat(4,1fr);background:#063b7b;color:#fff;border-radius:20px;margin:-18px 8px 0;box-shadow:0 13px 26px #06264a35;overflow:hidden;border:2px solid #fff}.quicknav div{text-align:center;padding:15px 5px;border-right:1px solid #ffffff70;font-weight:950;font-size:14px}.quicknav div:last-child{border-right:0}.quickicon{display:block;font-size:32px;line-height:1;margin-bottom:6px;filter:grayscale(1) brightness(0) invert(1)}
+.card{background:#fff;border:2px solid #e4edf5;border-radius:28px;padding:28px 34px;margin:18px 8px 0;box-shadow:0 12px 32px #12304c16}.section-head{display:flex;align-items:flex-start;gap:16px}.section-icon{width:62px;height:62px;flex:0 0 62px;border-radius:15px;background:linear-gradient(135deg,#0b8df0,#07417f);color:#fff;display:grid;place-items:center;font-size:31px;box-shadow:0 8px 17px #0b5aa633}.section-title{font-size:40px;line-height:1;font-weight:950;margin:7px 0 7px}.note{font-size:17px;color:var(--muted);line-height:1.42;margin-top:3px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 18px;margin-top:8px}label{display:block;font-size:16px;font-weight:950;margin:18px 0 8px}input,select,textarea{width:100%;padding:16px 18px;border:1px solid var(--line);border-radius:15px;background:#fff;color:var(--ink);font:inherit;font-size:17px;outline:none;box-shadow:0 2px 6px #17365c08}input:focus,select:focus,textarea:focus{border-color:#4f99db;box-shadow:0 0 0 4px #1769aa12}textarea{min-height:125px;resize:vertical}.full{grid-column:1/-1}.photo-box{border:1px dashed #9eb8d0;background:#eef7ff;border-radius:17px;padding:15px}.preview{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.preview img{width:78px;height:78px;object-fit:cover;border-radius:11px;border:1px solid var(--line)}button{width:100%;border:0;border-radius:14px;padding:15px 16px;font:inherit;font-weight:950;cursor:pointer}.send{background:var(--green);color:#fff;box-shadow:0 9px 20px #138a4b28}.ghost{background:#edf4fa;color:#164d78;margin-top:9px}.coordinator-title{font-size:17px;font-weight:950;margin:22px 0 9px}.wa-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.result{padding:13px;border-radius:12px;margin-top:12px;background:#effaf3;color:#166534;line-height:1.5}.error{background:#fff0f0;color:#991b1b}.hidden{display:none}.footer{text-align:center;padding:18px 0 8px;font-size:14px;color:#52667e;font-weight:900}
+@media(max-width:700px){.wrap{padding:0 9px 12px}.hero{min-height:430px;border-radius:0 0 24px 24px;background-position:center}.hero-content{width:64%;padding:25px 15px 52px}.eyebrow{font-size:12px}.brandline{font-size:13px;padding:6px 11px}.hero h1{font-size:33px;margin:28px 0 12px}.hero p{font-size:13px;padding:10px 12px;max-width:260px}.hero-badge{font-size:13px;padding:10px 13px}.hero-call{font-size:11px;padding:8px 10px}.hero-worker{width:63%;height:83%;right:-5%;bottom:0}.quicknav{margin:-15px 3px 0;border-radius:17px}.quicknav div{font-size:10px;padding:11px 2px}.quickicon{font-size:23px;margin-bottom:4px}.card{padding:20px 16px;border-radius:22px;margin:15px 3px 0}.section-icon{width:48px;height:48px;flex-basis:48px;font-size:24px}.section-title{font-size:27px}.note{font-size:13px}.grid{grid-template-columns:1fr;gap:2px}.full{grid-column:auto}label{font-size:14px;margin-top:16px}input,select,textarea{font-size:16px;padding:14px 15px}.wa-grid{grid-template-columns:1fr 1fr}.footer{font-size:12px}}
+</style>
+</head>
+<body>
+<div class="watermark" aria-hidden="true">
+  <span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span>
+  <span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span>
+  <span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span>
+  <span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span>
+  <span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span>
+  <span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span>
+  <span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span>
+  <span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span><span>PDC PFO</span>
+</div>
+<div class="wrap">
+<section class="hero" id="lapor">
+  <img class="hero-worker" src="pfo_worker_cutout.png" alt="Pekerja fasilitas operasi menunjuk ke laporan">
+  <div class="hero-content">
+    <div class="eyebrow">PDC – PFO</div>
+    <div class="brandline">PERAWATAN FASILITAS OPERASI</div>
+    <h1>Ada kerusakan<br>atau temuan?</h1>
+    <p>Silakan laporkan di sini. Isi temuan, tambahkan foto bila perlu, lalu pilih koordinator.</p>
+    <div class="hero-badge">SILAKAN LAPORKAN ↓</div>
+    <div class="hero-call">Isi laporan di bawah ini</div>
+  </div>
+</section>
+<div class="quicknav" aria-label="Jenis fasilitas">
+  <div><span class="quickicon">⚙️</span>FASILITAS</div>
+  <div><span class="quickicon">🛠️</span>PERALATAN</div>
+  <div><span class="quickicon">💧</span>UTILITAS</div>
+  <div><span class="quickicon">🏠</span>AKOMODASI</div>
+</div>
+
+<section class="card">
+<div class="section-head"><div class="section-icon">📝</div><div><div class="section-title">Buat Laporan</div><div class="note">Isi temuan dengan jelas, tambahkan foto bila perlu, lalu pilih koordinator yang sedang bertugas.</div></div></div>
+
+<form id="form" onsubmit="return false;">
+<div class="grid">
+<div>
+<label>Lokasi</label>
+<select id="location" required>
+<option value="">Pilih lokasi</option>
+<option>Lab</option>
+<option>Portacamp</option>
+<option>Admin</option>
+<option>Warehouse</option>
+<option>Project Office</option>
+<option>Klinik</option>
+<option>VIP</option>
+<option>Rechall</option>
+<option>Kantin A</option>
+<option>Kantin B</option>
+<option>Laundry A</option>
+<option>Laundry B</option>
+<option>Masjid</option>
+<option>Akomodasi A</option>
+<option>Akomodasi B</option>
+<option>Fire Shelter</option>
+</select>
+</div>
+
+<div id="roomBox" class="hidden">
+<label>No. Kamar / Ruang</label>
+<input id="room" placeholder="Contoh: 12 atau A-12" inputmode="text">
+</div>
+
+<div id="otherBox" class="full hidden">
+<label>Lokasi lainnya</label>
+<input id="other" placeholder="Ketik lokasi secara manual">
+</div>
+
+
+
+<div>
+<label>Kategori Pekerjaan</label>
+<select id="category" required>
+<option value="">Pilih kategori</option>
+<option>Housekeeping / Kebersihan</option>
+<option>Landscape / Gardening</option>
+<option>Civil / Bangunan</option>
+<option>Electrical</option>
+<option>Plumbing / Air</option>
+<option>AC / HVAC</option>
+<option>Mechanical</option>
+<option>Painting</option>
+<option>Furniture / Interior</option>
+<option>Pintu & Jendela</option>
+<option>Atap / Plafon</option>
+<option>Jalan / Drainase</option>
+<option>Fasilitas Kamar</option>
+<option>Fasilitas Umum</option>
+<option>Fire & Safety Equipment</option>
+<option>Penerangan</option>
+<option>Sanitasi</option>
+<option>Waste / Sampah</option>
+<option>Pekerjaan Eksternal</option>
+<option>Lainnya</option>
+</select>
+</div>
+
+<div>
+<label>Prioritas</label>
+<select id="priority">
+<option>Low</option>
+<option>Medium</option>
+<option>High</option>
+</select>
+<div id="priorityNote" class="note" style="margin-top:6px">Low: gangguan ringan, dapat masuk planning pekerjaan berikutnya.</div>
+</div>
+
+<div class="full">
+<label>Uraian Temuan</label>
+<textarea id="description" required placeholder="Jelaskan kondisi yang ditemukan, misalnya: AC tidak dingin, lampu mati, plafon bocor, saluran air tersumbat, rumput terlalu tinggi, dll."></textarea>
+</div>
+
+<div>
+<label>Nama Pelapor <span class="note">(wajib)</span></label>
+<input id="reporter" required placeholder="Wajib diisi nama pelapor">
+</div>
+
+<div class="full">
+<label>Foto Temuan <span class="note">(opsional, maksimal 4)</span></label>
+<div class="photo-box">
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+<button type="button" class="ghost" id="cameraBtn" style="margin:0">📷 Ambil Foto</button>
+<button type="button" class="ghost" id="galleryBtn" style="margin:0">🖼️ Pilih dari Galeri</button>
+</div>
+<input id="cameraInput" type="file" accept="image/*" capture="environment" class="hidden">
+<input id="galleryInput" type="file" accept="image/*" multiple class="hidden">
+<div id="preview" class="preview"></div>
+<div class="note" style="margin-top:8px">Bisa ambil foto langsung atau pilih foto yang sudah tersimpan. Maksimal 4 foto.</div>
+</div>
+</div>
+</div>
+
+<br>
+<div style="font-size:14px;font-weight:900;margin-bottom:8px">Kirim Laporan Kepada:</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<button class="send" type="button" id="handokoBtn">🟢 HANDOKO<br><span style="font-size:11px">Kirim via WhatsApp</span></button>
+<button class="send" type="button" id="mustanginBtn">🔵 MUSTANGIN<br><span style="font-size:11px">Kirim via WhatsApp</span></button>
+</div>
+<button class="ghost" type="button" id="clear">Bersihkan Form</button>
+<div id="result"></div>
+</form>
+</section>
+
+
+<div class="footer">@BG | 2026</div>
+</div>
+
+<script>
+const COORDINATORS={
+ Handoko:"6282255033886",
+ Mustangin:"6282278155926"
+};
+const $=id=>document.getElementById(id);
+$("location").addEventListener("change",()=>{
+ const v=$("location").value;
+ $("roomBox").classList.toggle("hidden",!(v==="Akomodasi A"||v==="Akomodasi B"));
+ $("otherBox").classList.toggle("hidden",v!=="Lainnya");
+});
+let selectedPhotos=[];
+function addPhotos(list){
+  const incoming=[...list].filter(f=>f.type.startsWith("image/"));
+  selectedPhotos=[...selectedPhotos,...incoming].slice(0,4);
+  renderPhotos();
+}
+function renderPhotos(){
+  const box=$("preview"); box.innerHTML="";
+  selectedPhotos.forEach((f,i)=>{
+    const wrap=document.createElement("div"); wrap.style.position="relative";
+    const img=document.createElement("img"); img.src=URL.createObjectURL(f);
+    const x=document.createElement("button"); x.type="button"; x.textContent="×";
+    x.style.cssText="position:absolute;right:2px;top:2px;width:24px;height:24px;padding:0;border-radius:50%;background:#991b1b;color:#fff";
+    x.onclick=()=>{selectedPhotos.splice(i,1);renderPhotos()};
+    wrap.appendChild(img);wrap.appendChild(x);box.appendChild(wrap);
+  });
+}
+$("cameraBtn").onclick=()=>$("cameraInput").click();
+$("galleryBtn").onclick=()=>$("galleryInput").click();
+$("cameraInput").addEventListener("change",e=>{addPhotos(e.target.files);e.target.value=""});
+$("galleryInput").addEventListener("change",e=>{addPhotos(e.target.files);e.target.value=""});
+function pad(n){return String(n).padStart(2,"0")}
+function makeId(d){return "PFO-"+d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+"-"+pad(d.getHours())+pad(d.getMinutes())+pad(d.getSeconds())}
+function buildText(){
+ const now=new Date(), lv=$("location").value;
+ let lokasi=lv;
+ if(lv==="Akomodasi A"||lv==="Akomodasi B")lokasi+=" — Kamar/Ruang "+$("room").value.trim();
+ if(lv==="Lainnya")lokasi=$("other").value.trim();
+ return `*LAPORAN PDC–PFO | PERAWATAN FASILITAS OPERASI*
+ID: ${makeId(now)}
+
+📍 Lokasi: ${lokasi}
+🔧 Kategori: ${$("category").value}
+⚠️ Prioritas: ${$("priority").value}
+📝 Temuan: ${$("description").value.trim()}
+👤 Pelapor: ${$("reporter").value.trim()||"-"}
+🕐 Waktu: ${pad(now.getDate())}/${pad(now.getMonth()+1)}/${now.getFullYear()} ${pad(now.getHours())}:${pad(now.getMinutes())} WIB
+
+Mohon ditindaklanjuti oleh PFO.`;
+}
+async function sendTo(name,number){
+ const now=new Date();
+ const lv=$("location").value;
+ if(!lv){$("location").focus();return}
+ if((lv==="Akomodasi A"||lv==="Akomodasi B")&&!$("room").value.trim()){$("room").focus();return}
+ if(lv==="Lainnya"&&!$("other").value.trim()){$("other").focus();return}
+ if(!$("category").value){$("category").focus();return}
+ if(!$("description").value.trim()){$("description").focus();return}
+ const text=buildText();
+ $("result").className="result";
+ $("result").innerHTML="<b>Membuka WhatsApp "+name+"...</b><br>Pesan laporan sudah disiapkan.";
+ window.location.href="https://wa.me/"+number+"?text="+encodeURIComponent(text);
+}
+$("priority").addEventListener("change",()=>{
+ const v=$("priority").value;
+ $("priorityNote").textContent =
+   v.startsWith("Low") ? "Low: gangguan ringan, dapat masuk planning pekerjaan berikutnya." :
+   v.startsWith("Medium") ? "Medium: perlu diperhatikan dan diprioritaskan." :
+   "High: perlu segera diteruskan ke koordinator.";
+});
+$("handokoBtn").onclick=()=>sendTo("Handoko","6282255033886");
+$("mustanginBtn").onclick=()=>sendTo("Mustangin","6282278155926");
+
+$("clear").onclick=()=>{$("form").reset();$("roomBox").classList.add("hidden");$("otherBox").classList.add("hidden");selectedPhotos=[];$("preview").innerHTML="";$("result").innerHTML=""};
+</script>
+</body>
+</html>
