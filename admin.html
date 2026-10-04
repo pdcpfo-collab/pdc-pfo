@@ -1,757 +1,466 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PDC–PFO | Admin</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDC–PFO ADMIN</title>
 
 <style>
 :root{
-  --blue:#075985;
-  --blue2:#0ea5e9;
-  --dark:#0f172a;
-  --yellow:#facc15;
-  --red:#dc2626;
-  --green:#16a34a;
-  --orange:#f59e0b;
-  --gray:#64748b;
-  --light:#f1f5f9;
-  --white:#fff;
-  --border:#e2e8f0;
-  --shadow:0 10px 30px rgba(15,23,42,.10);
+  --navy:#062c62;
+  --blue:#0877e8;
+  --blue2:#07518a;
+  --red:#ef3028;
+  --green:#0aaa58;
+  --yellow:#f5c400;
+  --ink:#102b50;
+  --muted:#687b91;
+  --line:#dce8f1;
 }
 
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#eef4f8;
-  color:var(--dark);
+  background:linear-gradient(180deg,#e5f3ff,#f8fbff);
+  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  color:var(--ink);
 }
 
-button,
-input,
-select{
-  font:inherit;
-}
-
-button{
-  cursor:pointer;
-}
-
-.hidden{
-  display:none!important;
-}
-
-/* ================= HEADER ================= */
-
-.header{
-  background:linear-gradient(135deg,#075985,#0c4a6e);
-  color:#fff;
-  padding:16px 20px;
-  box-shadow:0 5px 18px rgba(0,0,0,.15);
-  position:sticky;
-  top:0;
-  z-index:50;
-}
-
-.header-inner{
-  max-width:1250px;
+.wrap{
+  max-width:1200px;
   margin:auto;
+  padding:16px;
+}
+
+.top{
+  background:linear-gradient(135deg,#062c62,#0877e8);
+  color:#fff;
+  padding:20px;
+  border-radius:20px;
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  gap:15px;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
   gap:12px;
-}
-
-.brand-icon{
-  width:48px;
-  height:48px;
-  border-radius:12px;
-  background:#fff;
-  color:#075985;
-  display:flex;
   align-items:center;
-  justify-content:center;
-  font-weight:900;
-  font-size:14px;
+  box-shadow:0 10px 30px #062c6230;
 }
 
-.brand-title{
-  font-size:19px;
-  font-weight:900;
-}
-
-.brand-sub{
-  font-size:12px;
-  opacity:.85;
-  margin-top:3px;
-}
-
-.user-area{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
-.user-email{
-  font-size:12px;
-  opacity:.9;
-}
-
-/* ================= CONTAINER ================= */
-
-.container{
-  width:min(1250px,94%);
-  margin:25px auto 50px;
-}
-
-/* ================= AUTH ================= */
-
-.auth-wrap{
-  min-height:calc(100vh - 40px);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-  background:
-    radial-gradient(circle at top left,rgba(14,165,233,.15),transparent 35%),
-    radial-gradient(circle at bottom right,rgba(250,204,21,.12),transparent 30%),
-    #eef4f8;
-}
-
-.auth-card{
-  width:min(450px,100%);
-  background:#fff;
-  border-radius:22px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  border:1px solid #dbe5ed;
-}
-
-.auth-top{
-  background:linear-gradient(135deg,#075985,#0ea5e9);
-  color:#fff;
-  padding:30px 25px;
-  text-align:center;
-}
-
-.auth-logo{
-  width:75px;
-  height:75px;
-  margin:auto auto 14px;
-  border-radius:20px;
-  background:#fff;
-  color:#075985;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:900;
-  font-size:20px;
-}
-
-.auth-top h1{
+.top h1{
   margin:0;
-  font-size:23px;
+  font-size:25px
 }
 
-.auth-top p{
-  margin:7px 0 0;
-  font-size:13px;
-  opacity:.9;
-}
-
-.auth-body{
-  padding:25px;
-}
-
-.form-group{
-  margin-bottom:16px;
-}
-
-.form-group label{
-  display:block;
-  font-weight:800;
-  font-size:13px;
-  margin-bottom:7px;
-}
-
-.input-wrap{
-  position:relative;
-}
-
-.form-control{
-  width:100%;
-  border:1px solid #cbd5e1;
-  border-radius:11px;
-  padding:13px 14px;
-  outline:none;
-  background:#fff;
-  transition:.2s;
-}
-
-.input-wrap .form-control{
-  padding-right:50px;
-}
-
-.form-control:focus{
-  border-color:#0ea5e9;
-  box-shadow:0 0 0 3px rgba(14,165,233,.12);
-}
-
-.eye{
-  position:absolute;
-  right:8px;
-  top:50%;
-  transform:translateY(-50%);
-  border:0;
-  background:transparent;
-  padding:8px;
-  color:#64748b;
+.top small{
+  opacity:.85
 }
 
 .btn{
   border:0;
-  border-radius:11px;
-  padding:12px 16px;
-  font-weight:800;
-  transition:.2s;
-}
-
-.btn:hover{
-  transform:translateY(-1px);
-}
-
-.btn-primary{
-  width:100%;
-  background:#075985;
-  color:#fff;
-}
-
-.btn-primary:hover{
-  background:#0c4a6e;
-}
-
-.btn-yellow{
-  background:#facc15;
-  color:#172033;
-}
-
-.btn-red{
-  background:#dc2626;
-  color:#fff;
-}
-
-.btn-green{
-  background:#16a34a;
-  color:#fff;
-}
-
-.btn-gray{
-  background:#e2e8f0;
-  color:#172033;
-}
-
-.auth-links{
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
-  margin-top:17px;
-}
-
-.link-btn{
-  border:0;
-  background:none;
-  color:#075985;
-  font-weight:800;
-  font-size:12px;
-  padding:5px;
-}
-
-.message{
-  border-radius:10px;
-  padding:11px 12px;
+  border-radius:12px;
+  padding:11px 14px;
+  font-weight:900;
+  cursor:pointer;
   font-size:13px;
-  font-weight:700;
-  margin-bottom:15px;
-  display:none;
 }
 
-.message.show{
+.btn:disabled{
+  opacity:.6;
+  cursor:wait
+}
+
+.white{background:#fff;color:#073d80}
+.green{background:#0aaa58;color:#fff}
+.blue{background:#07518a;color:#fff}
+.red{background:#ffe7e7;color:#a11}
+.gray{background:#eef4f8;color:#254766}
+.yellow{background:#fff2b8;color:#765900}
+
+.card{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+  margin-top:16px;
+  box-shadow:0 10px 30px #17365c12;
+}
+
+.auth{
+  max-width:440px;
+  margin:45px auto
+}
+
+.auth h2{
+  color:#073d80;
+  margin-top:0
+}
+
+.hint{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.5
+}
+
+label{
   display:block;
+  font-weight:900;
+  margin:14px 0 7px
 }
 
-.message.error{
-  background:#fee2e2;
-  color:#991b1b;
-  border:1px solid #fecaca;
+input,select,textarea{
+  width:100%;
+  padding:13px;
+  border:1px solid #cddce7;
+  border-radius:12px;
+  font-size:15px;
+  background:#fff;
+  color:#102b50;
 }
 
-.message.success{
-  background:#dcfce7;
-  color:#166534;
-  border:1px solid #bbf7d0;
+textarea{
+  min-height:150px;
+  resize:vertical;
 }
 
-.message.info{
-  background:#e0f2fe;
-  color:#075985;
-  border:1px solid #bae6fd;
+input:focus,
+select:focus,
+textarea:focus{
+  outline:3px solid #0877e822;
+  border-color:#0877e8
 }
 
-/* ================= DASHBOARD ================= */
-
-.dashboard-title{
-  margin-bottom:20px;
+.msg{
+  display:none;
+  margin-top:14px;
+  padding:13px;
+  border-radius:12px;
+  font-weight:800;
+  line-height:1.5
 }
 
-.dashboard-title h1{
-  margin:0;
-  font-size:25px;
+.msg.show{display:block}
+
+.msg.ok{
+  background:#e7f8ee;
+  color:#126b3d;
+  border:1px solid #a9dfbf
 }
 
-.dashboard-title p{
-  margin:5px 0 0;
-  color:var(--gray);
-  font-size:13px;
+.msg.err{
+  background:#ffe9e9;
+  color:#9b1717;
+  border:1px solid #f0aaaa
 }
 
-/* ================= STAT ================= */
+.msg.info{
+  background:#eaf3ff;
+  color:#14558f;
+  border:1px solid #b8d8f5
+}
 
 .stats{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin-bottom:20px;
+  gap:10px
 }
 
 .stat{
-  background:#fff;
-  border-radius:16px;
-  padding:18px;
-  box-shadow:var(--shadow);
-  border-left:5px solid var(--blue2);
+  background:#eef7ff;
+  border-radius:14px;
+  padding:14px;
+  font-weight:800
 }
 
-.stat:nth-child(2){
-  border-left-color:var(--orange);
-}
-
-.stat:nth-child(3){
-  border-left-color:var(--green);
-}
-
-.stat:nth-child(4){
-  border-left-color:var(--red);
-}
-
-.stat-label{
-  color:var(--gray);
-  font-size:12px;
-  font-weight:700;
-}
-
-.stat-value{
-  font-size:27px;
-  font-weight:900;
-  margin-top:7px;
-}
-
-/* ================= DUTY ================= */
-
-.duty-card{
-  background:#fff;
-  padding:18px;
-  border-radius:16px;
-  box-shadow:var(--shadow);
-  margin-bottom:20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:15px;
-}
-
-.duty-info strong{
+.stat b{
   display:block;
-  font-size:16px;
+  font-size:28px;
+  margin-top:5px;
+  color:#073d80
 }
 
-.duty-info span{
-  color:var(--gray);
-  font-size:12px;
+.miniStats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin-top:12px;
 }
 
-.duty-select{
-  min-width:190px;
-  border:1px solid #cbd5e1;
-  border-radius:10px;
-  padding:11px;
+.mini{
+  padding:13px;
+  border-radius:14px;
+  font-weight:900;
+  background:#f4f8fb;
 }
 
-/* ================= TOOLBAR ================= */
+.mini b{
+  float:right;
+  font-size:20px;
+}
+
+.high{
+  background:#ffe7e7;
+  color:#a11;
+}
+
+.medium{
+  background:#fff4cf;
+  color:#806100;
+}
+
+.low{
+  background:#e3f8eb;
+  color:#11753d;
+}
 
 .toolbar{
-  background:#fff;
-  padding:15px;
-  border-radius:16px;
-  box-shadow:var(--shadow);
-  margin-bottom:18px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  align-items:center
 }
 
-.toolbar-grid{
-  display:grid;
-  grid-template-columns:2fr 1fr 1fr 1fr auto;
-  gap:10px;
+.toolbar .btn{
+  width:auto
 }
 
-.toolbar input,
-.toolbar select{
-  border:1px solid #cbd5e1;
-  border-radius:10px;
-  padding:11px;
-  width:100%;
+.duty{
+  background:#fff7d8;
+  border:1px solid #f2db7b;
+  padding:12px;
+  border-radius:14px;
+  margin-top:14px
 }
 
-/* ================= REPORT CARD ================= */
-
-.reports{
-  display:grid;
-  gap:16px;
-}
-
-.report-card{
-  background:#fff;
-  border-radius:18px;
-  box-shadow:var(--shadow);
-  overflow:hidden;
-  border:1px solid #e2e8f0;
-}
-
-.report-head{
-  padding:16px;
+.analyticsHeader{
   display:flex;
   justify-content:space-between;
-  gap:15px;
-  align-items:flex-start;
-  border-bottom:1px solid #edf2f7;
-}
-
-.report-id{
-  font-weight:900;
-  color:#075985;
-  font-size:14px;
-}
-
-.report-date{
-  color:#64748b;
-  font-size:11px;
-  margin-top:5px;
-}
-
-.badges{
-  display:flex;
-  flex-wrap:wrap;
-  gap:6px;
-  justify-content:flex-end;
-}
-
-.badge{
-  border-radius:999px;
-  padding:6px 9px;
-  font-size:10px;
-  font-weight:900;
-  white-space:nowrap;
-}
-
-.badge-low{
-  background:#dcfce7;
-  color:#166534;
-}
-
-.badge-medium{
-  background:#fef3c7;
-  color:#92400e;
-}
-
-.badge-high{
-  background:#fee2e2;
-  color:#991b1b;
-}
-
-.badge-status{
-  background:#e0f2fe;
-  color:#075985;
-}
-
-.report-body{
-  padding:16px;
-  display:grid;
-  grid-template-columns:280px 1fr;
-  gap:18px;
-}
-
-.photo-main{
-  width:100%;
-  aspect-ratio:4/3;
-  object-fit:cover;
-  border-radius:13px;
-  background:#e2e8f0;
-  cursor:pointer;
-  border:1px solid #dbe5ed;
-}
-
-.after-photo{
-  width:110px;
-  height:85px;
-  object-fit:cover;
-  border-radius:9px;
-  border:1px solid #dbe5ed;
-  cursor:pointer;
-}
-
-.report-info{
-  display:grid;
+  align-items:center;
   gap:10px;
 }
 
-.info-row{
-  display:grid;
-  grid-template-columns:125px 1fr;
-  gap:10px;
-  font-size:13px;
-}
-
-.info-label{
-  color:#64748b;
-  font-weight:700;
-}
-
-.info-value{
-  font-weight:700;
-  word-break:break-word;
-}
-
-.description{
-  background:#f8fafc;
-  border-radius:10px;
-  padding:12px;
-  line-height:1.5;
-  font-size:13px;
-  white-space:pre-wrap;
-}
-
-.report-actions{
-  padding:14px 16px;
-  border-top:1px solid #edf2f7;
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  align-items:center;
-}
-
-.report-actions select{
-  border:1px solid #cbd5e1;
-  border-radius:9px;
-  padding:9px;
-}
-
-.small-btn{
-  border:0;
-  border-radius:9px;
-  padding:9px 12px;
-  font-weight:800;
-  font-size:12px;
-}
-
-.after-label{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  background:#f1f5f9;
-  border-radius:9px;
-  padding:7px 10px;
-  cursor:pointer;
-  font-size:11px;
-  font-weight:800;
-}
-
-.after-label input{
+.analyticsBody{
   display:none;
+  margin-top:15px;
 }
 
-/* ================= EMPTY ================= */
+.analyticsBody.open{
+  display:block;
+}
+
+.analyticsGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.analyticsBox{
+  border:1px solid #e0eaf1;
+  border-radius:14px;
+  padding:14px;
+  background:#fbfdff;
+}
+
+.analyticsBox h3{
+  margin:0 0 12px;
+  color:#073d80;
+}
+
+.rank{
+  margin-bottom:10px;
+}
+
+.rankTop{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  font-weight:900;
+  margin-bottom:5px;
+}
+
+.bar{
+  height:9px;
+  border-radius:20px;
+  background:#e9f0f5;
+  overflow:hidden;
+}
+
+.bar i{
+  display:block;
+  height:100%;
+  background:#0877e8;
+  border-radius:20px;
+}
+
+.tablewrap{
+  overflow:auto
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:12px;
+  font-size:13px;
+  min-width:1000px
+}
+
+th,td{
+  border-bottom:1px solid #e4edf3;
+  padding:10px;
+  text-align:left;
+  vertical-align:top
+}
+
+th{
+  background:#f1f7fc;
+  color:#073d80
+}
+
+.thumb{
+  width:110px;
+  height:75px;
+  object-fit:cover;
+  border-radius:8px;
+  border:1px solid #d9e5ee;
+  display:block;
+  cursor:pointer;
+}
+
+.afterThumb{
+  margin-top:8px;
+}
+
+.pill{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:999px;
+  font-weight:900;
+  font-size:11px;
+  margin-top:5px
+}
+
+.s1{background:#ffe7e7;color:#a11}
+.s2{background:#fff4cf;color:#8a6500}
+.s3{background:#e3f8eb;color:#11753d}
+.s4{background:#e7edf4;color:#536579}
+
+.actionBox{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.reportInfo{
+  line-height:1.55;
+}
+
+.reportInfo p{
+  margin:7px 0;
+}
 
 .empty{
-  background:#fff;
-  border-radius:16px;
-  padding:45px 20px;
   text-align:center;
-  box-shadow:var(--shadow);
-  color:#64748b;
+  padding:30px;
+  color:#71859b
 }
-
-/* ================= LOADING ================= */
-
-.loading{
-  position:fixed;
-  inset:0;
-  background:rgba(15,23,42,.45);
-  z-index:100;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.loading-box{
-  background:#fff;
-  border-radius:15px;
-  padding:22px 28px;
-  box-shadow:var(--shadow);
-  font-weight:800;
-}
-
-/* ================= MODAL ================= */
 
 .modal{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.82);
-  z-index:200;
+  background:#0009;
   display:none;
   align-items:center;
   justify-content:center;
-  padding:20px;
+  z-index:9999;
+  padding:15px;
 }
 
 .modal.show{
   display:flex;
 }
 
-.modal img{
-  max-width:95vw;
-  max-height:90vh;
-  object-fit:contain;
-  border-radius:10px;
-}
-
-.modal-close{
-  position:absolute;
-  top:15px;
-  right:18px;
-  width:45px;
-  height:45px;
-  border:0;
-  border-radius:50%;
+.modalCard{
   background:#fff;
-  font-size:22px;
-  font-weight:900;
+  width:min(700px,100%);
+  max-height:90vh;
+  overflow:auto;
+  border-radius:18px;
+  padding:18px;
 }
 
-/* ================= MOBILE ================= */
+.modalCard h2{
+  margin-top:0;
+  color:#073d80;
+}
 
-@media(max-width:900px){
-  .stats{
-    grid-template-columns:repeat(2,1fr);
-  }
+.messagePreview{
+  white-space:pre-wrap;
+  background:#f3f7fa;
+  border:1px solid #dce7ee;
+  border-radius:12px;
+  padding:14px;
+  font-size:14px;
+  line-height:1.6;
+}
 
-  .toolbar-grid{
-    grid-template-columns:1fr 1fr;
-  }
+.photoGrid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:12px;
+}
 
-  .report-body{
+.photoBox{
+  border:1px solid #dce7ee;
+  border-radius:12px;
+  padding:10px;
+}
+
+.photoBox img{
+  width:100%;
+  max-height:280px;
+  object-fit:contain;
+  background:#f3f6f8;
+  border-radius:8px;
+}
+
+@media(max-width:800px){
+  .analyticsGrid{
     grid-template-columns:1fr;
   }
-
-  .photo-main{
-    max-height:300px;
-  }
 }
 
-@media(max-width:600px){
-  .header{
-    padding:12px;
-  }
+@media(max-width:700px){
+  .wrap{padding:10px}
 
-  .header-inner{
+  .top{
     align-items:flex-start;
+    flex-direction:column;
+    border-radius:15px
   }
 
-  .user-email{
-    display:none;
-  }
-
-  .brand-title{
-    font-size:16px;
-  }
-
-  .brand-sub{
-    font-size:10px;
-  }
-
-  .brand-icon{
-    width:42px;
-    height:42px;
-  }
-
-  .container{
-    width:94%;
-    margin-top:16px;
+  .top h1{
+    font-size:21px
   }
 
   .stats{
-    grid-template-columns:1fr 1fr;
-    gap:9px;
+    grid-template-columns:1fr 1fr
   }
 
-  .stat{
-    padding:13px;
+  .miniStats{
+    grid-template-columns:1fr 1fr 1fr
   }
 
-  .stat-value{
-    font-size:23px;
+  .auth{
+    margin:25px auto
   }
 
-  .toolbar-grid{
-    grid-template-columns:1fr;
+  .card{
+    padding:14px;
+    border-radius:15px
   }
 
-  .duty-card{
-    display:block;
-  }
-
-  .duty-select{
-    width:100%;
-    margin-top:10px;
-  }
-
-  .report-head{
-    display:block;
-  }
-
-  .badges{
-    justify-content:flex-start;
-    margin-top:10px;
-  }
-
-  .info-row{
-    grid-template-columns:100px 1fr;
-  }
-
-  .auth-wrap{
-    padding:10px;
-  }
-
-  .auth-body{
-    padding:20px;
+  .btn{
+    padding:10px 11px;
+    font-size:12px
   }
 }
 </style>
@@ -759,458 +468,458 @@ button{
 
 <body>
 
-<!-- ========================================================= -->
-<!-- AUTH -->
-<!-- ========================================================= -->
+<div class="wrap">
 
-<section id="authPage" class="auth-wrap">
+<div class="top">
+  <div>
+    <h1>📊 PDC–PFO ADMIN</h1>
+    <div>Perawatan Fasilitas Operasi</div>
+    <small>Dashboard Pengelolaan Laporan Fasilitas</small>
+  </div>
 
-  <div class="auth-card">
+  <button class="btn white" onclick="location.href='/'">
+    ← Kembali ke Form
+  </button>
+</div>
 
-    <div class="auth-top">
-      <div class="auth-logo">PFO</div>
-      <h1>PDC–PFO ADMIN</h1>
-      <p>Perawatan Fasilitas Operasi</p>
+
+<!-- LOGIN -->
+
+<div id="auth" class="card auth">
+
+  <h2>🔐 Login Admin</h2>
+
+  <div class="hint">
+    Akun admin tersimpan di server. Gunakan email dan password yang sudah terdaftar.
+  </div>
+
+  <label>Email Admin</label>
+  <input
+    id="email"
+    type="email"
+    autocomplete="username"
+    placeholder="contoh@email.com"
+  >
+
+  <label>Password</label>
+  <input
+    id="pass"
+    type="password"
+    autocomplete="current-password"
+    placeholder="Minimal 8 karakter"
+  >
+
+  <button
+    id="loginBtn"
+    class="btn green"
+    style="width:100%;margin-top:14px"
+    onclick="login()"
+  >
+    🔐 LOGIN
+  </button>
+
+  <button
+    id="registerBtn"
+    class="btn blue"
+    style="width:100%;margin-top:8px"
+    onclick="register()"
+  >
+    ➕ DAFTAR ADMIN
+  </button>
+
+  <button
+    class="btn gray"
+    style="width:100%;margin-top:8px"
+    onclick="resetReq()"
+  >
+    🔑 LUPA PASSWORD
+  </button>
+
+  <div id="authMsg" class="msg"></div>
+
+</div>
+
+
+<!-- DASHBOARD -->
+
+<div id="dash" style="display:none">
+
+
+<!-- STATISTIK -->
+
+<div class="card">
+
+  <div class="stats">
+
+    <div class="stat">
+      TOTAL
+      <b id="total">0</b>
     </div>
 
-    <div class="auth-body">
+    <div class="stat">
+      BELUM
+      <b id="belum">0</b>
+    </div>
 
-      <div id="authMessage" class="message"></div>
+    <div class="stat">
+      PROSES
+      <b id="proses">0</b>
+    </div>
 
-      <!-- LOGIN -->
-
-      <div id="loginBox">
-
-        <div class="form-group">
-          <label>Email Admin</label>
-          <input
-            id="loginEmail"
-            class="form-control"
-            type="email"
-            placeholder="Masukkan email admin"
-            autocomplete="username">
-        </div>
-
-        <div class="form-group">
-          <label>Password</label>
-
-          <div class="input-wrap">
-            <input
-              id="loginPassword"
-              class="form-control"
-              type="password"
-              placeholder="Masukkan password"
-              autocomplete="current-password">
-
-            <button
-              class="eye"
-              type="button"
-              onclick="togglePassword('loginPassword',this)">
-              👁
-            </button>
-          </div>
-        </div>
-
-        <button
-          id="loginBtn"
-          class="btn btn-primary"
-          onclick="login()">
-          LOGIN ADMIN
-        </button>
-
-        <div class="auth-links">
-          <button
-            class="link-btn"
-            onclick="showRegister()">
-            DAFTAR ADMIN
-          </button>
-
-          <button
-            class="link-btn"
-            onclick="showReset()">
-            LUPA PASSWORD
-          </button>
-        </div>
-
-      </div>
-
-
-      <!-- REGISTER -->
-
-      <div id="registerBox" class="hidden">
-
-        <div class="form-group">
-          <label>Email Admin</label>
-          <input
-            id="registerEmail"
-            class="form-control"
-            type="email"
-            placeholder="Email admin">
-        </div>
-
-        <div class="form-group">
-          <label>Password Baru</label>
-
-          <div class="input-wrap">
-            <input
-              id="registerPassword"
-              class="form-control"
-              type="password"
-              placeholder="Minimal 8 karakter">
-
-            <button
-              class="eye"
-              type="button"
-              onclick="togglePassword('registerPassword',this)">
-              👁
-            </button>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Ulangi Password</label>
-
-          <div class="input-wrap">
-            <input
-              id="registerPassword2"
-              class="form-control"
-              type="password"
-              placeholder="Ulangi password">
-
-            <button
-              class="eye"
-              type="button"
-              onclick="togglePassword('registerPassword2',this)">
-              👁
-            </button>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label>Kode Pendaftaran Admin</label>
-          <input
-            id="registerCode"
-            class="form-control"
-            type="password"
-            placeholder="Masukkan kode admin">
-        </div>
-
-        <button
-          id="registerBtn"
-          class="btn btn-yellow"
-          style="width:100%"
-          onclick="registerAdmin()">
-          DAFTAR ADMIN
-        </button>
-
-        <div class="auth-links">
-          <button
-            class="link-btn"
-            onclick="showLogin()">
-            ← KEMBALI LOGIN
-          </button>
-        </div>
-
-      </div>
-
-
-      <!-- RESET REQUEST -->
-
-      <div id="resetBox" class="hidden">
-
-        <div class="form-group">
-          <label>Email Admin</label>
-          <input
-            id="resetEmail"
-            class="form-control"
-            type="email"
-            placeholder="Masukkan email admin">
-        </div>
-
-        <button
-          id="resetBtn"
-          class="btn btn-primary"
-          onclick="requestReset()">
-          KIRIM LINK RESET
-        </button>
-
-        <div class="auth-links">
-          <button
-            class="link-btn"
-            onclick="showLogin()">
-            ← KEMBALI LOGIN
-          </button>
-        </div>
-
-        <div style="font-size:11px;color:#64748b;margin-top:15px;line-height:1.5">
-          Link reset dikirim melalui email jika sistem email
-          PDC–PFO sudah dikonfigurasi.
-        </div>
-
-      </div>
-
+    <div class="stat">
+      SELESAI
+      <b id="selesai">0</b>
     </div>
 
   </div>
 
-</section>
+
+  <div class="miniStats">
+
+    <div class="mini high">
+      HIGH
+      <b id="highCount">0</b>
+    </div>
+
+    <div class="mini medium">
+      MEDIUM
+      <b id="mediumCount">0</b>
+    </div>
+
+    <div class="mini low">
+      LOW
+      <b id="lowCount">0</b>
+    </div>
+
+  </div>
 
 
-<!-- ========================================================= -->
-<!-- DASHBOARD -->
-<!-- ========================================================= -->
+  <div class="duty">
 
-<section id="dashboardPage" class="hidden">
+    <b>
+      👷 ON DUTY:
+      <span id="dutyNow">-</span>
+    </b>
 
-  <header class="header">
+    <div class="toolbar" style="margin-top:10px">
 
-    <div class="header-inner">
+      <button
+        class="btn green"
+        onclick="setDuty('Handoko')"
+      >
+        HANDOKO ON DUTY
+      </button>
 
-      <div class="brand">
+      <button
+        class="btn blue"
+        onclick="setDuty('Mustangin')"
+      >
+        MUSTANGIN ON DUTY
+      </button>
 
-        <div class="brand-icon">
-          PFO
-        </div>
-
-        <div>
-          <div class="brand-title">
-            PDC–PFO ADMIN
-          </div>
-
-          <div class="brand-sub">
-            Perawatan Fasilitas Operasi
-          </div>
-        </div>
-
-      </div>
-
-      <div class="user-area">
-
-        <span
-          id="adminEmail"
-          class="user-email">
-        </span>
-
-        <button
-          class="btn btn-red"
-          onclick="logout()">
-          LOGOUT
-        </button>
-
-      </div>
+      <button
+        class="btn gray"
+        onclick="logout()"
+      >
+        LOGOUT
+      </button>
 
     </div>
 
-  </header>
-
-
-  <main class="container">
-
-    <div class="dashboard-title">
-
-      <h1>Dashboard Laporan</h1>
-
-      <p>
-        Pantau kerusakan dan temuan fasilitas yang masuk.
-      </p>
-
-    </div>
-
-
-    <!-- STAT -->
-
-    <div class="stats">
-
-      <div class="stat">
-        <div class="stat-label">
-          TOTAL LAPORAN
-        </div>
-        <div id="statTotal" class="stat-value">
-          0
-        </div>
-      </div>
-
-      <div class="stat">
-        <div class="stat-label">
-          BELUM DIKERJAKAN
-        </div>
-        <div id="statNew" class="stat-value">
-          0
-        </div>
-      </div>
-
-      <div class="stat">
-        <div class="stat-label">
-          SEDANG DIKERJAKAN
-        </div>
-        <div id="statProgress" class="stat-value">
-          0
-        </div>
-      </div>
-
-      <div class="stat">
-        <div class="stat-label">
-          SELESAI
-        </div>
-        <div id="statDone" class="stat-value">
-          0
-        </div>
-      </div>
-
-    </div>
-
-
-    <!-- DUTY -->
-
-    <div class="duty-card">
-
-      <div class="duty-info">
-
-        <strong>
-          PETUGAS / KOORDINATOR AKTIF
-        </strong>
-
-        <span>
-          Laporan baru akan diarahkan kepada petugas yang dipilih.
-        </span>
-
-      </div>
-
-      <select
-        id="dutySelect"
-        class="duty-select"
-        onchange="changeDuty()">
-
-        <option value="Handoko">
-          HANDOKO
-        </option>
-
-        <option value="Mustangin">
-          MUSTANGIN
-        </option>
-
-      </select>
-
-    </div>
-
-
-    <!-- TOOLBAR -->
-
-    <div class="toolbar">
-
-      <div class="toolbar-grid">
-
-        <input
-          id="searchInput"
-          type="search"
-          placeholder="🔎 Cari ID, nama, lokasi, kategori..."
-          oninput="renderReports()">
-
-        <select
-          id="filterStatus"
-          onchange="renderReports()">
-
-          <option value="">Semua Status</option>
-          <option value="Belum Dikerjakan">Belum Dikerjakan</option>
-          <option value="Sedang Dikerjakan">Sedang Dikerjakan</option>
-          <option value="Selesai">Selesai</option>
-          <option value="Arsip">Arsip</option>
-
-        </select>
-
-        <select
-          id="filterPriority"
-          onchange="renderReports()">
-
-          <option value="">Semua Prioritas</option>
-          <option value="High">High</option>
-          <option value="Medium">Medium</option>
-          <option value="Low">Low</option>
-
-        </select>
-
-        <select
-          id="filterDuty"
-          onchange="renderReports()">
-
-          <option value="">Semua Petugas</option>
-          <option value="Handoko">Handoko</option>
-          <option value="Mustangin">Mustangin</option>
-
-        </select>
-
-        <button
-          class="btn btn-primary"
-          onclick="loadReports()">
-          ↻ REFRESH
-        </button>
-
-      </div>
-
-    </div>
-
-
-    <!-- REPORTS -->
-
-    <div id="reports" class="reports"></div>
-
-  </main>
-
-</section>
-
-
-<!-- ========================================================= -->
-<!-- LOADING -->
-<!-- ========================================================= -->
-
-<div
-  id="loading"
-  class="loading hidden">
-
-  <div class="loading-box">
-    ⏳ Memproses...
   </div>
 
 </div>
 
 
-<!-- ========================================================= -->
-<!-- IMAGE MODAL -->
-<!-- ========================================================= -->
+<!-- ANALYTICS -->
+
+<div class="card">
+
+  <div class="analyticsHeader">
+
+    <b style="font-size:18px">
+      📊 Ringkasan Dashboard
+    </b>
+
+    <button
+      class="btn blue"
+      onclick="toggleAnalytics()"
+      id="analyticsBtn"
+    >
+      BUKA RINGKASAN
+    </button>
+
+  </div>
+
+  <div
+    id="analyticsBody"
+    class="analyticsBody"
+  >
+
+    <div class="analyticsGrid">
+
+      <div class="analyticsBox">
+
+        <h3>📍 PER LOKASI</h3>
+
+        <div id="locationStats">
+          Belum ada data.
+        </div>
+
+      </div>
+
+
+      <div class="analyticsBox">
+
+        <h3>🛠️ PER KATEGORI</h3>
+
+        <div id="categoryStats">
+          Belum ada data.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- DAFTAR LAPORAN -->
+
+<div class="card">
+
+  <div class="toolbar">
+
+    <b style="font-size:18px">
+      📋 Daftar Laporan
+    </b>
+
+    <button
+      class="btn blue"
+      onclick="loadReports()"
+    >
+      ↻ REFRESH
+    </button>
+
+    <input
+      id="search"
+      placeholder="🔎 Cari pelapor, lokasi, kategori, kerusakan..."
+      oninput="renderReports()"
+      style="max-width:330px"
+    >
+
+    <select
+      id="filterStatus"
+      onchange="renderReports()"
+      style="max-width:200px"
+    >
+      <option value="">Semua Status</option>
+      <option>Belum Dikerjakan</option>
+      <option>Sedang Dikerjakan</option>
+      <option>Selesai</option>
+      <option>Arsip</option>
+    </select>
+
+    <select
+      id="filterPriority"
+      onchange="renderReports()"
+      style="max-width:160px"
+    >
+      <option value="">Semua Prioritas</option>
+      <option>High</option>
+      <option>Medium</option>
+      <option>Low</option>
+    </select>
+
+  </div>
+
+
+  <div
+    id="lastUpdated"
+    style="margin-top:10px;color:#687b91;font-size:12px"
+  >
+    Belum diperbarui.
+  </div>
+
+
+  <div class="tablewrap">
+
+    <table>
+
+      <thead>
+
+        <tr>
+
+          <th>ID / Waktu</th>
+
+          <th>Temuan</th>
+
+          <th>Foto Awal / After</th>
+
+          <th>Status</th>
+
+          <th>Petugas</th>
+
+          <th>Aksi</th>
+
+        </tr>
+
+      </thead>
+
+      <tbody id="rows"></tbody>
+
+    </table>
+
+  </div>
+
+</div>
+
+</div>
+</div>
+
+
+<!-- MODAL BALASAN -->
 
 <div
-  id="imageModal"
+  id="replyModal"
   class="modal"
-  onclick="closeImage()">
+  onclick="closeReplyOutside(event)"
+>
 
-  <button
-    class="modal-close"
-    onclick="closeImage()">
-    ×
-  </button>
+  <div
+    class="modalCard"
+    onclick="event.stopPropagation()"
+  >
 
-  <img
-    id="modalImage"
-    src=""
-    alt="Foto laporan"
-    onclick="event.stopPropagation()">
+    <h2>💬 Balasan untuk Koordinator</h2>
+
+    <div
+      id="replyInfo"
+      class="hint"
+      style="margin-bottom:12px"
+    ></div>
+
+    <div
+      id="replyText"
+      class="messagePreview"
+    ></div>
+
+    <div class="toolbar" style="margin-top:12px">
+
+      <button
+        class="btn green"
+        onclick="copyReply()"
+      >
+        📋 SALIN PESAN
+      </button>
+
+      <button
+        class="btn blue"
+        onclick="openCoordinatorWhatsApp()"
+      >
+        💬 BUKA WHATSAPP KOORDINATOR
+      </button>
+
+      <button
+        class="btn gray"
+        onclick="closeReply()"
+      >
+        TUTUP
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- MODAL FOTO -->
+
+<div
+  id="photoModal"
+  class="modal"
+  onclick="closePhotoModal()"
+>
+
+  <div
+    class="modalCard"
+    onclick="event.stopPropagation()"
+  >
+
+    <h2>📸 Dokumentasi Laporan</h2>
+
+    <div
+      id="photoContent"
+      class="photoGrid"
+    ></div>
+
+    <button
+      class="btn gray"
+      style="margin-top:12px"
+      onclick="closePhotoModal()"
+    >
+      TUTUP
+    </button>
+
+  </div>
 
 </div>
 
 
 <script>
 
-/* =========================================================
-   GLOBAL
-========================================================= */
+const $=id=>document.getElementById(id);
 
-let reports = [];
-let currentAdmin = null;
+let reports=[];
+let replyReport=null;
+let coordinatorNumber='';
 
 
-/* =========================================================
-   API REQUEST
-========================================================= */
+/* KOORDINATOR */
+
+const COORDINATORS={
+  Handoko:'+6282255033886',
+  Mustangin:'+6282278155926'
+};
+
+
+/* ESCAPE */
+
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({
+  '&':'&amp;',
+  '<':'&lt;',
+  '>':'&gt;',
+  '"':'&quot;',
+  "'":'&#39;'
+}[m]));
+
+
+/* ESCAPE ATTRIBUTE */
+
+function escAttr(s){
+  return String(s??'')
+    .replace(/\\/g,'\\\\')
+    .replace(/'/g,"\\'");
+}
+
+
+/* MESSAGE */
+
+function showMsg(text,type='info'){
+
+  const el=$('authMsg');
+
+  el.textContent=text;
+
+  el.className='msg show '+type;
+
+}
+
+
+/* REQUEST */
 
 async function req(url,opt={}){
 
@@ -1218,10 +927,13 @@ async function req(url,opt={}){
 
   try{
 
-    r = await fetch(url,{
-      credentials:'same-origin',
-      ...opt
-    });
+    r=await fetch(
+      url,
+      {
+        credentials:'same-origin',
+        ...opt
+      }
+    );
 
   }catch(e){
 
@@ -1244,134 +956,86 @@ async function req(url,opt={}){
     let msg=j.error || `Server error HTTP ${r.status}`;
 
     if(j.detail){
-      msg += ' — ' + j.detail;
+      msg+=' — '+j.detail;
     }
 
     throw new Error(msg);
+
   }
 
   return j;
-}
-
-
-/* =========================================================
-   ELEMENT
-========================================================= */
-
-const $ = id => document.getElementById(id);
-
-
-/* =========================================================
-   LOADING
-========================================================= */
-
-function loading(show){
-
-  $('loading').classList.toggle(
-    'hidden',
-    !show
-  );
 
 }
 
 
-/* =========================================================
-   MESSAGE
-========================================================= */
+/* AUTH */
 
-function message(text,type='error'){
+function showAuth(){
 
-  const box=$('authMessage');
+  $('auth').style.display='block';
 
-  box.className='message show '+type;
-
-  box.innerHTML=text;
+  $('dash').style.display='none';
 
 }
 
 
-/* =========================================================
-   PASSWORD
-========================================================= */
+function showDash(){
 
-function togglePassword(id,btn){
+  $('auth').style.display='none';
 
-  const input=$(id);
+  $('dash').style.display='block';
 
-  if(input.type==='password'){
-
-    input.type='text';
-    btn.textContent='🙈';
-
-  }else{
-
-    input.type='password';
-    btn.textContent='👁';
-
-  }
+  loadReports();
 
 }
 
 
-/* =========================================================
-   AUTH VIEW
-========================================================= */
-
-function showLogin(){
-
-  $('loginBox').classList.remove('hidden');
-  $('registerBox').classList.add('hidden');
-  $('resetBox').classList.add('hidden');
-
-  $('authMessage').className='message';
-
-}
-
-function showRegister(){
-
-  $('loginBox').classList.add('hidden');
-  $('registerBox').classList.remove('hidden');
-  $('resetBox').classList.add('hidden');
-
-  $('authMessage').className='message';
-
-}
-
-function showReset(){
-
-  $('loginBox').classList.add('hidden');
-  $('registerBox').classList.add('hidden');
-  $('resetBox').classList.remove('hidden');
-
-  $('authMessage').className='message';
-
-}
-
-
-/* =========================================================
-   LOGIN
-========================================================= */
+/* LOGIN */
 
 async function login(){
 
-  const email=$('loginEmail').value.trim();
-  const password=$('loginPassword').value;
+  const email=$('email').value.trim();
 
-  if(!email || !password){
+  const password=$('pass').value;
 
-    message(
-      '❌ Email dan password wajib diisi.',
-      'error'
-    );
+
+  if(!email){
+
+    showMsg('⚠️ Email wajib diisi.','err');
+
+    $('email').focus();
 
     return;
+
   }
 
-  loading(true);
+
+  if(!password){
+
+    showMsg('⚠️ Password wajib diisi.','err');
+
+    $('pass').focus();
+
+    return;
+
+  }
+
+
+  const btn=$('loginBtn');
+
+  btn.disabled=true;
+
+  btn.textContent='⏳ MEMERIKSA...';
+
+  showMsg(
+    '⏳ Sedang memeriksa email dan password...',
+    'info'
+  );
+
 
   try{
 
-    const data=await req(
+    await req(
       '/api/auth/login',
       {
         method:'POST',
@@ -1385,87 +1049,118 @@ async function login(){
       }
     );
 
-    currentAdmin=data;
 
-    $('authPage').classList.add('hidden');
-    $('dashboardPage').classList.remove('hidden');
+    showMsg(
+      '✅ LOGIN BERHASIL. Membuka dashboard admin...',
+      'ok'
+    );
 
-    $('adminEmail').textContent=data.email || '';
 
-    await loadReports();
+    setTimeout(showDash,500);
+
 
   }catch(e){
 
-    message(
-      '❌ LOGIN GAGAL: '+escapeHtml(e.message),
-      'error'
+    showMsg(
+      '❌ LOGIN GAGAL: '+e.message,
+      'err'
     );
+
 
   }finally{
 
-    loading(false);
+    btn.disabled=false;
+
+    btn.textContent='🔐 LOGIN';
 
   }
 
 }
 
 
-/* =========================================================
-   REGISTER
-========================================================= */
+/* REGISTER */
 
-async function registerAdmin(){
+async function register(){
 
-  const email=$('registerEmail').value.trim();
-  const password=$('registerPassword').value;
-  const password2=$('registerPassword2').value;
-  const code=$('registerCode').value;
+  const email=$('email').value.trim();
+
+  const password=$('pass').value;
+
 
   if(!email){
 
-    message('❌ Email wajib diisi.','error');
+    showMsg(
+      '⚠️ Isi email terlebih dahulu.',
+      'err'
+    );
+
+    $('email').focus();
+
     return;
 
   }
+
+
+  if(!/^\S+@\S+\.\S+$/.test(email)){
+
+    showMsg(
+      '⚠️ Format email belum benar.',
+      'err'
+    );
+
+    $('email').focus();
+
+    return;
+
+  }
+
 
   if(password.length<8){
 
-    message(
-      '❌ Password minimal 8 karakter.',
-      'error'
+    showMsg(
+      '⚠️ Password minimal 8 karakter.',
+      'err'
     );
+
+    $('pass').focus();
 
     return;
 
   }
 
-  if(password!==password2){
 
-    message(
-      '❌ Ulangi password tidak sama.',
-      'error'
-    );
+  const code=prompt(
+    'Masukkan KODE PENDAFTARAN ADMIN dari pengelola server:'
+  );
 
-    return;
-
-  }
 
   if(!code){
 
-    message(
-      '❌ Kode pendaftaran admin wajib diisi.',
-      'error'
+    showMsg(
+      'ℹ️ Pendaftaran dibatalkan karena kode tidak diisi.',
+      'info'
     );
 
     return;
 
   }
 
-  loading(true);
+
+  const btn=$('registerBtn');
+
+  btn.disabled=true;
+
+  btn.textContent='⏳ MENDAFTAR...';
+
+  showMsg(
+    '⏳ Sedang mendaftarkan akun admin...',
+    'info'
+  );
+
 
   try{
 
-    const data=await req(
+    const j=await req(
       '/api/auth/register',
       {
         method:'POST',
@@ -1480,148 +1175,84 @@ async function registerAdmin(){
       }
     );
 
-    message(
-      '✅ '+escapeHtml(
-        data.message ||
-        'Admin berhasil didaftarkan.'
+
+    showMsg(
+      '✅ '+(
+        j.message ||
+        'Admin berhasil didaftarkan. Silakan login.'
       ),
-      'success'
+      'ok'
     );
 
-    $('registerEmail').value='';
-    $('registerPassword').value='';
-    $('registerPassword2').value='';
-    $('registerCode').value='';
+    $('pass').value='';
 
-    setTimeout(()=>{
-      showLogin();
-    },1500);
 
   }catch(e){
 
-    message(
-      '❌ PENDAFTARAN GAGAL: '+
-      escapeHtml(e.message),
-      'error'
+    showMsg(
+      '❌ PENDAFTARAN GAGAL: '+e.message,
+      'err'
     );
+
 
   }finally{
 
-    loading(false);
+    btn.disabled=false;
+
+    btn.textContent='➕ DAFTAR ADMIN';
 
   }
 
 }
 
 
-/* =========================================================
-   RESET REQUEST
-========================================================= */
+/* RESET */
 
-async function requestReset(){
+async function resetReq(){
 
-  const email=$('resetEmail').value.trim();
+  const email=prompt(
+    'Masukkan email admin:'
+  );
 
-  if(!email){
+  if(!email) return;
 
-    message(
-      '❌ Email wajib diisi.',
-      'error'
-    );
-
-    return;
-
-  }
-
-  loading(true);
 
   try{
 
-    const data=await req(
+    const j=await req(
       '/api/auth/reset-request',
       {
         method:'POST',
         headers:{
           'Content-Type':'application/json'
         },
-        body:JSON.stringify({
-          email
-        })
+        body:JSON.stringify({email})
       }
     );
 
-    message(
-      '✅ '+escapeHtml(
-        data.message ||
-        'Permintaan reset berhasil diproses.'
-      ),
-      'success'
+
+    alert(
+      '✅ '+(
+        j.message ||
+        'Permintaan reset password berhasil diproses.'
+      )
     );
+
 
   }catch(e){
 
-    message(
-      '❌ RESET GAGAL: '+
-      escapeHtml(e.message),
-      'error'
+    alert(
+      '❌ Gagal: '+e.message
     );
-
-  }finally{
-
-    loading(false);
 
   }
 
 }
 
 
-/* =========================================================
-   CHECK SESSION
-========================================================= */
-
-async function checkSession(){
-
-  try{
-
-    const data=await req(
-      '/api/auth/me'
-    );
-
-    if(data.ok){
-
-      currentAdmin=data.admin;
-
-      $('authPage').classList.add('hidden');
-      $('dashboardPage').classList.remove('hidden');
-
-      $('adminEmail').textContent=
-        data.admin.email || '';
-
-      await loadReports();
-
-    }
-
-  }catch(e){
-
-    $('authPage').classList.remove('hidden');
-    $('dashboardPage').classList.add('hidden');
-
-  }
-
-}
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
+/* LOGOUT */
 
 async function logout(){
-
-  if(!confirm(
-    'Yakin ingin logout dari dashboard admin?'
-  )) return;
-
-  loading(true);
 
   try{
 
@@ -1632,504 +1263,41 @@ async function logout(){
       }
     );
 
-  }catch(e){
+  }catch(e){}
 
-  }finally{
 
-    loading(false);
+  showAuth();
 
-    reports=[];
-    currentAdmin=null;
-
-    $('dashboardPage').classList.add('hidden');
-    $('authPage').classList.remove('hidden');
-
-    showLogin();
-
-  }
+  showMsg(
+    '✅ Anda sudah logout.',
+    'ok'
+  );
 
 }
 
 
-/* =========================================================
-   LOAD REPORTS
-========================================================= */
+/* CHECK LOGIN */
 
-async function loadReports(){
-
-  loading(true);
+async function check(){
 
   try{
 
-    const data=await req(
-      '/api/reports'
-    );
+    await req('/api/auth/me');
 
-    reports=Array.isArray(data.reports)
-      ? data.reports
-      : [];
-
-    updateStats();
-    renderReports();
+    showDash();
 
   }catch(e){
 
-    if(
-      e.message.includes('Unauthorized') ||
-      e.message.includes('HTTP 401')
-    ){
-
-      $('dashboardPage').classList.add('hidden');
-      $('authPage').classList.remove('hidden');
-
-      message(
-        '⚠️ Sesi admin sudah berakhir. Silakan login kembali.',
-        'error'
-      );
-
-      return;
-
-    }
-
-    $('reports').innerHTML=`
-      <div class="empty">
-        ❌ Gagal mengambil laporan.<br><br>
-        ${escapeHtml(e.message)}
-      </div>
-    `;
-
-  }finally{
-
-    loading(false);
+    showAuth();
 
   }
 
 }
 
 
-/* =========================================================
-   UPDATE STATS
-========================================================= */
+/* DUTY */
 
-function updateStats(){
-
-  $('statTotal').textContent=reports.length;
-
-  $('statNew').textContent=
-    reports.filter(
-      r=>r.status==='Belum Dikerjakan'
-    ).length;
-
-  $('statProgress').textContent=
-    reports.filter(
-      r=>r.status==='Sedang Dikerjakan'
-    ).length;
-
-  $('statDone').textContent=
-    reports.filter(
-      r=>r.status==='Selesai'
-    ).length;
-
-}
-
-
-/* =========================================================
-   FILTER
-========================================================= */
-
-function getFilteredReports(){
-
-  const search=
-    $('searchInput').value
-    .trim()
-    .toLowerCase();
-
-  const status=
-    $('filterStatus').value;
-
-  const priority=
-    $('filterPriority').value;
-
-  const duty=
-    $('filterDuty').value;
-
-  return reports.filter(r=>{
-
-    const text=[
-      r.id,
-      r.reporter,
-      r.location,
-      r.category,
-      r.description,
-      r.room,
-      r.duty
-    ]
-    .join(' ')
-    .toLowerCase();
-
-    if(search && !text.includes(search))
-      return false;
-
-    if(status && r.status!==status)
-      return false;
-
-    if(priority && r.priority!==priority)
-      return false;
-
-    if(duty && r.duty!==duty)
-      return false;
-
-    return true;
-
-  });
-
-}
-
-
-/* =========================================================
-   RENDER
-========================================================= */
-
-function renderReports(){
-
-  const box=$('reports');
-
-  const list=getFilteredReports();
-
-  if(!list.length){
-
-    box.innerHTML=`
-      <div class="empty">
-        <div style="font-size:35px;margin-bottom:10px">
-          📋
-        </div>
-        <strong>Tidak ada laporan</strong>
-        <div style="font-size:12px;margin-top:5px">
-          Belum ada laporan yang sesuai filter.
-        </div>
-      </div>
-    `;
-
-    return;
-
-  }
-
-  box.innerHTML=list.map(reportCard).join('');
-
-}
-
-
-/* =========================================================
-   REPORT CARD
-========================================================= */
-
-function reportCard(r){
-
-  const priorityClass=
-    r.priority==='High'
-      ? 'badge-high'
-      : r.priority==='Medium'
-        ? 'badge-medium'
-        : 'badge-low';
-
-  const image=
-    r.image_url ||
-    '';
-
-  const after=
-    r.after_image_url ||
-    '';
-
-  return `
-
-  <article class="report-card">
-
-    <div class="report-head">
-
-      <div>
-
-        <div class="report-id">
-          ${escapeHtml(r.id || '-')}
-        </div>
-
-        <div class="report-date">
-          ${formatDate(r.created_at)}
-        </div>
-
-      </div>
-
-      <div class="badges">
-
-        <span class="badge ${priorityClass}">
-          PRIORITAS ${escapeHtml(
-            r.priority || '-'
-          )}
-        </span>
-
-        <span class="badge badge-status">
-          ${escapeHtml(
-            r.status || '-'
-          )}
-        </span>
-
-      </div>
-
-    </div>
-
-
-    <div class="report-body">
-
-      <div>
-
-        ${
-          image
-          ? `
-            <img
-              class="photo-main"
-              src="${safeUrl(image)}"
-              alt="Foto laporan"
-              onclick="openImage('${safeUrl(image)}')"
-              loading="lazy">
-          `
-          : `
-            <div class="empty">
-              📷 Tidak ada foto
-            </div>
-          `
-        }
-
-        ${
-          after
-          ? `
-            <div style="margin-top:10px">
-
-              <div style="
-                font-size:11px;
-                font-weight:900;
-                margin-bottom:6px;
-                color:#166534">
-                FOTO SETELAH PERBAIKAN
-              </div>
-
-              <img
-                class="after-photo"
-                src="${safeUrl(after)}"
-                alt="Foto after"
-                onclick="openImage('${safeUrl(after)}')"
-                loading="lazy">
-
-            </div>
-          `
-          : ''
-        }
-
-      </div>
-
-
-      <div class="report-info">
-
-        <div class="info-row">
-          <div class="info-label">
-            Pelapor
-          </div>
-
-          <div class="info-value">
-            ${escapeHtml(r.reporter || '-')}
-          </div>
-        </div>
-
-
-        <div class="info-row">
-          <div class="info-label">
-            Lokasi
-          </div>
-
-          <div class="info-value">
-            ${escapeHtml(r.location || '-')}
-            ${
-              r.room
-              ? ' — No. '+escapeHtml(r.room)
-              : ''
-            }
-          </div>
-        </div>
-
-
-        <div class="info-row">
-          <div class="info-label">
-            Kategori
-          </div>
-
-          <div class="info-value">
-            ${escapeHtml(r.category || '-')}
-          </div>
-        </div>
-
-
-        <div class="info-row">
-          <div class="info-label">
-            Petugas
-          </div>
-
-          <div class="info-value">
-            ${escapeHtml(r.duty || '-')}
-          </div>
-        </div>
-
-
-        <div>
-
-          <div
-            class="info-label"
-            style="margin-bottom:6px">
-            Deskripsi
-          </div>
-
-          <div class="description">
-            ${escapeHtml(
-              r.description || '-'
-            )}
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <div class="report-actions">
-
-      <select
-        onchange="updateReport(
-          '${escapeAttr(r.id)}',
-          {status:this.value}
-        )">
-
-        <option
-          value="Belum Dikerjakan"
-          ${r.status==='Belum Dikerjakan'?'selected':''}>
-          Belum Dikerjakan
-        </option>
-
-        <option
-          value="Sedang Dikerjakan"
-          ${r.status==='Sedang Dikerjakan'?'selected':''}>
-          Sedang Dikerjakan
-        </option>
-
-        <option
-          value="Selesai"
-          ${r.status==='Selesai'?'selected':''}>
-          Selesai
-        </option>
-
-        <option
-          value="Arsip"
-          ${r.status==='Arsip'?'selected':''}>
-          Arsip
-        </option>
-
-      </select>
-
-
-      <select
-        onchange="updateReport(
-          '${escapeAttr(r.id)}',
-          {duty:this.value}
-        )">
-
-        <option
-          value="Handoko"
-          ${r.duty==='Handoko'?'selected':''}>
-          HANDOKO
-        </option>
-
-        <option
-          value="Mustangin"
-          ${r.duty==='Mustangin'?'selected':''}>
-          MUSTANGIN
-        </option>
-
-      </select>
-
-
-      <label class="after-label">
-
-        📷
-        FOTO SETELAH PERBAIKAN
-
-        <input
-          type="file"
-          accept="image/*"
-          capture="environment"
-          onchange="uploadAfter(
-            '${escapeAttr(r.id)}',
-            this
-          )">
-
-      </label>
-
-
-      <button
-        class="small-btn btn-red"
-        onclick="deleteReport(
-          '${escapeAttr(r.id)}'
-        )">
-        🗑 HAPUS
-      </button>
-
-    </div>
-
-  </article>
-
-  `;
-
-}
-
-
-/* =========================================================
-   UPDATE REPORT
-========================================================= */
-
-async function updateReport(id,data){
-
-  try{
-
-    await req(
-      '/api/reports/'+encodeURIComponent(id),
-      {
-        method:'PATCH',
-        headers:{
-          'Content-Type':'application/json'
-        },
-        body:JSON.stringify(data)
-      }
-    );
-
-    await loadReports();
-
-  }catch(e){
-
-    alert(
-      'Gagal memperbarui laporan:\n\n'+
-      e.message
-    );
-
-    await loadReports();
-
-  }
-
-}
-
-
-/* =========================================================
-   CHANGE DUTY
-========================================================= */
-
-async function changeDuty(){
-
-  const duty=$('dutySelect').value;
+async function setDuty(duty){
 
   try{
 
@@ -2140,22 +1308,18 @@ async function changeDuty(){
         headers:{
           'Content-Type':'application/json'
         },
-        body:JSON.stringify({
-          duty
-        })
+        body:JSON.stringify({duty})
       }
     );
 
-    alert(
-      'Petugas aktif sekarang: '+
-      duty
-    );
+
+    loadReports();
+
 
   }catch(e){
 
     alert(
-      'Gagal mengubah petugas:\n\n'+
-      e.message
+      '❌ '+e.message
     );
 
   }
@@ -2163,270 +1327,1106 @@ async function changeDuty(){
 }
 
 
-/* =========================================================
-   LOAD DUTY
-========================================================= */
+/* STATUS CLASS */
 
-async function loadDuty(){
+function statusClass(s){
 
-  try{
-
-    const data=await req(
-      '/api/config'
-    );
-
-    if(data.duty){
-
-      $('dutySelect').value=data.duty;
-
-    }
-
-  }catch(e){
-
-  }
+  return s==='Belum Dikerjakan'
+    ?'s1'
+    :s==='Sedang Dikerjakan'
+    ?'s2'
+    :s==='Selesai'
+    ?'s3'
+    :'s4';
 
 }
 
 
-/* =========================================================
-   DELETE
-========================================================= */
+/* UPDATE */
 
-async function deleteReport(id){
-
-  if(!confirm(
-    'Yakin ingin menghapus laporan '+id+'?\n\n'+
-    'Data laporan akan dihapus dari sistem.'
-  )){
-
-    return;
-
-  }
-
-  loading(true);
-
-  try{
-
-    await req(
-      '/api/reports/'+encodeURIComponent(id),
-      {
-        method:'DELETE'
-      }
-    );
-
-    await loadReports();
-
-  }catch(e){
-
-    alert(
-      'Gagal menghapus laporan:\n\n'+
-      e.message
-    );
-
-  }finally{
-
-    loading(false);
-
-  }
-
-}
-
-
-/* =========================================================
-   UPLOAD AFTER
-========================================================= */
-
-async function uploadAfter(id,input){
-
-  const file=input.files && input.files[0];
-
-  if(!file)
-    return;
-
-  if(file.size>750*1024){
-
-    alert(
-      'Foto terlalu besar.\n\n'+
-      'Maksimal 750 KB.'
-    );
-
-    input.value='';
-    return;
-
-  }
-
-  const form=new FormData();
-
-  form.append(
-    'image',
-    file,
-    file.name
-  );
-
-  loading(true);
+async function update(id,field,value){
 
   try{
 
     await req(
       '/api/reports/'+
-      encodeURIComponent(id)+
-      '/after',
+      encodeURIComponent(id),
       {
-        method:'POST',
-        body:form
+        method:'PATCH',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          [field]:value
+        })
       }
     );
 
-    alert(
-      '✅ Foto setelah perbaikan berhasil disimpan.'
-    );
 
-    await loadReports();
+    loadReports();
+
 
   }catch(e){
 
     alert(
-      '❌ Gagal mengunggah foto after:\n\n'+
-      e.message
+      '❌ '+e.message
     );
-
-  }finally{
-
-    loading(false);
-    input.value='';
 
   }
 
 }
 
 
-/* =========================================================
-   IMAGE MODAL
-========================================================= */
+/* DELETE */
 
-function openImage(url){
+async function del(id){
 
-  $('modalImage').src=url;
+  if(
+    !confirm(
+      'Hapus laporan ini beserta file fotonya?'
+    )
+  ) return;
 
-  $('imageModal')
-    .classList
-    .add('show');
+
+  try{
+
+    await req(
+      '/api/reports/'+
+      encodeURIComponent(id),
+      {
+        method:'DELETE'
+      }
+    );
+
+
+    loadReports();
+
+
+  }catch(e){
+
+    alert(
+      '❌ '+e.message
+    );
+
+  }
 
 }
 
-function closeImage(){
 
-  $('imageModal')
+/* FOTO AFTER DARI GALERI */
+
+async function afterPhoto(id){
+
+  const inp=document.createElement('input');
+
+  inp.type='file';
+
+  inp.accept='image/*';
+
+  /*
+    Tidak menggunakan capture.
+    Jadi HP membuka galeri/file picker.
+  */
+
+  inp.onchange=async()=>{
+
+    if(!inp.files[0]) return;
+
+
+    const file=inp.files[0];
+
+
+    if(file.size>750*1024){
+
+      alert(
+        '❌ Foto terlalu besar. Maksimal 750 KB.'
+      );
+
+      return;
+
+    }
+
+
+    const fd=new FormData();
+
+    fd.append(
+      'image',
+      file
+    );
+
+
+    try{
+
+      await req(
+        '/api/reports/'+
+        encodeURIComponent(id)+
+        '/after',
+        {
+          method:'POST',
+          body:fd
+        }
+      );
+
+
+      alert(
+        '✅ Foto AFTER berhasil disimpan dari galeri.'
+      );
+
+
+      loadReports();
+
+
+    }catch(e){
+
+      alert(
+        '❌ '+e.message
+      );
+
+    }
+
+  };
+
+
+  inp.click();
+
+}
+
+
+/* SELESAIKAN */
+
+async function finishReport(id){
+
+  const r=reports.find(
+    x=>String(x.id)===String(id)
+  );
+
+  if(!r) return;
+
+
+  if(!r.after_image_url){
+
+    const pilih=confirm(
+      'Foto AFTER belum ada.\n\n' +
+      'Pilih OK untuk memilih foto hasil perbaikan dari galeri.'
+    );
+
+    if(pilih){
+
+      await afterPhoto(id);
+
+    }
+
+    return;
+
+  }
+
+
+  if(
+    !confirm(
+      'Tandai laporan ini sebagai SELESAI?'
+    )
+  ) return;
+
+
+  try{
+
+    await req(
+      '/api/reports/'+
+      encodeURIComponent(id),
+      {
+        method:'PATCH',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          status:'Selesai'
+        })
+      }
+    );
+
+
+    await loadReports();
+
+
+    const updated=reports.find(
+      x=>String(x.id)===String(id)
+    );
+
+
+    if(updated){
+
+      openReply(updated);
+
+    }
+
+
+  }catch(e){
+
+    alert(
+      '❌ Gagal menyelesaikan laporan: '+e.message
+    );
+
+  }
+
+}
+
+
+/* PESAN UNTUK KOORDINATOR */
+
+function buildCoordinatorMessage(r){
+
+  const koordinator=r.duty || 'Koordinator';
+
+  const lokasi=r.location || '-';
+
+  const kamar=r.room
+    ?'\nNomor kamar/ruangan: '+r.room
+    :'';
+
+  const kerusakan=r.description || '-';
+
+  const kategori=r.category || '-';
+
+  const priority=r.priority || '-';
+
+
+  return (
+`PDC–PFO | UPDATE LAPORAN
+
+Yth. ${koordinator},
+
+Laporan fasilitas berikut telah SELESAI DITANGANI:
+
+ID Laporan: ${r.id}
+Pelapor: ${r.reporter || '-'}
+Lokasi: ${lokasi}${kamar}
+Kategori: ${kategori}
+Prioritas: ${priority}
+Kerusakan/Temuan: ${kerusakan}
+
+Status: SELESAI
+
+Mohon informasi hasil pekerjaan ini diteruskan kepada Bapak/Ibu yang melaporkan melalui WhatsApp.
+
+Terima kasih.
+
+PDC–PFO
+Perawatan Fasilitas Operasi`
+  );
+
+}
+
+
+/* OPEN REPLY */
+
+function openReply(r){
+
+  replyReport=r;
+
+  const duty=r.duty || 'Handoko';
+
+  coordinatorNumber=
+    COORDINATORS[duty] ||
+    '';
+
+
+  $('replyInfo').innerHTML=
+    '<b>Pelapor:</b> '+esc(r.reporter||'-')+
+    '<br><b>Lokasi:</b> '+esc(r.location||'-')+
+    (r.room
+      ?'<br><b>Nomor:</b> '+esc(r.room)
+      :'')+
+    '<br><b>Koordinator:</b> '+esc(duty);
+
+
+  $('replyText').textContent=
+    buildCoordinatorMessage(r);
+
+
+  $('replyModal').classList.add('show');
+
+}
+
+
+/* BALASAN DARI TOMBOL */
+
+function reply(id){
+
+  const r=reports.find(
+    x=>String(x.id)===String(id)
+  );
+
+  if(!r) return;
+
+  openReply(r);
+
+}
+
+
+/* COPY */
+
+async function copyReply(){
+
+  if(!replyReport) return;
+
+
+  const text=
+    buildCoordinatorMessage(replyReport);
+
+
+  try{
+
+    await navigator.clipboard.writeText(text);
+
+    alert(
+      '✅ Pesan berhasil disalin.'
+    );
+
+  }catch(e){
+
+    const ta=document.createElement('textarea');
+
+    ta.value=text;
+
+    document.body.appendChild(ta);
+
+    ta.select();
+
+    document.execCommand('copy');
+
+    ta.remove();
+
+    alert(
+      '✅ Pesan berhasil disalin.'
+    );
+
+  }
+
+}
+
+
+/* WHATSAPP KOORDINATOR */
+
+function openCoordinatorWhatsApp(){
+
+  if(!replyReport) return;
+
+
+  const duty=
+    replyReport.duty ||
+    'Handoko';
+
+
+  const number=
+    COORDINATORS[duty];
+
+
+  if(!number){
+
+    alert(
+      '❌ Nomor WhatsApp koordinator belum tersedia.'
+    );
+
+    return;
+
+  }
+
+
+  const text=
+    buildCoordinatorMessage(
+      replyReport
+    );
+
+
+  const url=
+    'https://wa.me/'+
+    number.replace(/\D/g,'')+
+    '?text='+
+    encodeURIComponent(text);
+
+
+  window.open(
+    url,
+    '_blank'
+  );
+
+}
+
+
+/* CLOSE REPLY */
+
+function closeReply(){
+
+  $('replyModal')
     .classList
     .remove('show');
 
-  $('modalImage').src='';
+  replyReport=null;
 
 }
 
 
-/* =========================================================
-   FORMAT DATE
-========================================================= */
-
-function formatDate(value){
-
-  if(!value)
-    return '-';
-
-  const d=new Date(value);
-
-  if(isNaN(d.getTime()))
-    return value;
-
-  return d.toLocaleString(
-    'id-ID',
-    {
-      day:'2-digit',
-      month:'2-digit',
-      year:'numeric',
-      hour:'2-digit',
-      minute:'2-digit'
-    }
-  );
-
-}
-
-
-/* =========================================================
-   ESCAPE HTML
-========================================================= */
-
-function escapeHtml(value){
-
-  return String(value ?? '')
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;')
-    .replace(/'/g,'&#039;');
-
-}
-
-function escapeAttr(value){
-
-  return String(value ?? '')
-    .replace(/\\/g,'\\\\')
-    .replace(/'/g,"\\'");
-
-}
-
-function safeUrl(value){
-
-  const s=String(value||'');
+function closeReplyOutside(e){
 
   if(
-    s.startsWith('https://') ||
-    s.startsWith('http://') ||
-    s.startsWith('/')
+    e.target.id==='replyModal'
   ){
-
-    return s;
-
+    closeReply();
   }
-
-  return '';
 
 }
 
 
-/* =========================================================
-   ENTER KEY LOGIN
-========================================================= */
+/* PHOTO MODAL */
 
-$('loginPassword')
-  .addEventListener(
-    'keydown',
-    function(e){
+function showPhotos(id){
 
-      if(e.key==='Enter'){
-        login();
-      }
-
-    }
+  const r=reports.find(
+    x=>String(x.id)===String(id)
   );
 
+  if(!r) return;
 
-/* =========================================================
-   INITIAL
-========================================================= */
 
-(async function(){
+  let html='';
 
-  await checkSession();
 
-  if(currentAdmin){
+  if(r.image_url){
 
-    await loadDuty();
+    html+=`
+      <div class="photoBox">
+        <b>📷 FOTO AWAL</b>
+        <img src="${esc(r.image_url)}">
+      </div>
+    `;
 
   }
 
-})();
+
+  if(r.after_image_url){
+
+    html+=`
+      <div class="photoBox">
+        <b>✅ FOTO AFTER</b>
+        <img src="${esc(r.after_image_url)}">
+      </div>
+    `;
+
+  }else{
+
+    html+=`
+      <div class="photoBox">
+        <b>⏳ FOTO AFTER</b>
+        <p class="hint">
+          Belum ada foto hasil perbaikan.
+        </p>
+      </div>
+    `;
+
+  }
+
+
+  $('photoContent').innerHTML=html;
+
+  $('photoModal').classList.add('show');
+
+}
+
+
+function closePhotoModal(){
+
+  $('photoModal')
+    .classList
+    .remove('show');
+
+}
+
+
+/* ANALYTICS */
+
+function toggleAnalytics(){
+
+  const body=
+    $('analyticsBody');
+
+  body.classList.toggle('open');
+
+
+  $('analyticsBtn').textContent=
+    body.classList.contains('open')
+      ?'TUTUP RINGKASAN'
+      :'BUKA RINGKASAN';
+
+}
+
+
+function makeRank(data){
+
+  const entries=
+    Object.entries(data)
+      .sort(
+        (a,b)=>b[1]-a[1]
+      );
+
+
+  if(!entries.length){
+
+    return '<div class="hint">Belum ada data.</div>';
+
+  }
+
+
+  const max=
+    entries[0][1] || 1;
+
+
+  return entries
+    .slice(0,10)
+    .map(([name,count])=>`
+
+      <div class="rank">
+
+        <div class="rankTop">
+
+          <span>${esc(name)}</span>
+
+          <span>${count}</span>
+
+        </div>
+
+        <div class="bar">
+
+          <i style="width:${Math.max(
+            5,
+            (count/max)*100
+          )}%"></i>
+
+        </div>
+
+      </div>
+
+    `)
+    .join('');
+
+}
+
+
+function updateAnalytics(){
+
+  const locations={};
+
+  const categories={};
+
+
+  reports.forEach(r=>{
+
+    const loc=
+      r.location ||
+      'Tidak diketahui';
+
+
+    const cat=
+      r.category ||
+      'Tidak diketahui';
+
+
+    locations[loc]=
+      (locations[loc]||0)+1;
+
+
+    categories[cat]=
+      (categories[cat]||0)+1;
+
+  });
+
+
+  $('locationStats').innerHTML=
+    makeRank(locations);
+
+
+  $('categoryStats').innerHTML=
+    makeRank(categories);
+
+}
+
+
+/* SEARCH */
+
+function reportMatches(r){
+
+  const search=
+    $('search').value
+      .trim()
+      .toLowerCase();
+
+
+  const status=
+    $('filterStatus').value;
+
+
+  const priority=
+    $('filterPriority').value;
+
+
+  if(
+    status &&
+    r.status!==status
+  ){
+    return false;
+  }
+
+
+  if(
+    priority &&
+    r.priority!==priority
+  ){
+    return false;
+  }
+
+
+  if(!search){
+    return true;
+  }
+
+
+  const text=[
+    r.id,
+    r.reporter,
+    r.location,
+    r.room,
+    r.category,
+    r.priority,
+    r.description,
+    r.duty,
+    r.status
+  ]
+  .join(' ')
+  .toLowerCase();
+
+
+  return text.includes(search);
+
+}
+
+
+/* RENDER */
+
+function renderReports(){
+
+  const filtered=
+    reports.filter(
+      reportMatches
+    );
+
+
+  if(!filtered.length){
+
+    $('rows').innerHTML=
+      '<tr><td colspan="6" class="empty">'+
+      (
+        reports.length
+          ?'Tidak ada laporan yang sesuai filter.'
+          :'Belum ada laporan.'
+      )+
+      '</td></tr>';
+
+    return;
+
+  }
+
+
+  $('rows').innerHTML=
+    filtered.map(x=>{
+
+      const id=
+        escAttr(x.id);
+
+
+      const status=
+        x.status ||
+        'Belum Dikerjakan';
+
+
+      const after=
+        x.after_image_url
+          ?`
+            <div style="margin-top:7px">
+              <img
+                class="thumb afterThumb"
+                src="${esc(x.after_image_url)}"
+                alt="Foto after"
+                onclick="showPhotos('${id}')"
+              >
+              <small>✅ AFTER</small>
+            </div>
+          `
+          :'';
+
+
+      return `
+
+      <tr>
+
+        <td>
+
+          <b>${esc(x.id)}</b>
+
+          <br>
+
+          ${new Date(
+            x.created_at
+          ).toLocaleString('id-ID')}
+
+        </td>
+
+
+        <td>
+
+          <div class="reportInfo">
+
+            <b>
+              ${esc(x.location)}
+            </b>
+
+            ${
+              x.room
+                ?'<br>Nomor: '+esc(x.room)
+                :''
+            }
+
+            <br>
+
+            ${esc(x.category)}
+
+            <br>
+
+            <b>
+              PRIORITAS:
+              ${esc(x.priority)}
+            </b>
+
+            <p>
+              ${esc(x.description)}
+            </p>
+
+            <small>
+              👤 Pelapor:
+              <b>${esc(x.reporter)}</b>
+            </small>
+
+          </div>
+
+        </td>
+
+
+        <td>
+
+          ${
+            x.image_url
+              ?`
+                <img
+                  class="thumb"
+                  src="${esc(x.image_url)}"
+                  alt="Foto laporan"
+                  onclick="showPhotos('${id}')"
+                >
+              `
+              :'Tidak ada foto'
+          }
+
+          ${after}
+
+        </td>
+
+
+        <td>
+
+          <select
+            onchange="update('${id}','status',this.value)"
+          >
+
+            <option ${
+              status==='Belum Dikerjakan'
+                ?'selected':''
+            }>
+              Belum Dikerjakan
+            </option>
+
+            <option ${
+              status==='Sedang Dikerjakan'
+                ?'selected':''
+            }>
+              Sedang Dikerjakan
+            </option>
+
+            <option ${
+              status==='Selesai'
+                ?'selected':''
+            }>
+              Selesai
+            </option>
+
+            <option ${
+              status==='Arsip'
+                ?'selected':''
+            }>
+              Arsip
+            </option>
+
+          </select>
+
+
+          <br>
+
+
+          <span
+            class="pill ${statusClass(status)}"
+          >
+            ${esc(status)}
+          </span>
+
+        </td>
+
+
+        <td>
+
+          <b>
+            ${esc(x.duty||'-')}
+          </b>
+
+          <br>
+
+          <select
+            onchange="update('${id}','duty',this.value)"
+            style="margin-top:6px"
+          >
+
+            <option value="">
+              Pilih
+            </option>
+
+            <option ${
+              x.duty==='Handoko'
+                ?'selected':''
+            }>
+              Handoko
+            </option>
+
+            <option ${
+              x.duty==='Mustangin'
+                ?'selected':''
+            }>
+              Mustangin
+            </option>
+
+          </select>
+
+        </td>
+
+
+        <td>
+
+          <div class="actionBox">
+
+            <button
+              class="btn yellow"
+              onclick="afterPhoto('${id}')"
+            >
+              📷 PILIH AFTER
+            </button>
+
+
+            <button
+              class="btn green"
+              onclick="finishReport('${id}')"
+            >
+              ✅ SELESAIKAN
+            </button>
+
+
+            <button
+              class="btn blue"
+              onclick="reply('${id}')"
+            >
+              💬 BALASAN WA
+            </button>
+
+
+            <button
+              class="btn red"
+              onclick="del('${id}')"
+            >
+              HAPUS
+            </button>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+      `;
+
+    }).join('');
+
+}
+
+
+/* LOAD REPORTS */
+
+async function loadReports(){
+
+  try{
+
+    const j=
+      await req('/api/reports');
+
+
+    reports=
+      j.reports || [];
+
+
+    $('total').textContent=
+      reports.length;
+
+
+    $('belum').textContent=
+      reports.filter(
+        x=>x.status==='Belum Dikerjakan'
+      ).length;
+
+
+    $('proses').textContent=
+      reports.filter(
+        x=>x.status==='Sedang Dikerjakan'
+      ).length;
+
+
+    $('selesai').textContent=
+      reports.filter(
+        x=>x.status==='Selesai'
+      ).length;
+
+
+    $('highCount').textContent=
+      reports.filter(
+        x=>x.priority==='High'
+      ).length;
+
+
+    $('mediumCount').textContent=
+      reports.filter(
+        x=>x.priority==='Medium'
+      ).length;
+
+
+    $('lowCount').textContent=
+      reports.filter(
+        x=>x.priority==='Low'
+      ).length;
+
+
+    const cfg=
+      await req('/api/config');
+
+
+    $('dutyNow').textContent=
+      String(
+        cfg.duty || '-'
+      ).toUpperCase();
+
+
+    updateAnalytics();
+
+    renderReports();
+
+
+    $('lastUpdated').textContent=
+      'Data diperbarui: '+
+      new Date().toLocaleString(
+        'id-ID'
+      );
+
+
+  }catch(e){
+
+    if(
+      e.message==='Unauthorized'
+    ){
+
+      showAuth();
+
+    }else{
+
+      alert(
+        '❌ Gagal mengambil laporan: '+
+        e.message
+      );
+
+    }
+
+  }
+
+}
+
+
+/* RESET PASSWORD TOKEN */
+
+const token=
+  new URLSearchParams(
+    location.search
+  ).get('reset');
+
+
+if(token){
+
+  const np=
+    prompt(
+      'Masukkan password baru minimal 8 karakter:'
+    );
+
+
+  if(np){
+
+    req(
+      '/api/auth/reset',
+      {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          token,
+          password:np
+        })
+      }
+    )
+    .then(j=>{
+
+      alert(
+        '✅ '+(
+          j.message ||
+          'Password berhasil diubah. Silakan login.'
+        )
+      );
+
+    })
+    .catch(e=>{
+
+      alert(
+        '❌ '+e.message
+      );
+
+    });
+
+  }
+
+}
+
+
+/* START */
+
+check();
 
 </script>
 
