@@ -14,5 +14,5 @@ migrations_dir = "migrations"
 
 [vars]
 APP_NAME = "PDC–PFO"
-APP_ORIGIN = "https://laporkankerusakan.pdcpfo.workers.dev"
+APP_ORIGIN = "https://pdc-pfo.pdcpfo.workers.dev"
 SETUP_ADMIN_EMAIL = "admin@contoh.com"
