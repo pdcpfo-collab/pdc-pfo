@@ -1,19 +1,737 @@
-<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin PDC–PFO</title><style>
-:root{--navy:#062c62;--blue:#0877e8;--yellow:#ffd400;--red:#ef3028;--green:#0aaa58;--ink:#102b50;--muted:#687b91;--line:#dce6f0}*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#e5f3ff,#f8fbff);font-family:Inter,system-ui;color:var(--ink)}.wrap{max-width:1180px;margin:auto;padding:18px}.top{background:linear-gradient(135deg,#062c62,#0877e8);color:#fff;padding:20px;border-radius:20px;display:flex;justify-content:space-between;gap:12px;align-items:center}.top h1{margin:0;font-size:25px}.btn{border:0;border-radius:12px;padding:12px 15px;font-weight:900;cursor:pointer}.white{background:#fff;color:#073d80}.green{background:var(--green);color:#fff}.blue{background:#07518a;color:#fff}.red{background:#ffe7e7;color:#a11}.card{background:#fff;border:1px solid #dce8f1;border-radius:18px;padding:18px;margin-top:16px;box-shadow:0 10px 30px #17365c12}input,select{width:100%;padding:13px;border:1px solid #cddce7;border-radius:12px;font-size:16px}label{display:block;font-weight:900;margin:12px 0 7px}.auth{max-width:440px;margin:50px auto}.auth h2{color:#073d80}.hint{font-size:13px;color:var(--muted);line-height:1.5}.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{background:#eef7ff;border-radius:14px;padding:14px}.stat b{display:block;font-size:28px;margin-top:5px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.toolbar .btn{width:auto}.duty{background:#fff7d8;border:1px solid #f2db7b;padding:12px;border-radius:14px;margin-top:12px}.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}th,td{border-bottom:1px solid #e4edf3;padding:10px;text-align:left;vertical-align:top}.thumb{width:110px;height:75px;object-fit:cover;border-radius:8px;border:1px solid #d9e5ee}.pill{padding:5px 8px;border-radius:999px;font-weight:900;font-size:11px}.s1{background:#ffe7e7;color:#a11}.s2{background:#fff4cf;color:#8a6500}.s3{background:#e3f8eb;color:#11753d}.s4{background:#e7edf4;color:#536579}@media(max-width:700px){.row,.stats{grid-template-columns:1fr 1fr}.top{align-items:flex-start;flex-direction:column}table{font-size:11px}}
-</style></head><body><div class="wrap"><div class="top"><div><h1>📊 PDC–PFO ADMIN</h1><div>Perawatan Fasilitas Operasi</div></div><button class="btn white" onclick="location.href='/'">← Kembali ke Form</button></div><div id="auth" class="card auth"><h2>Login Admin</h2><div class="hint">Akun disimpan di server. Tidak ada password demo di browser.</div><label>Email</label><input id="email" type="email" autocomplete="username"><label>Password</label><input id="pass" type="password" autocomplete="current-password"><button class="btn green" style="width:100%;margin-top:12px" onclick="login()">LOGIN</button><button class="btn blue" style="width:100%;margin-top:8px" onclick="register()">DAFTAR ADMIN</button><button class="btn" style="width:100%;margin-top:8px;background:#eef4f8" onclick="resetReq()">LUPA PASSWORD</button><div id="authMsg" class="hint" style="margin-top:12px"></div></div><div id="dash" style="display:none"><div class="card"><div class="stats"><div class="stat">TOTAL<b id="total">0</b></div><div class="stat">BELUM<b id="belum">0</b></div><div class="stat">PROSES<b id="proses">0</b></div><div class="stat">SELESAI<b id="selesai">0</b></div></div><div class="duty"><b>👷 ON DUTY: <span id="dutyNow">-</span></b><div class="toolbar" style="margin-top:8px"><button class="btn green" onclick="setDuty('Handoko')">HANDOKO ON DUTY</button><button class="btn blue" onclick="setDuty('Mustangin')">MUSTANGIN ON DUTY</button><button class="btn" style="background:#eef4f8" onclick="logout()">LOGOUT</button></div></div></div><div class="card"><div class="toolbar"><b style="font-size:18px">Daftar Laporan</b><button class="btn blue" onclick="loadReports()">↻ REFRESH</button></div><div class="tablewrap"><table><thead><tr><th>ID / Waktu</th><th>Temuan</th><th>Foto</th><th>Status</th><th>Petugas</th><th>Aksi</th></tr></thead><tbody id="rows"></tbody></table></div></div></div></div><script>
-const $=id=>document.getElementById(id);const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-async function req(url,opt={}){const r=await fetch(url,opt);const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.error||'Terjadi kesalahan');return j}
-async function check(){try{await req('/api/auth/me');showDash();}catch{showAuth()}}
-function showAuth(){$('auth').style.display='block';$('dash').style.display='none'}function showDash(){$('auth').style.display='none';$('dash').style.display='block';loadReports()}
-async function login(){try{await req('/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:$('email').value,password:$('pass').value})});showDash()}catch(e){$('authMsg').textContent=e.message}}
-async function register(){const code=prompt('Masukkan KODE PENDAFTARAN ADMIN dari pengelola server:');if(!code)return;try{const j=await req('/api/auth/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:$('email').value,password:$('pass').value,code})});$('authMsg').textContent=j.message}catch(e){$('authMsg').textContent=e.message}}
-async function resetReq(){const email=prompt('Email admin:');if(!email)return;try{const j=await req('/api/auth/reset-request',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email})});alert(j.message)}catch(e){alert(e.message)}}
-async function logout(){await req('/api/auth/logout',{method:'POST'});showAuth()}
-async function setDuty(duty){try{await req('/api/duty',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({duty})});loadReports()}catch(e){alert(e.message)}}
-function statusClass(s){return s==='Belum Dikerjakan'?'s1':s==='Sedang Dikerjakan'?'s2':s==='Selesai'?'s3':'s4'}
-async function update(id,field,value){try{await req('/api/reports/'+encodeURIComponent(id),{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify({[field]:value})});loadReports()}catch(e){alert(e.message)}}
-async function del(id){if(!confirm('Hapus laporan ini beserta file fotonya?'))return;try{await req('/api/reports/'+encodeURIComponent(id),{method:'DELETE'});loadReports()}catch(e){alert(e.message)}}
-async function afterPhoto(id){const inp=document.createElement('input');inp.type='file';inp.accept='image/*';inp.onchange=async()=>{if(!inp.files[0])return;const fd=new FormData();fd.append('image',inp.files[0]);try{await req('/api/reports/'+encodeURIComponent(id)+'/after',{method:'POST',body:fd});alert('Foto AFTER tersimpan.');loadReports()}catch(e){alert(e.message)}};inp.click()}
-async function loadReports(){try{const j=await req('/api/reports');const r=j.reports||[];$('total').textContent=r.length;$('belum').textContent=r.filter(x=>x.status==='Belum Dikerjakan').length;$('proses').textContent=r.filter(x=>x.status==='Sedang Dikerjakan').length;$('selesai').textContent=r.filter(x=>x.status==='Selesai').length;const cfg=await req('/api/config');$('dutyNow').textContent=String(cfg.duty).toUpperCase();$('rows').innerHTML=r.map(x=>`<tr><td><b>${esc(x.id)}</b><br>${new Date(x.created_at).toLocaleString('id-ID')}</td><td><b>${esc(x.location)}</b>${x.room?'<br>Nomor: '+esc(x.room):''}<br>${esc(x.category)}<br><b>${esc(x.priority)}</b><p>${esc(x.description)}</p><small>Pelapor: ${esc(x.reporter)}</small></td><td><a href="${esc(x.image_url)}" target="_blank"><img class="thumb" src="${esc(x.image_url)}"></a>${x.after_image_url?'<br><a href="'+esc(x.after_image_url)+'" target="_blank">Foto AFTER</a>':''}</td><td><select onchange="update('${esc(x.id)}','status',this.value)"><option ${x.status==='Belum Dikerjakan'?'selected':''}>Belum Dikerjakan</option><option ${x.status==='Sedang Dikerjakan'?'selected':''}>Sedang Dikerjakan</option><option ${x.status==='Selesai'?'selected':''}>Selesai</option><option ${x.status==='Arsip'?'selected':''}>Arsip</option></select><br><span class="pill ${statusClass(x.status)}">${esc(x.status)}</span></td><td>${esc(x.duty||'-')}<br><select onchange="update('${esc(x.id)}','duty',this.value)"><option value="">Pilih</option><option ${x.duty==='Handoko'?'selected':''}>Handoko</option><option ${x.duty==='Mustangin'?'selected':''}>Mustangin</option></select></td><td><button class="btn blue" onclick="afterPhoto('${esc(x.id)}')">📷 AFTER</button><button class="btn red" style="margin-top:6px" onclick="del('${esc(x.id)}')">HAPUS</button></td></tr>`).join('')}catch(e){if(e.message==='Unauthorized')showAuth();else alert(e.message)}}
-const token=new URLSearchParams(location.search).get('reset');if(token){const np=prompt('Masukkan password baru minimal 8 karakter:');if(np){req('/api/auth/reset',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token,password:np})}).then(()=>alert('Password berhasil diubah. Silakan login.')).catch(e=>alert(e.message))}}check();
-</script></body></html>
+<script>
+const $=id=>document.getElementById(id);
+
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({
+'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+}[m]));
+
+function showMsg(text,type='info'){
+  const el=$('authMsg');
+  el.textContent=text;
+  el.className='msg show '+type;
+}
+
+async function req(url,opt={}){
+  let r;
+  try{
+    r=await fetch(url,opt);
+  }catch(e){
+    throw new Error('Tidak dapat terhubung ke server. Periksa koneksi internet.');
+  }
+
+  const j=await r.json().catch(()=>({}));
+
+  if(!r.ok){
+    throw new Error(j.error || ('Server error HTTP '+r.status));
+  }
+
+  return j;
+}
+
+function showAuth(){
+  $('auth').style.display='block';
+  $('dash').style.display='none';
+}
+
+function showDash(){
+  $('auth').style.display='none';
+  $('dash').style.display='block';
+  loadReports();
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+async function login(){
+
+  const email=$('email').value.trim();
+  const password=$('pass').value;
+
+  if(!email){
+    showMsg('⚠️ Email wajib diisi.','err');
+    $('email').focus();
+    return;
+  }
+
+  if(!password){
+    showMsg('⚠️ Password wajib diisi.','err');
+    $('pass').focus();
+    return;
+  }
+
+  const btn=document.querySelector('button[onclick="login()"]');
+
+  btn.disabled=true;
+  btn.textContent='⏳ MEMERIKSA...';
+
+  showMsg('⏳ Sedang memeriksa email dan password...','info');
+
+  try{
+
+    const j=await req('/api/auth/login',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        email:email,
+        password:password
+      })
+    });
+
+    showMsg(
+      '✅ LOGIN BERHASIL. Membuka dashboard admin...',
+      'ok'
+    );
+
+    setTimeout(()=>{
+      showDash();
+    },500);
+
+  }catch(e){
+
+    showMsg(
+      '❌ LOGIN GAGAL: '+e.message,
+      'err'
+    );
+
+  }finally{
+
+    btn.disabled=false;
+    btn.textContent='LOGIN';
+
+  }
+}
+
+
+/* =========================
+   DAFTAR ADMIN
+========================= */
+
+async function register(){
+
+  const email=$('email').value.trim();
+  const password=$('pass').value;
+
+  if(!email){
+    showMsg('⚠️ Isi email terlebih dahulu.','err');
+    $('email').focus();
+    return;
+  }
+
+  if(!/^\S+@\S+\.\S+$/.test(email)){
+    showMsg('⚠️ Format email belum benar.','err');
+    $('email').focus();
+    return;
+  }
+
+  if(password.length<8){
+    showMsg('⚠️ Password minimal 8 karakter.','err');
+    $('pass').focus();
+    return;
+  }
+
+  const code=prompt(
+    'Masukkan KODE PENDAFTARAN ADMIN dari pengelola server:'
+  );
+
+  if(!code){
+    showMsg(
+      'ℹ️ Pendaftaran dibatalkan karena kode tidak diisi.',
+      'info'
+    );
+    return;
+  }
+
+  const btn=document.querySelector(
+    'button[onclick="register()"]'
+  );
+
+  btn.disabled=true;
+  btn.textContent='⏳ MENDAFTAR...';
+
+  showMsg(
+    '⏳ Sedang mendaftarkan akun admin...',
+    'info'
+  );
+
+  try{
+
+    const j=await req('/api/auth/register',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        email:email,
+        password:password,
+        code:code
+      })
+    });
+
+    showMsg(
+      '✅ '+(
+        j.message ||
+        'Admin berhasil didaftarkan. Silakan login.'
+      ),
+      'ok'
+    );
+
+    $('pass').value='';
+
+  }catch(e){
+
+    showMsg(
+      '❌ PENDAFTARAN GAGAL: '+e.message,
+      'err'
+    );
+
+  }finally{
+
+    btn.disabled=false;
+    btn.textContent='DAFTAR ADMIN';
+
+  }
+}
+
+
+/* =========================
+   LUPA PASSWORD
+========================= */
+
+async function resetReq(){
+
+  const email=prompt(
+    'Masukkan email admin:'
+  );
+
+  if(!email){
+    return;
+  }
+
+  try{
+
+    const j=await req(
+      '/api/auth/reset-request',
+      {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          email:email
+        })
+      }
+    );
+
+    alert(
+      '✅ '+(
+        j.message ||
+        'Permintaan reset password berhasil diproses.'
+      )
+    );
+
+  }catch(e){
+
+    alert(
+      '❌ Gagal: '+e.message
+    );
+
+  }
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+async function logout(){
+
+  try{
+    await req('/api/auth/logout',{
+      method:'POST'
+    });
+  }catch(e){}
+
+  showAuth();
+
+  showMsg(
+    '✅ Anda sudah logout.',
+    'ok'
+  );
+}
+
+
+/* =========================
+   CEK SESSION
+========================= */
+
+async function check(){
+
+  try{
+
+    await req('/api/auth/me');
+
+    showDash();
+
+  }catch(e){
+
+    showAuth();
+
+  }
+}
+
+
+/* =========================
+   DUTY
+========================= */
+
+async function setDuty(duty){
+
+  try{
+
+    await req('/api/duty',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        duty:duty
+      })
+    });
+
+    loadReports();
+
+  }catch(e){
+
+    alert(
+      '❌ '+e.message
+    );
+
+  }
+}
+
+
+/* =========================
+   STATUS
+========================= */
+
+function statusClass(s){
+
+  return s==='Belum Dikerjakan'
+    ?'s1'
+    :s==='Sedang Dikerjakan'
+    ?'s2'
+    :s==='Selesai'
+    ?'s3'
+    :'s4';
+
+}
+
+
+/* =========================
+   UPDATE
+========================= */
+
+async function update(id,field,value){
+
+  try{
+
+    await req(
+      '/api/reports/'+encodeURIComponent(id),
+      {
+        method:'PATCH',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          [field]:value
+        })
+      }
+    );
+
+    loadReports();
+
+  }catch(e){
+
+    alert(
+      '❌ '+e.message
+    );
+
+  }
+}
+
+
+/* =========================
+   DELETE
+========================= */
+
+async function del(id){
+
+  if(!confirm(
+    'Hapus laporan ini beserta file fotonya?'
+  )) return;
+
+  try{
+
+    await req(
+      '/api/reports/'+encodeURIComponent(id),
+      {
+        method:'DELETE'
+      }
+    );
+
+    loadReports();
+
+  }catch(e){
+
+    alert(
+      '❌ '+e.message
+    );
+
+  }
+}
+
+
+/* =========================
+   FOTO AFTER
+========================= */
+
+async function afterPhoto(id){
+
+  const inp=document.createElement('input');
+
+  inp.type='file';
+  inp.accept='image/*';
+
+  inp.onchange=async()=>{
+
+    if(!inp.files[0]) return;
+
+    const fd=new FormData();
+
+    fd.append(
+      'image',
+      inp.files[0]
+    );
+
+    try{
+
+      await req(
+        '/api/reports/'+encodeURIComponent(id)+'/after',
+        {
+          method:'POST',
+          body:fd
+        }
+      );
+
+      alert(
+        '✅ Foto AFTER tersimpan.'
+      );
+
+      loadReports();
+
+    }catch(e){
+
+      alert(
+        '❌ '+e.message
+      );
+
+    }
+
+  };
+
+  inp.click();
+
+}
+
+
+/* =========================
+   LOAD REPORTS
+========================= */
+
+async function loadReports(){
+
+  try{
+
+    const j=await req(
+      '/api/reports'
+    );
+
+    const r=j.reports||[];
+
+    $('total').textContent=r.length;
+
+    $('belum').textContent=
+      r.filter(x=>
+        x.status==='Belum Dikerjakan'
+      ).length;
+
+    $('proses').textContent=
+      r.filter(x=>
+        x.status==='Sedang Dikerjakan'
+      ).length;
+
+    $('selesai').textContent=
+      r.filter(x=>
+        x.status==='Selesai'
+      ).length;
+
+    const cfg=await req(
+      '/api/config'
+    );
+
+    $('dutyNow').textContent=
+      String(cfg.duty).toUpperCase();
+
+    $('rows').innerHTML=r.map(x=>`
+
+<tr>
+
+<td>
+<b>${esc(x.id)}</b>
+<br>
+${new Date(x.created_at).toLocaleString('id-ID')}
+</td>
+
+<td>
+
+<b>${esc(x.location)}</b>
+
+${x.room
+ ?'<br>Nomor: '+esc(x.room)
+ :''
+}
+
+<br>
+
+${esc(x.category)}
+
+<br>
+
+<b>${esc(x.priority)}</b>
+
+<p>
+${esc(x.description)}
+</p>
+
+<small>
+Pelapor: ${esc(x.reporter)}
+</small>
+
+</td>
+
+<td>
+
+<a
+href="${esc(x.image_url)}"
+target="_blank"
+>
+
+<img
+class="thumb"
+src="${esc(x.image_url)}"
+>
+
+</a>
+
+${
+x.after_image_url
+?
+'<br><a href="'+
+esc(x.after_image_url)+
+'" target="_blank">Foto AFTER</a>'
+:''
+}
+
+</td>
+
+<td>
+
+<select
+onchange="update(
+'${esc(x.id)}',
+'status',
+this.value
+)"
+>
+
+<option
+${x.status==='Belum Dikerjakan'
+?'selected':''}
+>
+Belum Dikerjakan
+</option>
+
+<option
+${x.status==='Sedang Dikerjakan'
+?'selected':''}
+>
+Sedang Dikerjakan
+</option>
+
+<option
+${x.status==='Selesai'
+?'selected':''}
+>
+Selesai
+</option>
+
+<option
+${x.status==='Arsip'
+?'selected':''}
+>
+Arsip
+</option>
+
+</select>
+
+<br>
+
+<span
+class="pill ${statusClass(x.status)}"
+>
+${esc(x.status)}
+</span>
+
+</td>
+
+<td>
+
+${esc(x.duty||'-')}
+
+<br>
+
+<select
+onchange="update(
+'${esc(x.id)}',
+'duty',
+this.value
+)"
+>
+
+<option value="">
+Pilih
+</option>
+
+<option
+${x.duty==='Handoko'
+?'selected':''}
+>
+Handoko
+</option>
+
+<option
+${x.duty==='Mustangin'
+?'selected':''}
+>
+Mustangin
+</option>
+
+</select>
+
+</td>
+
+<td>
+
+<button
+class="btn blue"
+onclick="afterPhoto('${esc(x.id)}')"
+>
+📷 AFTER
+</button>
+
+<button
+class="btn red"
+style="margin-top:6px"
+onclick="del('${esc(x.id)}')"
+>
+HAPUS
+</button>
+
+</td>
+
+</tr>
+
+`).join('');
+
+  }catch(e){
+
+    if(
+      e.message==='Unauthorized'
+    ){
+
+      showAuth();
+
+    }else{
+
+      alert(
+        '❌ Gagal mengambil laporan: '+
+        e.message
+      );
+
+    }
+
+  }
+
+}
+
+
+/* =========================
+   RESET PASSWORD TOKEN
+========================= */
+
+const token=
+new URLSearchParams(
+  location.search
+).get('reset');
+
+if(token){
+
+  const np=prompt(
+    'Masukkan password baru minimal 8 karakter:'
+  );
+
+  if(np){
+
+    req(
+      '/api/auth/reset',
+      {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          token:token,
+          password:np
+        })
+      }
+    )
+    .then(j=>{
+
+      alert(
+        '✅ '+
+        (j.message||
+        'Password berhasil diubah. Silakan login.')
+      );
+
+    })
+    .catch(e=>{
+
+      alert(
+        '❌ '+e.message
+      );
+
+    });
+
+  }
+
+}
+
+
+/* MULAI */
+
+check();
+
+</script>
