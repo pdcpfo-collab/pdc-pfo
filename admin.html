@@ -1,1540 +1,2432 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Admin PDC–PFO</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDC–PFO | Admin</title>
 
 <style>
 :root{
-  --navy:#062c62;
-  --blue:#0877e8;
-  --blue2:#07518a;
-  --red:#ef3028;
-  --green:#0aaa58;
-  --ink:#102b50;
-  --muted:#687b91
+  --blue:#075985;
+  --blue2:#0ea5e9;
+  --dark:#0f172a;
+  --yellow:#facc15;
+  --red:#dc2626;
+  --green:#16a34a;
+  --orange:#f59e0b;
+  --gray:#64748b;
+  --light:#f1f5f9;
+  --white:#fff;
+  --border:#e2e8f0;
+  --shadow:0 10px 30px rgba(15,23,42,.10);
 }
 
 *{
-  box-sizing:border-box
+  box-sizing:border-box;
 }
 
 body{
   margin:0;
-  background:linear-gradient(180deg,#e5f3ff,#f8fbff);
-  font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  color:var(--ink)
+  font-family:Arial,Helvetica,sans-serif;
+  background:#eef4f8;
+  color:var(--dark);
 }
 
-.wrap{
-  max-width:1180px;
-  margin:auto;
-  padding:16px
+button,
+input,
+select{
+  font:inherit;
 }
 
-.top{
-  background:linear-gradient(135deg,#062c62,#0877e8);
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+/* ================= HEADER ================= */
+
+.header{
+  background:linear-gradient(135deg,#075985,#0c4a6e);
   color:#fff;
-  padding:20px;
-  border-radius:20px;
+  padding:16px 20px;
+  box-shadow:0 5px 18px rgba(0,0,0,.15);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+
+.header-inner{
+  max-width:1250px;
+  margin:auto;
   display:flex;
   justify-content:space-between;
-  gap:12px;
   align-items:center;
-  box-shadow:0 10px 30px #062c6230
+  gap:15px;
 }
 
-.top h1{
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-icon{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background:#fff;
+  color:#075985;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:14px;
+}
+
+.brand-title{
+  font-size:19px;
+  font-weight:900;
+}
+
+.brand-sub{
+  font-size:12px;
+  opacity:.85;
+  margin-top:3px;
+}
+
+.user-area{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.user-email{
+  font-size:12px;
+  opacity:.9;
+}
+
+/* ================= CONTAINER ================= */
+
+.container{
+  width:min(1250px,94%);
+  margin:25px auto 50px;
+}
+
+/* ================= AUTH ================= */
+
+.auth-wrap{
+  min-height:calc(100vh - 40px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+  background:
+    radial-gradient(circle at top left,rgba(14,165,233,.15),transparent 35%),
+    radial-gradient(circle at bottom right,rgba(250,204,21,.12),transparent 30%),
+    #eef4f8;
+}
+
+.auth-card{
+  width:min(450px,100%);
+  background:#fff;
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  border:1px solid #dbe5ed;
+}
+
+.auth-top{
+  background:linear-gradient(135deg,#075985,#0ea5e9);
+  color:#fff;
+  padding:30px 25px;
+  text-align:center;
+}
+
+.auth-logo{
+  width:75px;
+  height:75px;
+  margin:auto auto 14px;
+  border-radius:20px;
+  background:#fff;
+  color:#075985;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:20px;
+}
+
+.auth-top h1{
   margin:0;
-  font-size:25px
+  font-size:23px;
 }
 
-.top small{
-  opacity:.85
+.auth-top p{
+  margin:7px 0 0;
+  font-size:13px;
+  opacity:.9;
+}
+
+.auth-body{
+  padding:25px;
+}
+
+.form-group{
+  margin-bottom:16px;
+}
+
+.form-group label{
+  display:block;
+  font-weight:800;
+  font-size:13px;
+  margin-bottom:7px;
+}
+
+.input-wrap{
+  position:relative;
+}
+
+.form-control{
+  width:100%;
+  border:1px solid #cbd5e1;
+  border-radius:11px;
+  padding:13px 14px;
+  outline:none;
+  background:#fff;
+  transition:.2s;
+}
+
+.input-wrap .form-control{
+  padding-right:50px;
+}
+
+.form-control:focus{
+  border-color:#0ea5e9;
+  box-shadow:0 0 0 3px rgba(14,165,233,.12);
+}
+
+.eye{
+  position:absolute;
+  right:8px;
+  top:50%;
+  transform:translateY(-50%);
+  border:0;
+  background:transparent;
+  padding:8px;
+  color:#64748b;
 }
 
 .btn{
   border:0;
-  border-radius:12px;
-  padding:12px 15px;
-  font-weight:900;
-  cursor:pointer;
-  font-size:14px
-}
-
-.btn:disabled{
-  opacity:.6;
-  cursor:wait
-}
-
-.white{
-  background:#fff;
-  color:#073d80
-}
-
-.green{
-  background:#0aaa58;
-  color:#fff
-}
-
-.blue{
-  background:#07518a;
-  color:#fff
-}
-
-.red{
-  background:#ffe7e7;
-  color:#a11
-}
-
-.gray{
-  background:#eef4f8;
-  color:#254766
-}
-
-.card{
-  background:#fff;
-  border:1px solid #dce8f1;
-  border-radius:18px;
-  padding:18px;
-  margin-top:16px;
-  box-shadow:0 10px 30px #17365c12
-}
-
-.auth{
-  max-width:440px;
-  margin:45px auto
-}
-
-.auth h2{
-  color:#073d80;
-  margin-top:0
-}
-
-.hint{
-  font-size:13px;
-  color:var(--muted);
-  line-height:1.5
-}
-
-label{
-  display:block;
-  font-weight:900;
-  margin:14px 0 7px
-}
-
-input,
-select{
-  width:100%;
-  padding:13px;
-  border:1px solid #cddce7;
-  border-radius:12px;
-  font-size:16px;
-  background:#fff;
-  color:#102b50
-}
-
-input:focus,
-select:focus{
-  outline:3px solid #0877e822;
-  border-color:#0877e8
-}
-
-.msg{
-  display:none;
-  margin-top:14px;
-  padding:13px;
-  border-radius:12px;
+  border-radius:11px;
+  padding:12px 16px;
   font-weight:800;
-  line-height:1.5
+  transition:.2s;
 }
 
-.msg.show{
-  display:block
+.btn:hover{
+  transform:translateY(-1px);
 }
 
-.msg.ok{
-  background:#e7f8ee;
-  color:#126b3d;
-  border:1px solid #a9dfbf
+.btn-primary{
+  width:100%;
+  background:#075985;
+  color:#fff;
 }
 
-.msg.err{
-  background:#ffe9e9;
-  color:#9b1717;
-  border:1px solid #f0aaaa
+.btn-primary:hover{
+  background:#0c4a6e;
 }
 
-.msg.info{
-  background:#eaf3ff;
-  color:#14558f;
-  border:1px solid #b8d8f5
+.btn-yellow{
+  background:#facc15;
+  color:#172033;
 }
+
+.btn-red{
+  background:#dc2626;
+  color:#fff;
+}
+
+.btn-green{
+  background:#16a34a;
+  color:#fff;
+}
+
+.btn-gray{
+  background:#e2e8f0;
+  color:#172033;
+}
+
+.auth-links{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  margin-top:17px;
+}
+
+.link-btn{
+  border:0;
+  background:none;
+  color:#075985;
+  font-weight:800;
+  font-size:12px;
+  padding:5px;
+}
+
+.message{
+  border-radius:10px;
+  padding:11px 12px;
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:15px;
+  display:none;
+}
+
+.message.show{
+  display:block;
+}
+
+.message.error{
+  background:#fee2e2;
+  color:#991b1b;
+  border:1px solid #fecaca;
+}
+
+.message.success{
+  background:#dcfce7;
+  color:#166534;
+  border:1px solid #bbf7d0;
+}
+
+.message.info{
+  background:#e0f2fe;
+  color:#075985;
+  border:1px solid #bae6fd;
+}
+
+/* ================= DASHBOARD ================= */
+
+.dashboard-title{
+  margin-bottom:20px;
+}
+
+.dashboard-title h1{
+  margin:0;
+  font-size:25px;
+}
+
+.dashboard-title p{
+  margin:5px 0 0;
+  color:var(--gray);
+  font-size:13px;
+}
+
+/* ================= STAT ================= */
 
 .stats{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:10px
+  gap:15px;
+  margin-bottom:20px;
 }
 
 .stat{
-  background:#eef7ff;
-  border-radius:14px;
-  padding:14px;
-  font-weight:800
+  background:#fff;
+  border-radius:16px;
+  padding:18px;
+  box-shadow:var(--shadow);
+  border-left:5px solid var(--blue2);
 }
 
-.stat b{
-  display:block;
-  font-size:28px;
-  margin-top:5px;
-  color:#073d80
+.stat:nth-child(2){
+  border-left-color:var(--orange);
 }
+
+.stat:nth-child(3){
+  border-left-color:var(--green);
+}
+
+.stat:nth-child(4){
+  border-left-color:var(--red);
+}
+
+.stat-label{
+  color:var(--gray);
+  font-size:12px;
+  font-weight:700;
+}
+
+.stat-value{
+  font-size:27px;
+  font-weight:900;
+  margin-top:7px;
+}
+
+/* ================= DUTY ================= */
+
+.duty-card{
+  background:#fff;
+  padding:18px;
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  margin-bottom:20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+}
+
+.duty-info strong{
+  display:block;
+  font-size:16px;
+}
+
+.duty-info span{
+  color:var(--gray);
+  font-size:12px;
+}
+
+.duty-select{
+  min-width:190px;
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  padding:11px;
+}
+
+/* ================= TOOLBAR ================= */
 
 .toolbar{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  align-items:center
+  background:#fff;
+  padding:15px;
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
 }
 
-.toolbar .btn{
-  width:auto
+.toolbar-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr auto;
+  gap:10px;
 }
 
-.duty{
-  background:#fff7d8;
-  border:1px solid #f2db7b;
-  padding:12px;
-  border-radius:14px;
-  margin-top:14px
-}
-
-.tablewrap{
-  overflow:auto
-}
-
-table{
+.toolbar input,
+.toolbar select{
+  border:1px solid #cbd5e1;
+  border-radius:10px;
+  padding:11px;
   width:100%;
-  border-collapse:collapse;
-  margin-top:12px;
-  font-size:13px;
-  min-width:900px
 }
 
-th,
-td{
-  border-bottom:1px solid #e4edf3;
-  padding:10px;
-  text-align:left;
-  vertical-align:top
+/* ================= REPORT CARD ================= */
+
+.reports{
+  display:grid;
+  gap:16px;
 }
 
-th{
-  background:#f1f7fc;
-  color:#073d80
+.report-card{
+  background:#fff;
+  border-radius:18px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  border:1px solid #e2e8f0;
 }
 
-.thumb{
-  width:110px;
-  height:75px;
-  object-fit:cover;
-  border-radius:8px;
-  border:1px solid #d9e5ee;
-  display:block
+.report-head{
+  padding:16px;
+  display:flex;
+  justify-content:space-between;
+  gap:15px;
+  align-items:flex-start;
+  border-bottom:1px solid #edf2f7;
 }
 
-.pill{
-  display:inline-block;
-  padding:5px 8px;
-  border-radius:999px;
+.report-id{
   font-weight:900;
+  color:#075985;
+  font-size:14px;
+}
+
+.report-date{
+  color:#64748b;
   font-size:11px;
-  margin-top:5px
+  margin-top:5px;
 }
 
-.s1{
-  background:#ffe7e7;
-  color:#a11
+.badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  justify-content:flex-end;
 }
 
-.s2{
-  background:#fff4cf;
-  color:#8a6500
+.badge{
+  border-radius:999px;
+  padding:6px 9px;
+  font-size:10px;
+  font-weight:900;
+  white-space:nowrap;
 }
 
-.s3{
-  background:#e3f8eb;
-  color:#11753d
+.badge-low{
+  background:#dcfce7;
+  color:#166534;
 }
 
-.s4{
-  background:#e7edf4;
-  color:#536579
+.badge-medium{
+  background:#fef3c7;
+  color:#92400e;
 }
+
+.badge-high{
+  background:#fee2e2;
+  color:#991b1b;
+}
+
+.badge-status{
+  background:#e0f2fe;
+  color:#075985;
+}
+
+.report-body{
+  padding:16px;
+  display:grid;
+  grid-template-columns:280px 1fr;
+  gap:18px;
+}
+
+.photo-main{
+  width:100%;
+  aspect-ratio:4/3;
+  object-fit:cover;
+  border-radius:13px;
+  background:#e2e8f0;
+  cursor:pointer;
+  border:1px solid #dbe5ed;
+}
+
+.after-photo{
+  width:110px;
+  height:85px;
+  object-fit:cover;
+  border-radius:9px;
+  border:1px solid #dbe5ed;
+  cursor:pointer;
+}
+
+.report-info{
+  display:grid;
+  gap:10px;
+}
+
+.info-row{
+  display:grid;
+  grid-template-columns:125px 1fr;
+  gap:10px;
+  font-size:13px;
+}
+
+.info-label{
+  color:#64748b;
+  font-weight:700;
+}
+
+.info-value{
+  font-weight:700;
+  word-break:break-word;
+}
+
+.description{
+  background:#f8fafc;
+  border-radius:10px;
+  padding:12px;
+  line-height:1.5;
+  font-size:13px;
+  white-space:pre-wrap;
+}
+
+.report-actions{
+  padding:14px 16px;
+  border-top:1px solid #edf2f7;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+}
+
+.report-actions select{
+  border:1px solid #cbd5e1;
+  border-radius:9px;
+  padding:9px;
+}
+
+.small-btn{
+  border:0;
+  border-radius:9px;
+  padding:9px 12px;
+  font-weight:800;
+  font-size:12px;
+}
+
+.after-label{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:#f1f5f9;
+  border-radius:9px;
+  padding:7px 10px;
+  cursor:pointer;
+  font-size:11px;
+  font-weight:800;
+}
+
+.after-label input{
+  display:none;
+}
+
+/* ================= EMPTY ================= */
 
 .empty{
+  background:#fff;
+  border-radius:16px;
+  padding:45px 20px;
   text-align:center;
-  padding:30px;
-  color:#71859b
+  box-shadow:var(--shadow);
+  color:#64748b;
 }
 
-@media(max-width:700px){
+/* ================= LOADING ================= */
 
-  .wrap{
-    padding:10px
+.loading{
+  position:fixed;
+  inset:0;
+  background:rgba(15,23,42,.45);
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.loading-box{
+  background:#fff;
+  border-radius:15px;
+  padding:22px 28px;
+  box-shadow:var(--shadow);
+  font-weight:800;
+}
+
+/* ================= MODAL ================= */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.82);
+  z-index:200;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal img{
+  max-width:95vw;
+  max-height:90vh;
+  object-fit:contain;
+  border-radius:10px;
+}
+
+.modal-close{
+  position:absolute;
+  top:15px;
+  right:18px;
+  width:45px;
+  height:45px;
+  border:0;
+  border-radius:50%;
+  background:#fff;
+  font-size:22px;
+  font-weight:900;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:900px){
+  .stats{
+    grid-template-columns:repeat(2,1fr);
   }
 
-  .top{
+  .toolbar-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .report-body{
+    grid-template-columns:1fr;
+  }
+
+  .photo-main{
+    max-height:300px;
+  }
+}
+
+@media(max-width:600px){
+  .header{
+    padding:12px;
+  }
+
+  .header-inner{
     align-items:flex-start;
-    flex-direction:column;
-    border-radius:15px
   }
 
-  .top h1{
-    font-size:21px
+  .user-email{
+    display:none;
+  }
+
+  .brand-title{
+    font-size:16px;
+  }
+
+  .brand-sub{
+    font-size:10px;
+  }
+
+  .brand-icon{
+    width:42px;
+    height:42px;
+  }
+
+  .container{
+    width:94%;
+    margin-top:16px;
   }
 
   .stats{
-    grid-template-columns:1fr 1fr
+    grid-template-columns:1fr 1fr;
+    gap:9px;
   }
 
-  .auth{
-    margin:25px auto
+  .stat{
+    padding:13px;
   }
 
-  .card{
-    padding:14px;
-    border-radius:15px
+  .stat-value{
+    font-size:23px;
   }
 
+  .toolbar-grid{
+    grid-template-columns:1fr;
+  }
+
+  .duty-card{
+    display:block;
+  }
+
+  .duty-select{
+    width:100%;
+    margin-top:10px;
+  }
+
+  .report-head{
+    display:block;
+  }
+
+  .badges{
+    justify-content:flex-start;
+    margin-top:10px;
+  }
+
+  .info-row{
+    grid-template-columns:100px 1fr;
+  }
+
+  .auth-wrap{
+    padding:10px;
+  }
+
+  .auth-body{
+    padding:20px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrap">
+<!-- ========================================================= -->
+<!-- AUTH -->
+<!-- ========================================================= -->
 
-<div class="top">
+<section id="authPage" class="auth-wrap">
 
-<div>
+  <div class="auth-card">
 
-<h1>📊 PDC–PFO ADMIN</h1>
+    <div class="auth-top">
+      <div class="auth-logo">PFO</div>
+      <h1>PDC–PFO ADMIN</h1>
+      <p>Perawatan Fasilitas Operasi</p>
+    </div>
 
-<div>
-Perawatan Fasilitas Operasi
-</div>
+    <div class="auth-body">
 
-<small>
-Dashboard Pengelolaan Laporan Fasilitas
-</small>
+      <div id="authMessage" class="message"></div>
 
-</div>
+      <!-- LOGIN -->
 
-<button
-class="btn white"
-onclick="location.href='/'">
+      <div id="loginBox">
 
-← Kembali ke Form
+        <div class="form-group">
+          <label>Email Admin</label>
+          <input
+            id="loginEmail"
+            class="form-control"
+            type="email"
+            placeholder="Masukkan email admin"
+            autocomplete="username">
+        </div>
 
-</button>
+        <div class="form-group">
+          <label>Password</label>
 
-</div>
+          <div class="input-wrap">
+            <input
+              id="loginPassword"
+              class="form-control"
+              type="password"
+              placeholder="Masukkan password"
+              autocomplete="current-password">
 
+            <button
+              class="eye"
+              type="button"
+              onclick="togglePassword('loginPassword',this)">
+              👁
+            </button>
+          </div>
+        </div>
 
-<!-- LOGIN -->
+        <button
+          id="loginBtn"
+          class="btn btn-primary"
+          onclick="login()">
+          LOGIN ADMIN
+        </button>
 
-<div
-id="auth"
-class="card auth">
+        <div class="auth-links">
+          <button
+            class="link-btn"
+            onclick="showRegister()">
+            DAFTAR ADMIN
+          </button>
 
-<h2>🔐 Login Admin</h2>
+          <button
+            class="link-btn"
+            onclick="showReset()">
+            LUPA PASSWORD
+          </button>
+        </div>
 
-<div class="hint">
-
-Akun admin tersimpan di server.
-Gunakan email dan password yang sudah terdaftar.
-
-</div>
-
-
-<label>Email Admin</label>
-
-<input
-id="email"
-type="email"
-autocomplete="username"
-placeholder="contoh@email.com">
-
-
-<label>Password</label>
-
-<input
-id="pass"
-type="password"
-autocomplete="current-password"
-placeholder="Minimal 8 karakter">
-
-
-<button
-id="loginBtn"
-class="btn green"
-style="width:100%;margin-top:14px"
-onclick="login()">
-
-🔐 LOGIN
-
-</button>
-
-
-<button
-id="registerBtn"
-class="btn blue"
-style="width:100%;margin-top:8px"
-onclick="register()">
-
-➕ DAFTAR ADMIN
-
-</button>
+      </div>
 
 
-<button
-class="btn gray"
-style="width:100%;margin-top:8px"
-onclick="resetReq()">
+      <!-- REGISTER -->
 
-🔑 LUPA PASSWORD
+      <div id="registerBox" class="hidden">
 
-</button>
+        <div class="form-group">
+          <label>Email Admin</label>
+          <input
+            id="registerEmail"
+            class="form-control"
+            type="email"
+            placeholder="Email admin">
+        </div>
+
+        <div class="form-group">
+          <label>Password Baru</label>
+
+          <div class="input-wrap">
+            <input
+              id="registerPassword"
+              class="form-control"
+              type="password"
+              placeholder="Minimal 8 karakter">
+
+            <button
+              class="eye"
+              type="button"
+              onclick="togglePassword('registerPassword',this)">
+              👁
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Ulangi Password</label>
+
+          <div class="input-wrap">
+            <input
+              id="registerPassword2"
+              class="form-control"
+              type="password"
+              placeholder="Ulangi password">
+
+            <button
+              class="eye"
+              type="button"
+              onclick="togglePassword('registerPassword2',this)">
+              👁
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Kode Pendaftaran Admin</label>
+          <input
+            id="registerCode"
+            class="form-control"
+            type="password"
+            placeholder="Masukkan kode admin">
+        </div>
+
+        <button
+          id="registerBtn"
+          class="btn btn-yellow"
+          style="width:100%"
+          onclick="registerAdmin()">
+          DAFTAR ADMIN
+        </button>
+
+        <div class="auth-links">
+          <button
+            class="link-btn"
+            onclick="showLogin()">
+            ← KEMBALI LOGIN
+          </button>
+        </div>
+
+      </div>
 
 
-<div
-id="authMsg"
-class="msg">
-</div>
+      <!-- RESET REQUEST -->
 
-</div>
+      <div id="resetBox" class="hidden">
+
+        <div class="form-group">
+          <label>Email Admin</label>
+          <input
+            id="resetEmail"
+            class="form-control"
+            type="email"
+            placeholder="Masukkan email admin">
+        </div>
+
+        <button
+          id="resetBtn"
+          class="btn btn-primary"
+          onclick="requestReset()">
+          KIRIM LINK RESET
+        </button>
+
+        <div class="auth-links">
+          <button
+            class="link-btn"
+            onclick="showLogin()">
+            ← KEMBALI LOGIN
+          </button>
+        </div>
+
+        <div style="font-size:11px;color:#64748b;margin-top:15px;line-height:1.5">
+          Link reset dikirim melalui email jika sistem email
+          PDC–PFO sudah dikonfigurasi.
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
 
 
+<!-- ========================================================= -->
 <!-- DASHBOARD -->
+<!-- ========================================================= -->
+
+<section id="dashboardPage" class="hidden">
+
+  <header class="header">
+
+    <div class="header-inner">
+
+      <div class="brand">
+
+        <div class="brand-icon">
+          PFO
+        </div>
+
+        <div>
+          <div class="brand-title">
+            PDC–PFO ADMIN
+          </div>
+
+          <div class="brand-sub">
+            Perawatan Fasilitas Operasi
+          </div>
+        </div>
+
+      </div>
+
+      <div class="user-area">
+
+        <span
+          id="adminEmail"
+          class="user-email">
+        </span>
+
+        <button
+          class="btn btn-red"
+          onclick="logout()">
+          LOGOUT
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <main class="container">
+
+    <div class="dashboard-title">
+
+      <h1>Dashboard Laporan</h1>
+
+      <p>
+        Pantau kerusakan dan temuan fasilitas yang masuk.
+      </p>
+
+    </div>
+
+
+    <!-- STAT -->
+
+    <div class="stats">
+
+      <div class="stat">
+        <div class="stat-label">
+          TOTAL LAPORAN
+        </div>
+        <div id="statTotal" class="stat-value">
+          0
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-label">
+          BELUM DIKERJAKAN
+        </div>
+        <div id="statNew" class="stat-value">
+          0
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-label">
+          SEDANG DIKERJAKAN
+        </div>
+        <div id="statProgress" class="stat-value">
+          0
+        </div>
+      </div>
+
+      <div class="stat">
+        <div class="stat-label">
+          SELESAI
+        </div>
+        <div id="statDone" class="stat-value">
+          0
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- DUTY -->
+
+    <div class="duty-card">
+
+      <div class="duty-info">
+
+        <strong>
+          PETUGAS / KOORDINATOR AKTIF
+        </strong>
+
+        <span>
+          Laporan baru akan diarahkan kepada petugas yang dipilih.
+        </span>
+
+      </div>
+
+      <select
+        id="dutySelect"
+        class="duty-select"
+        onchange="changeDuty()">
+
+        <option value="Handoko">
+          HANDOKO
+        </option>
+
+        <option value="Mustangin">
+          MUSTANGIN
+        </option>
+
+      </select>
+
+    </div>
+
+
+    <!-- TOOLBAR -->
+
+    <div class="toolbar">
+
+      <div class="toolbar-grid">
+
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="🔎 Cari ID, nama, lokasi, kategori..."
+          oninput="renderReports()">
+
+        <select
+          id="filterStatus"
+          onchange="renderReports()">
+
+          <option value="">Semua Status</option>
+          <option value="Belum Dikerjakan">Belum Dikerjakan</option>
+          <option value="Sedang Dikerjakan">Sedang Dikerjakan</option>
+          <option value="Selesai">Selesai</option>
+          <option value="Arsip">Arsip</option>
+
+        </select>
+
+        <select
+          id="filterPriority"
+          onchange="renderReports()">
+
+          <option value="">Semua Prioritas</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+
+        </select>
+
+        <select
+          id="filterDuty"
+          onchange="renderReports()">
+
+          <option value="">Semua Petugas</option>
+          <option value="Handoko">Handoko</option>
+          <option value="Mustangin">Mustangin</option>
+
+        </select>
+
+        <button
+          class="btn btn-primary"
+          onclick="loadReports()">
+          ↻ REFRESH
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- REPORTS -->
+
+    <div id="reports" class="reports"></div>
+
+  </main>
+
+</section>
+
+
+<!-- ========================================================= -->
+<!-- LOADING -->
+<!-- ========================================================= -->
 
 <div
-id="dash"
-style="display:none">
+  id="loading"
+  class="loading hidden">
 
-
-<div class="card">
-
-<div class="stats">
-
-<div class="stat">
-
-TOTAL
-
-<b id="total">0</b>
+  <div class="loading-box">
+    ⏳ Memproses...
+  </div>
 
 </div>
 
 
-<div class="stat">
-
-BELUM
-
-<b id="belum">0</b>
-
-</div>
-
-
-<div class="stat">
-
-PROSES
-
-<b id="proses">0</b>
-
-</div>
-
-
-<div class="stat">
-
-SELESAI
-
-<b id="selesai">0</b>
-
-</div>
-
-</div>
-
-
-<div class="duty">
-
-<b>
-
-👷 ON DUTY:
-
-<span id="dutyNow">-</span>
-
-</b>
-
+<!-- ========================================================= -->
+<!-- IMAGE MODAL -->
+<!-- ========================================================= -->
 
 <div
-class="toolbar"
-style="margin-top:10px">
+  id="imageModal"
+  class="modal"
+  onclick="closeImage()">
 
+  <button
+    class="modal-close"
+    onclick="closeImage()">
+    ×
+  </button>
 
-<button
-class="btn green"
-onclick="setDuty('Handoko')">
-
-HANDOKO ON DUTY
-
-</button>
-
-
-<button
-class="btn blue"
-onclick="setDuty('Mustangin')">
-
-MUSTANGIN ON DUTY
-
-</button>
-
-
-<button
-class="btn gray"
-onclick="logout()">
-
-LOGOUT
-
-</button>
-
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="card">
-
-<div class="toolbar">
-
-<b style="font-size:18px">
-
-📋 Daftar Laporan
-
-</b>
-
-
-<button
-class="btn blue"
-onclick="loadReports()">
-
-↻ REFRESH
-
-</button>
-
-</div>
-
-
-<div class="tablewrap">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>ID / Waktu</th>
-
-<th>Temuan</th>
-
-<th>Foto</th>
-
-<th>Status</th>
-
-<th>Petugas</th>
-
-<th>Aksi</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="rows">
-
-</tbody>
-
-</table>
-
-</div>
-
-</div>
-
-</div>
+  <img
+    id="modalImage"
+    src=""
+    alt="Foto laporan"
+    onclick="event.stopPropagation()">
 
 </div>
 
 
 <script>
 
-const $=id=>document.getElementById(id);
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+let reports = [];
+let currentAdmin = null;
 
 
-const esc=s=>String(s??'').replace(
-/[&<>"']/g,
-m=>({
-'&':'&amp;',
-'<':'&lt;',
-'>':'&gt;',
-'"':'&quot;',
-"'":'&#39;'
-}[m])
-);
-
-
-function showMsg(text,type='info'){
-
-const el=$('authMsg');
-
-el.textContent=text;
-
-el.className='msg show '+type;
-
-}
-
+/* =========================================================
+   API REQUEST
+========================================================= */
 
 async function req(url,opt={}){
 
-let r;
+  let r;
 
-try{
+  try{
 
-r=await fetch(url,opt);
+    r = await fetch(url,{
+      credentials:'same-origin',
+      ...opt
+    });
 
-}catch(e){
+  }catch(e){
 
-throw new Error(
-'Tidak dapat terhubung ke server. Periksa koneksi internet.'
-);
+    throw new Error(
+      'Tidak dapat terhubung ke server. Periksa koneksi internet.'
+    );
+
+  }
+
+  let j={};
+
+  try{
+    j=await r.json();
+  }catch(e){
+    j={};
+  }
+
+  if(!r.ok){
+
+    let msg=j.error || `Server error HTTP ${r.status}`;
+
+    if(j.detail){
+      msg += ' — ' + j.detail;
+    }
+
+    throw new Error(msg);
+  }
+
+  return j;
+}
+
+
+/* =========================================================
+   ELEMENT
+========================================================= */
+
+const $ = id => document.getElementById(id);
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+function loading(show){
+
+  $('loading').classList.toggle(
+    'hidden',
+    !show
+  );
 
 }
 
 
-const j=await r.json().catch(()=>({}));
+/* =========================================================
+   MESSAGE
+========================================================= */
 
+function message(text,type='error'){
 
-if(!r.ok){
+  const box=$('authMessage');
 
-throw new Error(
-j.error||
-('Server error HTTP '+r.status)
-);
+  box.className='message show '+type;
 
-}
-
-
-return j;
+  box.innerHTML=text;
 
 }
 
 
-function showAuth(){
+/* =========================================================
+   PASSWORD
+========================================================= */
 
-$('auth').style.display='block';
+function togglePassword(id,btn){
 
-$('dash').style.display='none';
+  const input=$(id);
+
+  if(input.type==='password'){
+
+    input.type='text';
+    btn.textContent='🙈';
+
+  }else{
+
+    input.type='password';
+    btn.textContent='👁';
+
+  }
 
 }
 
 
-function showDash(){
+/* =========================================================
+   AUTH VIEW
+========================================================= */
 
-$('auth').style.display='none';
+function showLogin(){
 
-$('dash').style.display='block';
+  $('loginBox').classList.remove('hidden');
+  $('registerBox').classList.add('hidden');
+  $('resetBox').classList.add('hidden');
 
-loadReports();
+  $('authMessage').className='message';
+
+}
+
+function showRegister(){
+
+  $('loginBox').classList.add('hidden');
+  $('registerBox').classList.remove('hidden');
+  $('resetBox').classList.add('hidden');
+
+  $('authMessage').className='message';
+
+}
+
+function showReset(){
+
+  $('loginBox').classList.add('hidden');
+  $('registerBox').classList.add('hidden');
+  $('resetBox').classList.remove('hidden');
+
+  $('authMessage').className='message';
 
 }
 
 
-/* LOGIN */
+/* =========================================================
+   LOGIN
+========================================================= */
 
 async function login(){
 
-const email=$('email').value.trim();
+  const email=$('loginEmail').value.trim();
+  const password=$('loginPassword').value;
 
-const password=$('pass').value;
+  if(!email || !password){
 
+    message(
+      '❌ Email dan password wajib diisi.',
+      'error'
+    );
 
-if(!email){
+    return;
+  }
 
-showMsg(
-'⚠️ Email wajib diisi.',
-'err'
-);
+  loading(true);
 
-$('email').focus();
+  try{
 
-return;
+    const data=await req(
+      '/api/auth/login',
+      {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          email,
+          password
+        })
+      }
+    );
 
-}
+    currentAdmin=data;
 
+    $('authPage').classList.add('hidden');
+    $('dashboardPage').classList.remove('hidden');
 
-if(!password){
+    $('adminEmail').textContent=data.email || '';
 
-showMsg(
-'⚠️ Password wajib diisi.',
-'err'
-);
+    await loadReports();
 
-$('pass').focus();
+  }catch(e){
 
-return;
+    message(
+      '❌ LOGIN GAGAL: '+escapeHtml(e.message),
+      'error'
+    );
 
-}
+  }finally{
 
+    loading(false);
 
-const btn=$('loginBtn');
-
-btn.disabled=true;
-
-btn.textContent='⏳ MEMERIKSA...';
-
-
-showMsg(
-'⏳ Sedang memeriksa email dan password...',
-'info'
-);
-
-
-try{
-
-await req(
-'/api/auth/login',
-{
-method:'POST',
-headers:{
-'Content-Type':'application/json'
-},
-body:JSON.stringify({
-email:email,
-password:password
-})
-}
-);
-
-
-showMsg(
-'✅ LOGIN BERHASIL. Membuka dashboard admin...',
-'ok'
-);
-
-
-setTimeout(
-showDash,
-500
-);
-
-
-}catch(e){
-
-showMsg(
-'❌ LOGIN GAGAL: '+e.message,
-'err'
-);
-
-}finally{
-
-btn.disabled=false;
-
-btn.textContent='🔐 LOGIN';
-
-}
+  }
 
 }
 
 
-/* DAFTAR ADMIN */
+/* =========================================================
+   REGISTER
+========================================================= */
 
-async function register(){
+async function registerAdmin(){
 
-const email=$('email').value.trim();
+  const email=$('registerEmail').value.trim();
+  const password=$('registerPassword').value;
+  const password2=$('registerPassword2').value;
+  const code=$('registerCode').value;
 
-const password=$('pass').value;
+  if(!email){
 
+    message('❌ Email wajib diisi.','error');
+    return;
 
-if(!email){
+  }
 
-showMsg(
-'⚠️ Isi email terlebih dahulu.',
-'err'
-);
+  if(password.length<8){
 
-$('email').focus();
+    message(
+      '❌ Password minimal 8 karakter.',
+      'error'
+    );
 
-return;
+    return;
 
-}
+  }
 
+  if(password!==password2){
 
-if(!/^\S+@\S+\.\S+$/.test(email)){
+    message(
+      '❌ Ulangi password tidak sama.',
+      'error'
+    );
 
-showMsg(
-'⚠️ Format email belum benar.',
-'err'
-);
+    return;
 
-$('email').focus();
+  }
 
-return;
+  if(!code){
 
-}
+    message(
+      '❌ Kode pendaftaran admin wajib diisi.',
+      'error'
+    );
 
+    return;
 
-if(password.length<8){
+  }
 
-showMsg(
-'⚠️ Password minimal 8 karakter.',
-'err'
-);
+  loading(true);
 
-$('pass').focus();
+  try{
 
-return;
+    const data=await req(
+      '/api/auth/register',
+      {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          email,
+          password,
+          code
+        })
+      }
+    );
 
-}
+    message(
+      '✅ '+escapeHtml(
+        data.message ||
+        'Admin berhasil didaftarkan.'
+      ),
+      'success'
+    );
 
+    $('registerEmail').value='';
+    $('registerPassword').value='';
+    $('registerPassword2').value='';
+    $('registerCode').value='';
 
-const code=prompt(
-'Masukkan KODE PENDAFTARAN ADMIN dari pengelola server:'
-);
+    setTimeout(()=>{
+      showLogin();
+    },1500);
 
+  }catch(e){
 
-if(!code){
+    message(
+      '❌ PENDAFTARAN GAGAL: '+
+      escapeHtml(e.message),
+      'error'
+    );
 
-showMsg(
-'ℹ️ Pendaftaran dibatalkan karena kode tidak diisi.',
-'info'
-);
+  }finally{
 
-return;
+    loading(false);
 
-}
-
-
-const btn=$('registerBtn');
-
-btn.disabled=true;
-
-btn.textContent='⏳ MENDAFTAR...';
-
-
-showMsg(
-'⏳ Sedang mendaftarkan akun admin...',
-'info'
-);
-
-
-try{
-
-const j=await req(
-'/api/auth/register',
-{
-method:'POST',
-headers:{
-'Content-Type':'application/json'
-},
-body:JSON.stringify({
-email:email,
-password:password,
-code:code
-})
-}
-);
-
-
-showMsg(
-'✅ '+
-(
-j.message||
-'Admin berhasil didaftarkan. Silakan login.'
-),
-'ok'
-);
-
-
-$('pass').value='';
-
-
-}catch(e){
-
-showMsg(
-'❌ PENDAFTARAN GAGAL: '+e.message,
-'err'
-);
-
-}finally{
-
-btn.disabled=false;
-
-btn.textContent='➕ DAFTAR ADMIN';
-
-}
+  }
 
 }
 
 
-/* LUPA PASSWORD */
+/* =========================================================
+   RESET REQUEST
+========================================================= */
 
-async function resetReq(){
+async function requestReset(){
 
-const email=prompt(
-'Masukkan email admin:'
-);
+  const email=$('resetEmail').value.trim();
 
+  if(!email){
 
-if(!email)return;
+    message(
+      '❌ Email wajib diisi.',
+      'error'
+    );
 
+    return;
 
-try{
+  }
 
-const j=await req(
-'/api/auth/reset-request',
-{
-method:'POST',
-headers:{
-'Content-Type':'application/json'
-},
-body:JSON.stringify({
-email:email
-})
+  loading(true);
+
+  try{
+
+    const data=await req(
+      '/api/auth/reset-request',
+      {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          email
+        })
+      }
+    );
+
+    message(
+      '✅ '+escapeHtml(
+        data.message ||
+        'Permintaan reset berhasil diproses.'
+      ),
+      'success'
+    );
+
+  }catch(e){
+
+    message(
+      '❌ RESET GAGAL: '+
+      escapeHtml(e.message),
+      'error'
+    );
+
+  }finally{
+
+    loading(false);
+
+  }
+
 }
-);
 
 
-alert(
-'✅ '+
-(
-j.message||
-'Permintaan reset password berhasil diproses.'
-)
-);
+/* =========================================================
+   CHECK SESSION
+========================================================= */
 
+async function checkSession(){
 
-}catch(e){
+  try{
 
-alert(
-'❌ Gagal: '+e.message
-);
+    const data=await req(
+      '/api/auth/me'
+    );
+
+    if(data.ok){
+
+      currentAdmin=data.admin;
+
+      $('authPage').classList.add('hidden');
+      $('dashboardPage').classList.remove('hidden');
+
+      $('adminEmail').textContent=
+        data.admin.email || '';
+
+      await loadReports();
+
+    }
+
+  }catch(e){
+
+    $('authPage').classList.remove('hidden');
+    $('dashboardPage').classList.add('hidden');
+
+  }
 
 }
 
-}
 
-
-/* LOGOUT */
+/* =========================================================
+   LOGOUT
+========================================================= */
 
 async function logout(){
 
-try{
+  if(!confirm(
+    'Yakin ingin logout dari dashboard admin?'
+  )) return;
 
-await req(
-'/api/auth/logout',
-{
-method:'POST'
-}
-);
+  loading(true);
 
-}catch(e){}
+  try{
 
+    await req(
+      '/api/auth/logout',
+      {
+        method:'POST'
+      }
+    );
 
-showAuth();
+  }catch(e){
 
+  }finally{
 
-showMsg(
-'✅ Anda sudah logout.',
-'ok'
-);
+    loading(false);
 
-}
+    reports=[];
+    currentAdmin=null;
 
+    $('dashboardPage').classList.add('hidden');
+    $('authPage').classList.remove('hidden');
 
-/* CEK SESSION */
+    showLogin();
 
-async function check(){
-
-try{
-
-await req(
-'/api/auth/me'
-);
-
-showDash();
-
-}catch(e){
-
-showAuth();
-
-}
+  }
 
 }
 
 
-/* DUTY */
-
-async function setDuty(duty){
-
-try{
-
-await req(
-'/api/duty',
-{
-method:'POST',
-headers:{
-'Content-Type':'application/json'
-},
-body:JSON.stringify({
-duty:duty
-})
-}
-);
-
-
-loadReports();
-
-
-}catch(e){
-
-alert(
-'❌ '+e.message
-);
-
-}
-
-}
-
-
-/* STATUS */
-
-function statusClass(s){
-
-return s==='Belum Dikerjakan'
-?'s1'
-:s==='Sedang Dikerjakan'
-?'s2'
-:s==='Selesai'
-?'s3'
-:'s4';
-
-}
-
-
-/* UPDATE */
-
-async function update(
-id,
-field,
-value
-){
-
-try{
-
-await req(
-'/api/reports/'+encodeURIComponent(id),
-{
-method:'PATCH',
-headers:{
-'Content-Type':'application/json'
-},
-body:JSON.stringify({
-[field]:value
-})
-}
-);
-
-
-loadReports();
-
-
-}catch(e){
-
-alert(
-'❌ '+e.message
-);
-
-}
-
-}
-
-
-/* DELETE */
-
-async function del(id){
-
-if(!confirm(
-'Hapus laporan ini beserta file fotonya?'
-))return;
-
-
-try{
-
-await req(
-'/api/reports/'+encodeURIComponent(id),
-{
-method:'DELETE'
-}
-);
-
-
-loadReports();
-
-
-}catch(e){
-
-alert(
-'❌ '+e.message
-);
-
-}
-
-}
-
-
-/* FOTO AFTER */
-
-async function afterPhoto(id){
-
-const inp=document.createElement(
-'input'
-);
-
-inp.type='file';
-
-inp.accept='image/*';
-
-
-inp.onchange=async()=>{
-
-if(!inp.files[0])return;
-
-
-const fd=new FormData();
-
-fd.append(
-'image',
-inp.files[0]
-);
-
-
-try{
-
-await req(
-'/api/reports/'+encodeURIComponent(id)+'/after',
-{
-method:'POST',
-body:fd
-}
-);
-
-
-alert(
-'✅ Foto AFTER tersimpan.'
-);
-
-
-loadReports();
-
-
-}catch(e){
-
-alert(
-'❌ '+e.message
-);
-
-}
-
-};
-
-
-inp.click();
-
-}
-
-
-/* LOAD REPORT */
+/* =========================================================
+   LOAD REPORTS
+========================================================= */
 
 async function loadReports(){
 
-try{
+  loading(true);
 
-const j=await req(
-'/api/reports'
-);
+  try{
 
+    const data=await req(
+      '/api/reports'
+    );
 
-const r=j.reports||[];
+    reports=Array.isArray(data.reports)
+      ? data.reports
+      : [];
 
+    updateStats();
+    renderReports();
 
-$('total').textContent=
-r.length;
+  }catch(e){
 
+    if(
+      e.message.includes('Unauthorized') ||
+      e.message.includes('HTTP 401')
+    ){
 
-$('belum').textContent=
-r.filter(
-x=>x.status==='Belum Dikerjakan'
-).length;
+      $('dashboardPage').classList.add('hidden');
+      $('authPage').classList.remove('hidden');
 
+      message(
+        '⚠️ Sesi admin sudah berakhir. Silakan login kembali.',
+        'error'
+      );
 
-$('proses').textContent=
-r.filter(
-x=>x.status==='Sedang Dikerjakan'
-).length;
+      return;
 
+    }
 
-$('selesai').textContent=
-r.filter(
-x=>x.status==='Selesai'
-).length;
+    $('reports').innerHTML=`
+      <div class="empty">
+        ❌ Gagal mengambil laporan.<br><br>
+        ${escapeHtml(e.message)}
+      </div>
+    `;
 
+  }finally{
 
-const cfg=await req(
-'/api/config'
-);
+    loading(false);
 
-
-$('dutyNow').textContent=
-String(
-cfg.duty||'-'
-).toUpperCase();
-
-
-if(!r.length){
-
-$('rows').innerHTML=`
-<tr>
-<td
-colspan="6"
-class="empty">
-
-Belum ada laporan.
-
-</td>
-</tr>
-`;
-
-return;
+  }
 
 }
 
 
-$('rows').innerHTML=
-r.map(x=>`
-
-<tr>
-
-<td>
-
-<b>${esc(x.id)}</b>
-
-<br>
-
-${new Date(
-x.created_at
-).toLocaleString('id-ID')}
-
-</td>
-
-
-<td>
-
-<b>${esc(x.location)}</b>
-
-${x.room?
-'<br>Nomor: '+esc(x.room):
-''}
-
-<br>
-
-${esc(x.category)}
-
-<br>
-
-<b>${esc(x.priority)}</b>
-
-<p>
-${esc(x.description)}
-</p>
-
-<small>
-Pelapor: ${esc(x.reporter)}
-</small>
-
-</td>
-
-
-<td>
-
-<a
-href="${esc(x.image_url)}"
-target="_blank">
-
-<img
-class="thumb"
-src="${esc(x.image_url)}"
-alt="Foto laporan">
-
-</a>
-
-
-${
-x.after_image_url
-?
-'<br><a href="'+
-esc(x.after_image_url)+
-'" target="_blank">Foto AFTER</a>'
-:
-''
-}
-
-</td>
-
-
-<td>
-
-<select
-onchange="update(
-'${esc(x.id)}',
-'status',
-this.value
-)">
-
-<option
-${
-x.status==='Belum Dikerjakan'
-?'selected'
-:''
-}>
-
-Belum Dikerjakan
-
-</option>
-
-
-<option
-${
-x.status==='Sedang Dikerjakan'
-?'selected'
-:''
-}>
-
-Sedang Dikerjakan
-
-</option>
-
-
-<option
-${
-x.status==='Selesai'
-?'selected'
-:''
-}>
-
-Selesai
-
-</option>
-
-
-<option
-${
-x.status==='Arsip'
-?'selected'
-:''
-}>
-
-Arsip
-
-</option>
-
-</select>
-
-
-<br>
-
-
-<span
-class="pill ${statusClass(x.status)}">
-
-${esc(x.status)}
-
-</span>
-
-</td>
-
-
-<td>
-
-${esc(x.duty||'-')}
-
-<br>
-
-
-<select
-onchange="update(
-'${esc(x.id)}',
-'duty',
-this.value
-)">
-
-<option value="">
-Pilih
-</option>
-
-
-<option
-${
-x.duty==='Handoko'
-?'selected'
-:''
-}>
-
-Handoko
-
-</option>
-
-
-<option
-${
-x.duty==='Mustangin'
-?'selected'
-:''
-}>
-
-Mustangin
-
-</option>
-
-</select>
-
-</td>
-
-
-<td>
-
-<button
-class="btn blue"
-onclick="afterPhoto(
-'${esc(x.id)}'
-)">
-
-📷 AFTER
-
-</button>
-
-
-<button
-class="btn red"
-style="margin-top:6px"
-onclick="del(
-'${esc(x.id)}'
-)">
-
-HAPUS
-
-</button>
-
-</td>
-
-</tr>
-
-`).join('');
-
-
-}catch(e){
-
-if(
-e.message==='Unauthorized'
-){
-
-showAuth();
-
-}else{
-
-alert(
-'❌ Gagal mengambil laporan: '+
-e.message
-);
-
-}
-
-}
+/* =========================================================
+   UPDATE STATS
+========================================================= */
+
+function updateStats(){
+
+  $('statTotal').textContent=reports.length;
+
+  $('statNew').textContent=
+    reports.filter(
+      r=>r.status==='Belum Dikerjakan'
+    ).length;
+
+  $('statProgress').textContent=
+    reports.filter(
+      r=>r.status==='Sedang Dikerjakan'
+    ).length;
+
+  $('statDone').textContent=
+    reports.filter(
+      r=>r.status==='Selesai'
+    ).length;
 
 }
 
 
-/* RESET PASSWORD */
+/* =========================================================
+   FILTER
+========================================================= */
 
-const token=
-new URLSearchParams(
-location.search
-).get('reset');
+function getFilteredReports(){
 
+  const search=
+    $('searchInput').value
+    .trim()
+    .toLowerCase();
 
-if(token){
+  const status=
+    $('filterStatus').value;
 
-const np=prompt(
-'Masukkan password baru minimal 8 karakter:'
-);
+  const priority=
+    $('filterPriority').value;
 
+  const duty=
+    $('filterDuty').value;
 
-if(np){
+  return reports.filter(r=>{
 
-req(
-'/api/auth/reset',
-{
-method:'POST',
-headers:{
-'Content-Type':'application/json'
-},
-body:JSON.stringify({
-token:token,
-password:np
-})
-}
-)
+    const text=[
+      r.id,
+      r.reporter,
+      r.location,
+      r.category,
+      r.description,
+      r.room,
+      r.duty
+    ]
+    .join(' ')
+    .toLowerCase();
 
-.then(j=>{
+    if(search && !text.includes(search))
+      return false;
 
-alert(
-'✅ '+
-(
-j.message||
-'Password berhasil diubah. Silakan login.'
-)
-);
+    if(status && r.status!==status)
+      return false;
 
-})
+    if(priority && r.priority!==priority)
+      return false;
 
-.catch(e=>{
+    if(duty && r.duty!==duty)
+      return false;
 
-alert(
-'❌ '+e.message
-);
+    return true;
 
-});
-
-}
+  });
 
 }
 
 
-/* MULAI */
+/* =========================================================
+   RENDER
+========================================================= */
 
-check();
+function renderReports(){
+
+  const box=$('reports');
+
+  const list=getFilteredReports();
+
+  if(!list.length){
+
+    box.innerHTML=`
+      <div class="empty">
+        <div style="font-size:35px;margin-bottom:10px">
+          📋
+        </div>
+        <strong>Tidak ada laporan</strong>
+        <div style="font-size:12px;margin-top:5px">
+          Belum ada laporan yang sesuai filter.
+        </div>
+      </div>
+    `;
+
+    return;
+
+  }
+
+  box.innerHTML=list.map(reportCard).join('');
+
+}
+
+
+/* =========================================================
+   REPORT CARD
+========================================================= */
+
+function reportCard(r){
+
+  const priorityClass=
+    r.priority==='High'
+      ? 'badge-high'
+      : r.priority==='Medium'
+        ? 'badge-medium'
+        : 'badge-low';
+
+  const image=
+    r.image_url ||
+    '';
+
+  const after=
+    r.after_image_url ||
+    '';
+
+  return `
+
+  <article class="report-card">
+
+    <div class="report-head">
+
+      <div>
+
+        <div class="report-id">
+          ${escapeHtml(r.id || '-')}
+        </div>
+
+        <div class="report-date">
+          ${formatDate(r.created_at)}
+        </div>
+
+      </div>
+
+      <div class="badges">
+
+        <span class="badge ${priorityClass}">
+          PRIORITAS ${escapeHtml(
+            r.priority || '-'
+          )}
+        </span>
+
+        <span class="badge badge-status">
+          ${escapeHtml(
+            r.status || '-'
+          )}
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="report-body">
+
+      <div>
+
+        ${
+          image
+          ? `
+            <img
+              class="photo-main"
+              src="${safeUrl(image)}"
+              alt="Foto laporan"
+              onclick="openImage('${safeUrl(image)}')"
+              loading="lazy">
+          `
+          : `
+            <div class="empty">
+              📷 Tidak ada foto
+            </div>
+          `
+        }
+
+        ${
+          after
+          ? `
+            <div style="margin-top:10px">
+
+              <div style="
+                font-size:11px;
+                font-weight:900;
+                margin-bottom:6px;
+                color:#166534">
+                FOTO SETELAH PERBAIKAN
+              </div>
+
+              <img
+                class="after-photo"
+                src="${safeUrl(after)}"
+                alt="Foto after"
+                onclick="openImage('${safeUrl(after)}')"
+                loading="lazy">
+
+            </div>
+          `
+          : ''
+        }
+
+      </div>
+
+
+      <div class="report-info">
+
+        <div class="info-row">
+          <div class="info-label">
+            Pelapor
+          </div>
+
+          <div class="info-value">
+            ${escapeHtml(r.reporter || '-')}
+          </div>
+        </div>
+
+
+        <div class="info-row">
+          <div class="info-label">
+            Lokasi
+          </div>
+
+          <div class="info-value">
+            ${escapeHtml(r.location || '-')}
+            ${
+              r.room
+              ? ' — No. '+escapeHtml(r.room)
+              : ''
+            }
+          </div>
+        </div>
+
+
+        <div class="info-row">
+          <div class="info-label">
+            Kategori
+          </div>
+
+          <div class="info-value">
+            ${escapeHtml(r.category || '-')}
+          </div>
+        </div>
+
+
+        <div class="info-row">
+          <div class="info-label">
+            Petugas
+          </div>
+
+          <div class="info-value">
+            ${escapeHtml(r.duty || '-')}
+          </div>
+        </div>
+
+
+        <div>
+
+          <div
+            class="info-label"
+            style="margin-bottom:6px">
+            Deskripsi
+          </div>
+
+          <div class="description">
+            ${escapeHtml(
+              r.description || '-'
+            )}
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="report-actions">
+
+      <select
+        onchange="updateReport(
+          '${escapeAttr(r.id)}',
+          {status:this.value}
+        )">
+
+        <option
+          value="Belum Dikerjakan"
+          ${r.status==='Belum Dikerjakan'?'selected':''}>
+          Belum Dikerjakan
+        </option>
+
+        <option
+          value="Sedang Dikerjakan"
+          ${r.status==='Sedang Dikerjakan'?'selected':''}>
+          Sedang Dikerjakan
+        </option>
+
+        <option
+          value="Selesai"
+          ${r.status==='Selesai'?'selected':''}>
+          Selesai
+        </option>
+
+        <option
+          value="Arsip"
+          ${r.status==='Arsip'?'selected':''}>
+          Arsip
+        </option>
+
+      </select>
+
+
+      <select
+        onchange="updateReport(
+          '${escapeAttr(r.id)}',
+          {duty:this.value}
+        )">
+
+        <option
+          value="Handoko"
+          ${r.duty==='Handoko'?'selected':''}>
+          HANDOKO
+        </option>
+
+        <option
+          value="Mustangin"
+          ${r.duty==='Mustangin'?'selected':''}>
+          MUSTANGIN
+        </option>
+
+      </select>
+
+
+      <label class="after-label">
+
+        📷
+        FOTO SETELAH PERBAIKAN
+
+        <input
+          type="file"
+          accept="image/*"
+          capture="environment"
+          onchange="uploadAfter(
+            '${escapeAttr(r.id)}',
+            this
+          )">
+
+      </label>
+
+
+      <button
+        class="small-btn btn-red"
+        onclick="deleteReport(
+          '${escapeAttr(r.id)}'
+        )">
+        🗑 HAPUS
+      </button>
+
+    </div>
+
+  </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   UPDATE REPORT
+========================================================= */
+
+async function updateReport(id,data){
+
+  try{
+
+    await req(
+      '/api/reports/'+encodeURIComponent(id),
+      {
+        method:'PATCH',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify(data)
+      }
+    );
+
+    await loadReports();
+
+  }catch(e){
+
+    alert(
+      'Gagal memperbarui laporan:\n\n'+
+      e.message
+    );
+
+    await loadReports();
+
+  }
+
+}
+
+
+/* =========================================================
+   CHANGE DUTY
+========================================================= */
+
+async function changeDuty(){
+
+  const duty=$('dutySelect').value;
+
+  try{
+
+    await req(
+      '/api/duty',
+      {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          duty
+        })
+      }
+    );
+
+    alert(
+      'Petugas aktif sekarang: '+
+      duty
+    );
+
+  }catch(e){
+
+    alert(
+      'Gagal mengubah petugas:\n\n'+
+      e.message
+    );
+
+  }
+
+}
+
+
+/* =========================================================
+   LOAD DUTY
+========================================================= */
+
+async function loadDuty(){
+
+  try{
+
+    const data=await req(
+      '/api/config'
+    );
+
+    if(data.duty){
+
+      $('dutySelect').value=data.duty;
+
+    }
+
+  }catch(e){
+
+  }
+
+}
+
+
+/* =========================================================
+   DELETE
+========================================================= */
+
+async function deleteReport(id){
+
+  if(!confirm(
+    'Yakin ingin menghapus laporan '+id+'?\n\n'+
+    'Data laporan akan dihapus dari sistem.'
+  )){
+
+    return;
+
+  }
+
+  loading(true);
+
+  try{
+
+    await req(
+      '/api/reports/'+encodeURIComponent(id),
+      {
+        method:'DELETE'
+      }
+    );
+
+    await loadReports();
+
+  }catch(e){
+
+    alert(
+      'Gagal menghapus laporan:\n\n'+
+      e.message
+    );
+
+  }finally{
+
+    loading(false);
+
+  }
+
+}
+
+
+/* =========================================================
+   UPLOAD AFTER
+========================================================= */
+
+async function uploadAfter(id,input){
+
+  const file=input.files && input.files[0];
+
+  if(!file)
+    return;
+
+  if(file.size>750*1024){
+
+    alert(
+      'Foto terlalu besar.\n\n'+
+      'Maksimal 750 KB.'
+    );
+
+    input.value='';
+    return;
+
+  }
+
+  const form=new FormData();
+
+  form.append(
+    'image',
+    file,
+    file.name
+  );
+
+  loading(true);
+
+  try{
+
+    await req(
+      '/api/reports/'+
+      encodeURIComponent(id)+
+      '/after',
+      {
+        method:'POST',
+        body:form
+      }
+    );
+
+    alert(
+      '✅ Foto setelah perbaikan berhasil disimpan.'
+    );
+
+    await loadReports();
+
+  }catch(e){
+
+    alert(
+      '❌ Gagal mengunggah foto after:\n\n'+
+      e.message
+    );
+
+  }finally{
+
+    loading(false);
+    input.value='';
+
+  }
+
+}
+
+
+/* =========================================================
+   IMAGE MODAL
+========================================================= */
+
+function openImage(url){
+
+  $('modalImage').src=url;
+
+  $('imageModal')
+    .classList
+    .add('show');
+
+}
+
+function closeImage(){
+
+  $('imageModal')
+    .classList
+    .remove('show');
+
+  $('modalImage').src='';
+
+}
+
+
+/* =========================================================
+   FORMAT DATE
+========================================================= */
+
+function formatDate(value){
+
+  if(!value)
+    return '-';
+
+  const d=new Date(value);
+
+  if(isNaN(d.getTime()))
+    return value;
+
+  return d.toLocaleString(
+    'id-ID',
+    {
+      day:'2-digit',
+      month:'2-digit',
+      year:'numeric',
+      hour:'2-digit',
+      minute:'2-digit'
+    }
+  );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHtml(value){
+
+  return String(value ?? '')
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+
+}
+
+function escapeAttr(value){
+
+  return String(value ?? '')
+    .replace(/\\/g,'\\\\')
+    .replace(/'/g,"\\'");
+
+}
+
+function safeUrl(value){
+
+  const s=String(value||'');
+
+  if(
+    s.startsWith('https://') ||
+    s.startsWith('http://') ||
+    s.startsWith('/')
+  ){
+
+    return s;
+
+  }
+
+  return '';
+
+}
+
+
+/* =========================================================
+   ENTER KEY LOGIN
+========================================================= */
+
+$('loginPassword')
+  .addEventListener(
+    'keydown',
+    function(e){
+
+      if(e.key==='Enter'){
+        login();
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   INITIAL
+========================================================= */
+
+(async function(){
+
+  await checkSession();
+
+  if(currentAdmin){
+
+    await loadDuty();
+
+  }
+
+})();
 
 </script>
 
