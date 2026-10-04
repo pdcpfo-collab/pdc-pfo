@@ -18,7 +18,9 @@
   --line:#dce8f1;
 }
 
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -68,12 +70,35 @@ body{
   cursor:wait;
 }
 
-.white{background:#fff;color:#073d80}
-.green{background:#0aaa58;color:#fff}
-.blue{background:#07518a;color:#fff}
-.red{background:#ffe7e7;color:#a11}
-.gray{background:#eef4f8;color:#254766}
-.yellow{background:#fff2b8;color:#765900}
+.white{
+  background:#fff;
+  color:#073d80;
+}
+
+.green{
+  background:#0aaa58;
+  color:#fff;
+}
+
+.blue{
+  background:#07518a;
+  color:#fff;
+}
+
+.red{
+  background:#ffe7e7;
+  color:#a11;
+}
+
+.gray{
+  background:#eef4f8;
+  color:#254766;
+}
+
+.yellow{
+  background:#fff2b8;
+  color:#765900;
+}
 
 .card{
   background:#fff;
@@ -106,7 +131,9 @@ label{
   margin:14px 0 7px;
 }
 
-input,select,textarea{
+input,
+select,
+textarea{
   width:100%;
   padding:13px;
   border:1px solid #cddce7;
@@ -137,7 +164,9 @@ textarea:focus{
   line-height:1.5;
 }
 
-.msg.show{display:block}
+.msg.show{
+  display:block;
+}
 
 .msg.ok{
   background:#e7f8ee;
@@ -222,13 +251,71 @@ textarea:focus{
   width:auto;
 }
 
+/* DUTY */
+
 .duty{
   background:#fff7d8;
   border:1px solid #f2db7b;
-  padding:12px;
+  padding:14px;
   border-radius:14px;
   margin-top:14px;
 }
+
+.dutyTitle{
+  font-size:18px;
+  font-weight:900;
+  margin-bottom:6px;
+}
+
+.dutyGrid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:14px;
+}
+
+.dutyPerson{
+  background:#fff;
+  border:1px solid #dce8f1;
+  border-radius:14px;
+  padding:14px;
+}
+
+.dutyPerson.active{
+  border:2px solid #0aaa58;
+  background:#effbf4;
+}
+
+.dutyName{
+  font-size:17px;
+  font-weight:900;
+  color:#073d80;
+}
+
+.dutyStatus{
+  margin:7px 0 12px;
+  font-weight:900;
+  font-size:13px;
+}
+
+.dutyOn{
+  color:#087a3d;
+}
+
+.dutyOff{
+  color:#71859b;
+}
+
+.dutyActive{
+  margin-top:14px;
+  padding:12px;
+  border-radius:12px;
+  background:#eef7ff;
+  border:1px solid #cfe4f8;
+  font-weight:900;
+}
+
+/* ANALYTICS */
 
 .analyticsHeader{
   display:flex;
@@ -290,6 +377,8 @@ textarea:focus{
   border-radius:20px;
 }
 
+/* TABLE */
+
 .tablewrap{
   overflow:auto;
 }
@@ -302,7 +391,8 @@ table{
   min-width:1050px;
 }
 
-th,td{
+th,
+td{
   border-bottom:1px solid #e4edf3;
   padding:10px;
   text-align:left;
@@ -337,10 +427,25 @@ th{
   margin-top:5px;
 }
 
-.s1{background:#ffe7e7;color:#a11}
-.s2{background:#fff4cf;color:#8a6500}
-.s3{background:#e3f8eb;color:#11753d}
-.s4{background:#e7edf4;color:#536579}
+.s1{
+  background:#ffe7e7;
+  color:#a11;
+}
+
+.s2{
+  background:#fff4cf;
+  color:#8a6500;
+}
+
+.s3{
+  background:#e3f8eb;
+  color:#11753d;
+}
+
+.s4{
+  background:#e7edf4;
+  color:#536579;
+}
 
 .actionBox{
   display:flex;
@@ -361,6 +466,8 @@ th{
   padding:30px;
   color:#71859b;
 }
+
+/* MODAL */
 
 .modal{
   position:fixed;
@@ -438,9 +545,11 @@ th{
 }
 
 @media(max-width:800px){
+
   .analyticsGrid{
     grid-template-columns:1fr;
   }
+
 }
 
 @media(max-width:700px){
@@ -484,6 +593,15 @@ th{
   .photoGrid{
     grid-template-columns:1fr;
   }
+
+}
+
+@media(max-width:600px){
+
+  .dutyGrid{
+    grid-template-columns:1fr;
+  }
+
 }
 </style>
 </head>
@@ -491,6 +609,8 @@ th{
 <body>
 
 <div class="wrap">
+
+<!-- HEADER -->
 
 <div class="top">
 
@@ -641,31 +761,41 @@ th{
   </div>
 
 
+  <!-- DUTY -->
+
   <div class="duty">
 
-    <b>
-      👷 ON DUTY:
+    <div class="dutyTitle">
+      👷 PENGATURAN KOORDINATOR DUTY
+    </div>
+
+    <div class="hint">
+      Admin menentukan siapa yang sedang bertugas.
+      Hanya satu koordinator yang dapat berstatus
+      <b>ON DUTY</b>.
+      Koordinator lainnya otomatis
+      <b>OFF DUTY</b>.
+    </div>
+
+
+    <div
+      id="dutyPanel"
+      class="dutyGrid"
+    ></div>
+
+
+    <div
+      class="dutyActive"
+    >
+      👷 KOORDINATOR AKTIF:
       <span id="dutyNow">-</span>
-    </b>
+    </div>
+
 
     <div
       class="toolbar"
-      style="margin-top:10px"
+      style="margin-top:12px"
     >
-
-      <button
-        class="btn green"
-        onclick="setDuty('Handoko')"
-      >
-        HANDOKO ON DUTY
-      </button>
-
-      <button
-        class="btn blue"
-        onclick="setDuty('Mustangin')"
-      >
-        MUSTANGIN ON DUTY
-      </button>
 
       <button
         class="btn gray"
@@ -711,7 +841,9 @@ th{
 
       <div class="analyticsBox">
 
-        <h3>📍 PER LOKASI</h3>
+        <h3>
+          📍 PER LOKASI
+        </h3>
 
         <div id="locationStats">
           Belum ada data.
@@ -722,7 +854,9 @@ th{
 
       <div class="analyticsBox">
 
-        <h3>🛠️ PER KATEGORI</h3>
+        <h3>
+          🛠️ PER KATEGORI
+        </h3>
 
         <div id="categoryStats">
           Belum ada data.
@@ -754,12 +888,14 @@ th{
       ↻ REFRESH
     </button>
 
+
     <input
       id="search"
       placeholder="🔎 Cari pelapor, lokasi, kategori, kerusakan..."
       oninput="renderReports()"
       style="max-width:330px"
     >
+
 
     <select
       id="filterStatus"
@@ -890,11 +1026,13 @@ th{
       💬 Balasan untuk Koordinator
     </h2>
 
+
     <div
       id="replyInfo"
       class="hint"
       style="margin-bottom:12px"
     ></div>
+
 
     <div
       id="replyText"
@@ -921,12 +1059,14 @@ th{
         📋 SALIN PESAN
       </button>
 
+
       <button
         class="btn blue"
         onclick="openCoordinatorWhatsApp()"
       >
         💬 BUKA WHATSAPP KOORDINATOR
       </button>
+
 
       <button
         class="btn gray"
@@ -959,10 +1099,12 @@ th{
       📸 Dokumentasi Laporan
     </h2>
 
+
     <div
       id="photoContent"
       class="photoGrid"
     ></div>
+
 
     <button
       class="btn gray"
@@ -979,45 +1121,50 @@ th{
 
 <script>
 
-const $=id=>document.getElementById(id);
+const $ =
+  id => document.getElementById(id);
 
-let reports=[];
+let reports = [];
 
-let replyReport=null;
+let replyReport = null;
 
-let coordinatorNumber='';
+let coordinatorNumber = '';
 
 
 /* KOORDINATOR */
 
-const COORDINATORS={
+const COORDINATORS = {
 
-  Handoko:'+6282255033886',
+  Handoko:
+    '+6282255033886',
 
-  Mustangin:'+6282278155926'
+  Mustangin:
+    '+6282278155926'
 
 };
 
 
 /* ESCAPE */
 
-const esc=s=>String(s??'').replace(
-  /[&<>"']/g,
-  m=>({
-    '&':'&amp;',
-    '<':'&lt;',
-    '>':'&gt;',
-    '"':'&quot;',
-    "'":'&#39;'
-  }[m])
-);
+const esc =
+  s => String(s ?? '')
+    .replace(
+      /[&<>"']/g,
+      m => ({
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        "'":'&#39;'
+      }[m])
+    );
 
 
 /* ESCAPE ATTRIBUTE */
 
 function escAttr(s){
 
-  return String(s??'')
+  return String(s ?? '')
     .replace(/\\/g,'\\\\')
     .replace(/'/g,"\\'");
 
@@ -1031,12 +1178,14 @@ function showMsg(
   type='info'
 ){
 
-  const el=$('authMsg');
+  const el =
+    $('authMsg');
 
-  el.textContent=text;
+  el.textContent =
+    text;
 
-  el.className=
-    'msg show '+type;
+  el.className =
+    'msg show ' + type;
 
 }
 
@@ -1052,13 +1201,14 @@ async function req(
 
   try{
 
-    r=await fetch(
-      url,
-      {
-        credentials:'same-origin',
-        ...opt
-      }
-    );
+    r =
+      await fetch(
+        url,
+        {
+          credentials:'same-origin',
+          ...opt
+        }
+      );
 
   }catch(e){
 
@@ -1069,28 +1219,31 @@ async function req(
   }
 
 
-  let j={};
+  let j = {};
 
   try{
 
-    j=await r.json();
+    j =
+      await r.json();
 
   }catch(e){
 
-    j={};
+    j = {};
 
   }
 
 
   if(!r.ok){
 
-    let msg=
+    let msg =
       j.error ||
       `Server error HTTP ${r.status}`;
 
     if(j.detail){
 
-      msg+=' — '+j.detail;
+      msg +=
+        ' — ' +
+        j.detail;
 
     }
 
@@ -1104,24 +1257,26 @@ async function req(
 }
 
 
-/* TAMPILAN AUTH */
+/* AUTH */
 
 function showAuth(){
 
-  $('auth').style.display='block';
+  $('auth').style.display =
+    'block';
 
-  $('dash').style.display='none';
+  $('dash').style.display =
+    'none';
 
 }
 
 
-/* TAMPILAN DASHBOARD */
-
 function showDash(){
 
-  $('auth').style.display='none';
+  $('auth').style.display =
+    'none';
 
-  $('dash').style.display='block';
+  $('dash').style.display =
+    'block';
 
   loadReports();
 
@@ -1132,10 +1287,12 @@ function showDash(){
 
 async function login(){
 
-  const email=
-    $('email').value.trim();
+  const email =
+    $('email')
+      .value
+      .trim();
 
-  const password=
+  const password =
     $('pass').value;
 
 
@@ -1167,12 +1324,12 @@ async function login(){
   }
 
 
-  const btn=
+  const btn =
     $('loginBtn');
 
-  btn.disabled=true;
+  btn.disabled = true;
 
-  btn.textContent=
+  btn.textContent =
     '⏳ MEMERIKSA...';
 
 
@@ -1189,12 +1346,14 @@ async function login(){
       {
         method:'POST',
         headers:{
-          'Content-Type':'application/json'
+          'Content-Type':
+            'application/json'
         },
-        body:JSON.stringify({
-          email,
-          password
-        })
+        body:
+          JSON.stringify({
+            email,
+            password
+          })
       }
     );
 
@@ -1214,16 +1373,18 @@ async function login(){
   }catch(e){
 
     showMsg(
-      '❌ LOGIN GAGAL: '+e.message,
+      '❌ LOGIN GAGAL: ' +
+      e.message,
       'err'
     );
 
 
   }finally{
 
-    btn.disabled=false;
+    btn.disabled = false;
 
-    btn.textContent='🔐 LOGIN';
+    btn.textContent =
+      '🔐 LOGIN';
 
   }
 
@@ -1234,10 +1395,12 @@ async function login(){
 
 async function register(){
 
-  const email=
-    $('email').value.trim();
+  const email =
+    $('email')
+      .value
+      .trim();
 
-  const password=
+  const password =
     $('pass').value;
 
 
@@ -1271,7 +1434,9 @@ async function register(){
   }
 
 
-  if(password.length<8){
+  if(
+    password.length < 8
+  ){
 
     showMsg(
       '⚠️ Password minimal 8 karakter.',
@@ -1285,7 +1450,7 @@ async function register(){
   }
 
 
-  const code=
+  const code =
     prompt(
       'Masukkan KODE PENDAFTARAN ADMIN dari pengelola server:'
     );
@@ -1303,12 +1468,12 @@ async function register(){
   }
 
 
-  const btn=
+  const btn =
     $('registerBtn');
 
-  btn.disabled=true;
+  btn.disabled = true;
 
-  btn.textContent=
+  btn.textContent =
     '⏳ MENDAFTAR...';
 
 
@@ -1320,25 +1485,28 @@ async function register(){
 
   try{
 
-    const j=
+    const j =
       await req(
         '/api/auth/register',
         {
           method:'POST',
           headers:{
-            'Content-Type':'application/json'
+            'Content-Type':
+              'application/json'
           },
-          body:JSON.stringify({
-            email,
-            password,
-            code
-          })
+          body:
+            JSON.stringify({
+              email,
+              password,
+              code
+            })
         }
       );
 
 
     showMsg(
-      '✅ '+(
+      '✅ ' +
+      (
         j.message ||
         'Admin berhasil didaftarkan. Silakan login.'
       ),
@@ -1346,22 +1514,24 @@ async function register(){
     );
 
 
-    $('pass').value='';
+    $('pass').value =
+      '';
 
 
   }catch(e){
 
     showMsg(
-      '❌ PENDAFTARAN GAGAL: '+e.message,
+      '❌ PENDAFTARAN GAGAL: ' +
+      e.message,
       'err'
     );
 
 
   }finally{
 
-    btn.disabled=false;
+    btn.disabled = false;
 
-    btn.textContent=
+    btn.textContent =
       '➕ DAFTAR ADMIN';
 
   }
@@ -1369,37 +1539,42 @@ async function register(){
 }
 
 
-/* RESET PASSWORD */
+/* RESET */
 
 async function resetReq(){
 
-  const email=
+  const email =
     prompt(
       'Masukkan email admin:'
     );
 
-  if(!email)return;
+  if(!email){
+    return;
+  }
 
 
   try{
 
-    const j=
+    const j =
       await req(
         '/api/auth/reset-request',
         {
           method:'POST',
           headers:{
-            'Content-Type':'application/json'
+            'Content-Type':
+              'application/json'
           },
-          body:JSON.stringify({
-            email
-          })
+          body:
+            JSON.stringify({
+              email
+            })
         }
       );
 
 
     alert(
-      '✅ '+(
+      '✅ ' +
+      (
         j.message ||
         'Permintaan reset password berhasil diproses.'
       )
@@ -1409,7 +1584,8 @@ async function resetReq(){
   }catch(e){
 
     alert(
-      '❌ Gagal: '+e.message
+      '❌ Gagal: ' +
+      e.message
     );
 
   }
@@ -1470,6 +1646,26 @@ async function setDuty(
   duty
 ){
 
+  const nama =
+    duty === 'Handoko'
+      ? 'Handoko'
+      : 'Mustangin';
+
+
+  if(
+    !confirm(
+      'Jadikan ' +
+      nama +
+      ' sebagai ON DUTY?\n\n' +
+      'Koordinator lainnya otomatis menjadi OFF DUTY.'
+    )
+  ){
+
+    return;
+
+  }
+
+
   try{
 
     await req(
@@ -1477,25 +1673,129 @@ async function setDuty(
       {
         method:'POST',
         headers:{
-          'Content-Type':'application/json'
+          'Content-Type':
+            'application/json'
         },
-        body:JSON.stringify({
-          duty
-        })
+        body:
+          JSON.stringify({
+            duty:nama
+          })
       }
     );
 
 
-    loadReports();
+    await loadReports();
+
+
+    alert(
+      '✅ ' +
+      nama +
+      ' sekarang ON DUTY.'
+    );
 
 
   }catch(e){
 
     alert(
-      '❌ '+e.message
+      '❌ Gagal mengubah duty: ' +
+      e.message
     );
 
   }
+
+}
+
+
+/* RENDER DUTY */
+
+function renderDutyPanel(
+  activeDuty
+){
+
+  const panel =
+    $('dutyPanel');
+
+
+  const coordinators = [
+    'Handoko',
+    'Mustangin'
+  ];
+
+
+  panel.innerHTML =
+    coordinators
+      .map(
+        name => {
+
+          const active =
+            name === activeDuty;
+
+
+          return `
+
+            <div
+              class="dutyPerson ${
+                active
+                  ? 'active'
+                  : ''
+              }"
+            >
+
+              <div class="dutyName">
+                👷 ${name}
+              </div>
+
+              <div
+                class="dutyStatus ${
+                  active
+                    ? 'dutyOn'
+                    : 'dutyOff'
+                }"
+              >
+
+                ${
+                  active
+                    ? '🟢 ON DUTY'
+                    : '⚪ OFF DUTY'
+                }
+
+              </div>
+
+              ${
+                active
+                  ? `
+                    <button
+                      class="btn green"
+                      style="width:100%"
+                      disabled
+                    >
+                      🟢 SEDANG BERTUGAS
+                    </button>
+                  `
+                  : `
+                    <button
+                      class="btn blue"
+                      style="width:100%"
+                      onclick="setDuty('${name}')"
+                    >
+                      JADIKAN ON DUTY
+                    </button>
+                  `
+              }
+
+            </div>
+
+          `;
+
+        }
+      )
+      .join('');
+
+
+  $('dutyNow').textContent =
+    String(
+      activeDuty || '-'
+    ).toUpperCase();
 
 }
 
@@ -1504,13 +1804,13 @@ async function setDuty(
 
 function statusClass(s){
 
-  return s==='Belum Dikerjakan'
-    ?'s1'
-    :s==='Sedang Dikerjakan'
-    ?'s2'
-    :s==='Selesai'
-    ?'s3'
-    :'s4';
+  return s === 'Belum Dikerjakan'
+    ? 's1'
+    : s === 'Sedang Dikerjakan'
+    ? 's2'
+    : s === 'Selesai'
+    ? 's3'
+    : 's4';
 
 }
 
@@ -1526,27 +1826,30 @@ async function update(
   try{
 
     await req(
-      '/api/reports/'+
+      '/api/reports/' +
       encodeURIComponent(id),
       {
         method:'PATCH',
         headers:{
-          'Content-Type':'application/json'
+          'Content-Type':
+            'application/json'
         },
-        body:JSON.stringify({
-          [field]:value
-        })
+        body:
+          JSON.stringify({
+            [field]:value
+          })
       }
     );
 
 
-    loadReports();
+    await loadReports();
 
 
   }catch(e){
 
     alert(
-      '❌ '+e.message
+      '❌ ' +
+      e.message
     );
 
   }
@@ -1562,13 +1865,17 @@ async function del(id){
     !confirm(
       'Hapus laporan ini beserta file fotonya?'
     )
-  )return;
+  ){
+
+    return;
+
+  }
 
 
   try{
 
     await req(
-      '/api/reports/'+
+      '/api/reports/' +
       encodeURIComponent(id),
       {
         method:'DELETE'
@@ -1576,13 +1883,14 @@ async function del(id){
     );
 
 
-    loadReports();
+    await loadReports();
 
 
   }catch(e){
 
     alert(
-      '❌ '+e.message
+      '❌ ' +
+      e.message
     );
 
   }
@@ -1592,77 +1900,94 @@ async function del(id){
 
 /* FOTO AFTER */
 
-async function afterPhoto(id){
+async function afterPhoto(
+  id
+){
 
-  const inp=
-    document.createElement('input');
-
-  inp.type='file';
-
-  inp.accept='image/*';
-
-
-  inp.onchange=async()=>{
-
-    if(!inp.files[0])return;
-
-
-    const file=
-      inp.files[0];
-
-
-    if(
-      file.size>750*1024
-    ){
-
-      alert(
-        '❌ Foto terlalu besar. Maksimal 750 KB.'
-      );
-
-      return;
-
-    }
-
-
-    const fd=
-      new FormData();
-
-    fd.append(
-      'image',
-      file
+  const inp =
+    document.createElement(
+      'input'
     );
 
 
-    try{
+  inp.type =
+    'file';
 
-      await req(
-        '/api/reports/'+
-        encodeURIComponent(id)+
-        '/after',
-        {
-          method:'POST',
-          body:fd
-        }
+  inp.accept =
+    'image/*';
+
+
+  inp.onchange =
+    async()=>{
+
+      if(
+        !inp.files[0]
+      ){
+
+        return;
+
+      }
+
+
+      const file =
+        inp.files[0];
+
+
+      if(
+        file.size >
+        750 * 1024
+      ){
+
+        alert(
+          '❌ Foto terlalu besar. Maksimal 750 KB.'
+        );
+
+        return;
+
+      }
+
+
+      const fd =
+        new FormData();
+
+
+      fd.append(
+        'image',
+        file
       );
 
 
-      alert(
-        '✅ Foto AFTER berhasil disimpan.'
-      );
+      try{
+
+        await req(
+          '/api/reports/' +
+          encodeURIComponent(id) +
+          '/after',
+          {
+            method:'POST',
+            body:fd
+          }
+        );
 
 
-      await loadReports();
+        alert(
+          '✅ Foto AFTER berhasil disimpan dari galeri.'
+        );
 
 
-    }catch(e){
+        await loadReports();
 
-      alert(
-        '❌ '+e.message
-      );
 
-    }
+      }catch(e){
 
-  };
+        alert(
+          '❌ ' +
+          e.message
+        );
+
+      }
+
+    };
 
 
   inp.click();
@@ -1670,9 +1995,11 @@ async function afterPhoto(id){
 }
 
 
-/* LINK FOTO AFTER */
+/* URL FOTO AFTER */
 
-function getAfterPhotoUrl(r){
+function getAfterPhotoUrl(
+  r
+){
 
   if(
     r.after_image_url
@@ -1684,9 +2011,9 @@ function getAfterPhotoUrl(r){
 
 
   return (
-    window.location.origin+
-    '/laporan/'+
-    encodeURIComponent(r.id)+
+    window.location.origin +
+    '/laporan/' +
+    encodeURIComponent(r.id) +
     '-after.jpg'
   );
 
@@ -1695,20 +2022,28 @@ function getAfterPhotoUrl(r){
 
 /* SELESAIKAN */
 
-async function finishReport(id){
+async function finishReport(
+  id
+){
 
-  let r=
+  let r =
     reports.find(
-      x=>String(x.id)===String(id)
+      x =>
+        String(x.id) ===
+        String(id)
     );
 
 
-  if(!r)return;
+  if(!r){
+    return;
+  }
 
 
-  if(!r.after_image_url){
+  if(
+    !r.after_image_url
+  ){
 
-    const pilih=
+    const pilih =
       confirm(
         'Foto AFTER belum ada.\n\n' +
         'Pilih OK untuk memilih foto hasil perbaikan dari galeri.'
@@ -1730,22 +2065,28 @@ async function finishReport(id){
     !confirm(
       'Tandai laporan ini sebagai SELESAI?'
     )
-  )return;
+  ){
+
+    return;
+
+  }
 
 
   try{
 
     await req(
-      '/api/reports/'+
+      '/api/reports/' +
       encodeURIComponent(id),
       {
         method:'PATCH',
         headers:{
-          'Content-Type':'application/json'
+          'Content-Type':
+            'application/json'
         },
-        body:JSON.stringify({
-          status:'Selesai'
-        })
+        body:
+          JSON.stringify({
+            status:'Selesai'
+          })
       }
     );
 
@@ -1753,15 +2094,19 @@ async function finishReport(id){
     await loadReports();
 
 
-    const updated=
+    const updated =
       reports.find(
-        x=>String(x.id)===String(id)
+        x =>
+          String(x.id) ===
+          String(id)
       );
 
 
     if(updated){
 
-      openReply(updated);
+      openReply(
+        updated
+      );
 
     }
 
@@ -1769,7 +2114,8 @@ async function finishReport(id){
   }catch(e){
 
     alert(
-      '❌ Gagal menyelesaikan laporan: '+e.message
+      '❌ Gagal menyelesaikan laporan: ' +
+      e.message
     );
 
   }
@@ -1779,44 +2125,43 @@ async function finishReport(id){
 
 /* PESAN KOORDINATOR */
 
-function buildCoordinatorMessage(r){
+function buildCoordinatorMessage(
+  r
+){
 
-  const koordinator=
-    r.duty || 'Koordinator';
+  const koordinator =
+    r.duty ||
+    'Koordinator';
 
 
-  const lokasi=
-    r.location || '-';
+  const lokasi =
+    r.location ||
+    '-';
 
 
-  const kamar=
+  const kamar =
     r.room
-      ?'\nNomor kamar/ruangan: '+r.room
-      :'';
+      ? '\nNomor kamar/ruangan: ' +
+        r.room
+      : '';
 
 
-  const kerusakan=
-    r.description || '-';
+  const kerusakan =
+    r.description ||
+    '-';
 
 
-  const kategori=
-    r.category || '-';
+  const kategori =
+    r.category ||
+    '-';
 
 
-  const priority=
-    r.priority || '-';
+  const priority =
+    r.priority ||
+    '-';
 
 
-  /*
-    LINK FOTO AFTER
-
-    Jika worker sudah mengembalikan after_image_url,
-    gunakan URL tersebut.
-
-    Jika belum, bentuk otomatis dari ID laporan.
-  */
-
-  const fotoAfterUrl=
+  const fotoAfterUrl =
     getAfterPhotoUrl(r);
 
 
@@ -1852,63 +2197,78 @@ Perawatan Fasilitas Operasi`
 
 /* OPEN REPLY */
 
-function openReply(r){
+function openReply(
+  r
+){
 
-  replyReport=r;
-
-
-  const duty=
-    r.duty || 'Handoko';
-
-
-  coordinatorNumber=
-    COORDINATORS[duty] || '';
+  replyReport =
+    r;
 
 
-  $('replyInfo').innerHTML=
-    '<b>Pelapor:</b> '+
-    esc(r.reporter||'-')+
-    '<br><b>Lokasi:</b> '+
-    esc(r.location||'-')+
+  const duty =
+    r.duty ||
+    'Handoko';
+
+
+  coordinatorNumber =
+    COORDINATORS[duty] ||
+    '';
+
+
+  $('replyInfo').innerHTML =
+    '<b>Pelapor:</b> ' +
+    esc(
+      r.reporter || '-'
+    ) +
+    '<br><b>Lokasi:</b> ' +
+    esc(
+      r.location || '-'
+    ) +
     (
       r.room
-        ?'<br><b>Nomor:</b> '+
+        ? '<br><b>Nomor:</b> ' +
           esc(r.room)
-        :''
-    )+
-    '<br><b>Koordinator:</b> '+
+        : ''
+    ) +
+    '<br><b>Koordinator:</b> ' +
     esc(duty);
 
 
-  $('replyText').textContent=
+  $('replyText').textContent =
     buildCoordinatorMessage(r);
 
 
-  const photoUrl=
+  const photoUrl =
     getAfterPhotoUrl(r);
 
 
-  const box=
+  const box =
     $('replyPhotoLink');
 
 
-  if(r.after_image_url){
+  if(
+    r.after_image_url
+  ){
 
-    box.style.display='block';
+    box.style.display =
+      'block';
 
-    box.innerHTML=
-      '📷 <b>Link Foto AFTER:</b><br>'+
-      '<a href="'+
-      esc(photoUrl)+
-      '" target="_blank" rel="noopener">'+
-      esc(photoUrl)+
+
+    box.innerHTML =
+      '📷 <b>Link Foto AFTER:</b><br>' +
+      '<a href="' +
+      esc(photoUrl) +
+      '" target="_blank" rel="noopener">' +
+      esc(photoUrl) +
       '</a>';
 
   }else{
 
-    box.style.display='none';
+    box.style.display =
+      'none';
 
-    box.innerHTML='';
+    box.innerHTML =
+      '';
 
   }
 
@@ -1922,15 +2282,21 @@ function openReply(r){
 
 /* BALASAN */
 
-function reply(id){
+function reply(
+  id
+){
 
-  const r=
+  const r =
     reports.find(
-      x=>String(x.id)===String(id)
+      x =>
+        String(x.id) ===
+        String(id)
     );
 
 
-  if(!r)return;
+  if(!r){
+    return;
+  }
 
 
   openReply(r);
@@ -1942,10 +2308,12 @@ function reply(id){
 
 async function copyReply(){
 
-  if(!replyReport)return;
+  if(!replyReport){
+    return;
+  }
 
 
-  const text=
+  const text =
     buildCoordinatorMessage(
       replyReport
     );
@@ -1965,19 +2333,28 @@ async function copyReply(){
 
   }catch(e){
 
-    const ta=
-      document.createElement('textarea');
+    const ta =
+      document.createElement(
+        'textarea'
+      );
 
 
-    ta.value=text;
+    ta.value =
+      text;
 
-    document.body.appendChild(ta);
+
+    document.body.appendChild(
+      ta
+    );
+
 
     ta.select();
+
 
     document.execCommand(
       'copy'
     );
+
 
     ta.remove();
 
@@ -1995,15 +2372,17 @@ async function copyReply(){
 
 function openCoordinatorWhatsApp(){
 
-  if(!replyReport)return;
+  if(!replyReport){
+    return;
+  }
 
 
-  const duty=
+  const duty =
     replyReport.duty ||
     'Handoko';
 
 
-  const number=
+  const number =
     COORDINATORS[duty];
 
 
@@ -2018,16 +2397,19 @@ function openCoordinatorWhatsApp(){
   }
 
 
-  const text=
+  const text =
     buildCoordinatorMessage(
       replyReport
     );
 
 
-  const url=
-    'https://wa.me/'+
-    number.replace(/\D/g,'')+
-    '?text='+
+  const url =
+    'https://wa.me/' +
+    number.replace(
+      /\D/g,
+      ''
+    ) +
+    '?text=' +
     encodeURIComponent(text);
 
 
@@ -2048,7 +2430,8 @@ function closeReply(){
     .remove('show');
 
 
-  replyReport=null;
+  replyReport =
+    null;
 
 }
 
@@ -2056,7 +2439,8 @@ function closeReply(){
 function closeReplyOutside(e){
 
   if(
-    e.target.id==='replyModal'
+    e.target.id ===
+    'replyModal'
   ){
 
     closeReply();
@@ -2066,28 +2450,40 @@ function closeReplyOutside(e){
 }
 
 
-/* FOTO MODAL */
+/* PHOTO MODAL */
 
-function showPhotos(id){
+function showPhotos(
+  id
+){
 
-  const r=
+  const r =
     reports.find(
-      x=>String(x.id)===String(id)
+      x =>
+        String(x.id) ===
+        String(id)
     );
 
 
-  if(!r)return;
+  if(!r){
+    return;
+  }
 
 
-  let html='';
+  let html =
+    '';
 
 
-  if(r.image_url){
+  if(
+    r.image_url
+  ){
 
-    html+=`
+    html += `
+
       <div class="photoBox">
 
-        <b>📷 FOTO AWAL</b>
+        <b>
+          📷 FOTO AWAL
+        </b>
 
         <img
           src="${esc(r.image_url)}"
@@ -2095,21 +2491,27 @@ function showPhotos(id){
         >
 
       </div>
+
     `;
 
   }
 
 
-  if(r.after_image_url){
+  if(
+    r.after_image_url
+  ){
 
-    const afterUrl=
+    const afterUrl =
       getAfterPhotoUrl(r);
 
 
-    html+=`
+    html += `
+
       <div class="photoBox">
 
-        <b>✅ FOTO AFTER</b>
+        <b>
+          ✅ FOTO AFTER
+        </b>
 
         <img
           src="${esc(afterUrl)}"
@@ -2119,6 +2521,7 @@ function showPhotos(id){
         <div class="urlBox">
 
           🔗
+
           <a
             href="${esc(afterUrl)}"
             target="_blank"
@@ -2130,26 +2533,31 @@ function showPhotos(id){
         </div>
 
       </div>
+
     `;
 
   }else{
 
-    html+=`
+    html += `
+
       <div class="photoBox">
 
-        <b>⏳ FOTO AFTER</b>
+        <b>
+          ⏳ FOTO AFTER
+        </b>
 
         <p class="hint">
           Belum ada foto hasil perbaikan.
         </p>
 
       </div>
+
     `;
 
   }
 
 
-  $('photoContent').innerHTML=
+  $('photoContent').innerHTML =
     html;
 
 
@@ -2173,7 +2581,7 @@ function closePhotoModal(){
 
 function toggleAnalytics(){
 
-  const body=
+  const body =
     $('analyticsBody');
 
 
@@ -2182,71 +2590,84 @@ function toggleAnalytics(){
   );
 
 
-  $('analyticsBtn').textContent=
-    body.classList.contains('open')
-      ?'TUTUP RINGKASAN'
-      :'BUKA RINGKASAN';
+  $('analyticsBtn').textContent =
+    body.classList.contains(
+      'open'
+    )
+      ? 'TUTUP RINGKASAN'
+      : 'BUKA RINGKASAN';
 
 }
 
 
 /* RANKING */
 
-function makeRank(data){
+function makeRank(
+  data
+){
 
-  const entries=
+  const entries =
     Object.entries(data)
       .sort(
-        (a,b)=>b[1]-a[1]
+        (a,b) =>
+          b[1] - a[1]
       );
 
 
-  if(!entries.length){
+  if(
+    !entries.length
+  ){
 
     return(
-      '<div class="hint">Belum ada data.</div>'
+      '<div class="hint">' +
+      'Belum ada data.' +
+      '</div>'
     );
 
   }
 
 
-  const max=
-    entries[0][1] || 1;
+  const max =
+    entries[0][1] ||
+    1;
 
 
   return entries
-    .slice(0,10)
+    .slice(
+      0,
+      10
+    )
     .map(
-      ([name,count])=>`
+      ([name,count]) => `
 
-      <div class="rank">
+        <div class="rank">
 
-        <div class="rankTop">
+          <div class="rankTop">
 
-          <span>
-            ${esc(name)}
-          </span>
+            <span>
+              ${esc(name)}
+            </span>
 
-          <span>
-            ${count}
-          </span>
+            <span>
+              ${count}
+            </span>
+
+          </div>
+
+          <div class="bar">
+
+            <i
+              style="width:${Math.max(
+                5,
+                (count/max)*100
+              )}%"
+            ></i>
+
+          </div>
 
         </div>
 
-        <div class="bar">
-
-          <i
-            style="width:${Math.max(
-              5,
-              (count/max)*100
-            )}%"
-          ></i>
-
-        </div>
-
-      </div>
-
-    `
+      `
     )
     .join('');
 
@@ -2257,65 +2678,83 @@ function makeRank(data){
 
 function updateAnalytics(){
 
-  const locations={};
+  const locations =
+    {};
 
-  const categories={};
-
-
-  reports.forEach(r=>{
-
-    const loc=
-      r.location ||
-      'Tidak diketahui';
+  const categories =
+    {};
 
 
-    const cat=
-      r.category ||
-      'Tidak diketahui';
+  reports.forEach(
+    r => {
+
+      const loc =
+        r.location ||
+        'Tidak diketahui';
 
 
-    locations[loc]=
-      (locations[loc]||0)+1;
+      const cat =
+        r.category ||
+        'Tidak diketahui';
 
 
-    categories[cat]=
-      (categories[cat]||0)+1;
-
-  });
-
-
-  $('locationStats').innerHTML=
-    makeRank(locations);
+      locations[loc] =
+        (
+          locations[loc] ||
+          0
+        ) + 1;
 
 
-  $('categoryStats').innerHTML=
-    makeRank(categories);
+      categories[cat] =
+        (
+          categories[cat] ||
+          0
+        ) + 1;
+
+    }
+  );
+
+
+  $('locationStats').innerHTML =
+    makeRank(
+      locations
+    );
+
+
+  $('categoryStats').innerHTML =
+    makeRank(
+      categories
+    );
 
 }
 
 
 /* SEARCH */
 
-function reportMatches(r){
+function reportMatches(
+  r
+){
 
-  const search=
+  const search =
     $('search')
       .value
       .trim()
       .toLowerCase();
 
 
-  const status=
-    $('filterStatus').value;
+  const status =
+    $('filterStatus')
+      .value;
 
 
-  const priority=
-    $('filterPriority').value;
+  const priority =
+    $('filterPriority')
+      .value;
 
 
   if(
     status &&
-    r.status!==status
+    r.status !== status
   ){
 
     return false;
@@ -2325,7 +2764,7 @@ function reportMatches(r){
 
   if(
     priority &&
-    r.priority!==priority
+    r.priority !== priority
   ){
 
     return false;
@@ -2340,7 +2779,7 @@ function reportMatches(r){
   }
 
 
-  const text=[
+  const text = [
     r.id,
     r.reporter,
     r.location,
@@ -2366,23 +2805,25 @@ function reportMatches(r){
 
 function renderReports(){
 
-  const filtered=
+  const filtered =
     reports.filter(
       reportMatches
     );
 
 
-  if(!filtered.length){
+  if(
+    !filtered.length
+  ){
 
-    $('rows').innerHTML=
-      '<tr>'+
-      '<td colspan="6" class="empty">'+
+    $('rows').innerHTML =
+      '<tr>' +
+      '<td colspan="6" class="empty">' +
       (
         reports.length
-          ?'Tidak ada laporan yang sesuai filter.'
-          :'Belum ada laporan.'
-      )+
-      '</td>'+
+          ? 'Tidak ada laporan yang sesuai filter.'
+          : 'Belum ada laporan.'
+      ) +
+      '</td>' +
       '</tr>';
 
     return;
@@ -2390,274 +2831,292 @@ function renderReports(){
   }
 
 
-  $('rows').innerHTML=
+  $('rows').innerHTML =
     filtered
-      .map(x=>{
+      .map(
+        x => {
 
-        const id=
-          escAttr(x.id);
-
-
-        const status=
-          x.status ||
-          'Belum Dikerjakan';
+          const id =
+            escAttr(x.id);
 
 
-        const after=
-          x.after_image_url
-            ?`
+          const status =
+            x.status ||
+            'Belum Dikerjakan';
 
-              <div style="margin-top:7px">
 
-                <img
-                  class="thumb afterThumb"
-                  src="${esc(x.after_image_url)}"
-                  alt="Foto after"
-                  onclick="showPhotos('${id}')"
+          const after =
+            x.after_image_url
+              ? `
+
+                <div
+                  style="margin-top:7px"
                 >
 
-                <small>
-                  ✅ AFTER
-                </small>
-
-              </div>
-
-            `
-            :'';
-
-
-        return `
-
-        <tr>
-
-          <td>
-
-            <b>
-              ${esc(x.id)}
-            </b>
-
-            <br>
-
-            ${new Date(
-              x.created_at
-            ).toLocaleString('id-ID')}
-
-          </td>
-
-
-          <td>
-
-            <div class="reportInfo">
-
-              <b>
-                ${esc(x.location)}
-              </b>
-
-              ${
-                x.room
-                  ?'<br>Nomor: '+
-                    esc(x.room)
-                  :''
-              }
-
-              <br>
-
-              ${esc(x.category)}
-
-              <br>
-
-              <b>
-                PRIORITAS:
-                ${esc(x.priority)}
-              </b>
-
-              <p>
-                ${esc(x.description)}
-              </p>
-
-              <small>
-                👤 Pelapor:
-                <b>
-                  ${esc(x.reporter)}
-                </b>
-              </small>
-
-            </div>
-
-          </td>
-
-
-          <td>
-
-            ${
-              x.image_url
-                ?`
-
                   <img
-                    class="thumb"
-                    src="${esc(x.image_url)}"
-                    alt="Foto laporan"
+                    class="thumb afterThumb"
+                    src="${esc(x.after_image_url)}"
+                    alt="Foto after"
                     onclick="showPhotos('${id}')"
                   >
 
-                `
-                :'Tidak ada foto'
-            }
+                  <small>
+                    ✅ AFTER
+                  </small>
 
-            ${after}
+                </div>
 
-          </td>
+              `
+              : '';
 
 
-          <td>
+          return `
 
-            <select
-              onchange="update(
-                '${id}',
-                'status',
-                this.value
-              )"
-            >
+            <tr>
 
-              <option
+              <td>
+
+                <b>
+                  ${esc(x.id)}
+                </b>
+
+                <br>
+
+                ${new Date(
+                  x.created_at
+                ).toLocaleString(
+                  'id-ID'
+                )}
+
+              </td>
+
+
+              <td>
+
+                <div class="reportInfo">
+
+                  <b>
+                    ${esc(x.location)}
+                  </b>
+
+                  ${
+                    x.room
+                      ? '<br>Nomor: ' +
+                        esc(x.room)
+                      : ''
+                  }
+
+                  <br>
+
+                  ${esc(x.category)}
+
+                  <br>
+
+                  <b>
+                    PRIORITAS:
+                    ${esc(x.priority)}
+                  </b>
+
+                  <p>
+                    ${esc(x.description)}
+                  </p>
+
+                  <small>
+                    👤 Pelapor:
+                    <b>
+                      ${esc(x.reporter)}
+                    </b>
+                  </small>
+
+                </div>
+
+              </td>
+
+
+              <td>
+
                 ${
-                  status==='Belum Dikerjakan'
-                    ?'selected':''
+                  x.image_url
+                    ? `
+
+                      <img
+                        class="thumb"
+                        src="${esc(x.image_url)}"
+                        alt="Foto laporan"
+                        onclick="showPhotos('${id}')"
+                      >
+
+                    `
+                    : 'Tidak ada foto'
                 }
-              >
-                Belum Dikerjakan
-              </option>
 
-              <option
-                ${
-                  status==='Sedang Dikerjakan'
-                    ?'selected':''
-                }
-              >
-                Sedang Dikerjakan
-              </option>
+                ${after}
 
-              <option
-                ${
-                  status==='Selesai'
-                    ?'selected':''
-                }
-              >
-                Selesai
-              </option>
-
-              <option
-                ${
-                  status==='Arsip'
-                    ?'selected':''
-                }
-              >
-                Arsip
-              </option>
-
-            </select>
+              </td>
 
 
-            <br>
+              <td>
+
+                <select
+                  onchange="update(
+                    '${id}',
+                    'status',
+                    this.value
+                  )"
+                >
+
+                  <option
+                    ${
+                      status ===
+                      'Belum Dikerjakan'
+                        ? 'selected'
+                        : ''
+                    }
+                  >
+                    Belum Dikerjakan
+                  </option>
+
+                  <option
+                    ${
+                      status ===
+                      'Sedang Dikerjakan'
+                        ? 'selected'
+                        : ''
+                    }
+                  >
+                    Sedang Dikerjakan
+                  </option>
+
+                  <option
+                    ${
+                      status ===
+                      'Selesai'
+                        ? 'selected'
+                        : ''
+                    }
+                  >
+                    Selesai
+                  </option>
+
+                  <option
+                    ${
+                      status ===
+                      'Arsip'
+                        ? 'selected'
+                        : ''
+                    }
+                  >
+                    Arsip
+                  </option>
+
+                </select>
 
 
-            <span
-              class="pill ${statusClass(status)}"
-            >
-              ${esc(status)}
-            </span>
-
-          </td>
+                <br>
 
 
-          <td>
+                <span
+                  class="pill ${statusClass(status)}"
+                >
+                  ${esc(status)}
+                </span>
 
-            <b>
-              ${esc(x.duty||'-')}
-            </b>
-
-            <br>
-
-            <select
-              onchange="update(
-                '${id}',
-                'duty',
-                this.value
-              )"
-              style="margin-top:6px"
-            >
-
-              <option value="">
-                Pilih
-              </option>
-
-              <option
-                ${
-                  x.duty==='Handoko'
-                    ?'selected':''
-                }
-              >
-                Handoko
-              </option>
-
-              <option
-                ${
-                  x.duty==='Mustangin'
-                    ?'selected':''
-                }
-              >
-                Mustangin
-              </option>
-
-            </select>
-
-          </td>
+              </td>
 
 
-          <td>
+              <td>
 
-            <div class="actionBox">
+                <b>
+                  ${esc(x.duty || '-')}
+                </b>
 
-              <button
-                class="btn yellow"
-                onclick="afterPhoto('${id}')"
-              >
-                📷 PILIH AFTER
-              </button>
+                <br>
+
+                <select
+                  onchange="update(
+                    '${id}',
+                    'duty',
+                    this.value
+                  )"
+                  style="margin-top:6px"
+                >
+
+                  <option value="">
+                    Pilih
+                  </option>
+
+                  <option
+                    ${
+                      x.duty ===
+                      'Handoko'
+                        ? 'selected'
+                        : ''
+                    }
+                  >
+                    Handoko
+                  </option>
+
+                  <option
+                    ${
+                      x.duty ===
+                      'Mustangin'
+                        ? 'selected'
+                        : ''
+                    }
+                  >
+                    Mustangin
+                  </option>
+
+                </select>
+
+              </td>
 
 
-              <button
-                class="btn green"
-                onclick="finishReport('${id}')"
-              >
-                ✅ SELESAIKAN
-              </button>
+              <td>
+
+                <div class="actionBox">
+
+                  <button
+                    class="btn yellow"
+                    onclick="afterPhoto('${id}')"
+                  >
+                    📷 PILIH AFTER
+                  </button>
 
 
-              <button
-                class="btn blue"
-                onclick="reply('${id}')"
-              >
-                💬 BALASAN WA
-              </button>
+                  <button
+                    class="btn green"
+                    onclick="finishReport('${id}')"
+                  >
+                    ✅ SELESAIKAN
+                  </button>
 
 
-              <button
-                class="btn red"
-                onclick="del('${id}')"
-              >
-                🗑️ HAPUS
-              </button>
+                  <button
+                    class="btn blue"
+                    onclick="reply('${id}')"
+                  >
+                    💬 BALASAN WA
+                  </button>
 
-            </div>
 
-          </td>
+                  <button
+                    class="btn red"
+                    onclick="del('${id}')"
+                  >
+                    🗑️ HAPUS
+                  </button>
 
-        </tr>
+                </div>
 
-        `;
+              </td>
 
-      })
+            </tr>
+
+          `;
+
+        }
+      )
       .join('');
 
 }
@@ -2669,66 +3128,83 @@ async function loadReports(){
 
   try{
 
-    const j=
+    const j =
       await req(
         '/api/reports'
       );
 
 
-    reports=
-      j.reports || [];
+    reports =
+      j.reports ||
+      [];
 
 
-    $('total').textContent=
+    $('total').textContent =
       reports.length;
 
 
-    $('belum').textContent=
+    $('belum').textContent =
       reports.filter(
-        x=>x.status==='Belum Dikerjakan'
+        x =>
+          x.status ===
+          'Belum Dikerjakan'
       ).length;
 
 
-    $('proses').textContent=
+    $('proses').textContent =
       reports.filter(
-        x=>x.status==='Sedang Dikerjakan'
+        x =>
+          x.status ===
+          'Sedang Dikerjakan'
       ).length;
 
 
-    $('selesai').textContent=
+    $('selesai').textContent =
       reports.filter(
-        x=>x.status==='Selesai'
+        x =>
+          x.status ===
+          'Selesai'
       ).length;
 
 
-    $('highCount').textContent=
+    $('highCount').textContent =
       reports.filter(
-        x=>x.priority==='High'
+        x =>
+          x.priority ===
+          'High'
       ).length;
 
 
-    $('mediumCount').textContent=
+    $('mediumCount').textContent =
       reports.filter(
-        x=>x.priority==='Medium'
+        x =>
+          x.priority ===
+          'Medium'
       ).length;
 
 
-    $('lowCount').textContent=
+    $('lowCount').textContent =
       reports.filter(
-        x=>x.priority==='Low'
+        x =>
+          x.priority ===
+          'Low'
       ).length;
 
 
-    const cfg=
+    const cfg =
       await req(
         '/api/config'
       );
 
 
-    $('dutyNow').textContent=
-      String(
-        cfg.duty || '-'
-      ).toUpperCase();
+    /*
+      TAMPILKAN DUTY AKTIF
+    */
+
+    renderDutyPanel(
+      cfg.duty ||
+      'Handoko'
+    );
 
 
     updateAnalytics();
@@ -2736,17 +3212,19 @@ async function loadReports(){
     renderReports();
 
 
-    $('lastUpdated').textContent=
-      'Data diperbarui: '+
-      new Date().toLocaleString(
-        'id-ID'
-      );
+    $('lastUpdated').textContent =
+      'Data diperbarui: ' +
+      new Date()
+        .toLocaleString(
+          'id-ID'
+        );
 
 
   }catch(e){
 
     if(
-      e.message==='Unauthorized'
+      e.message ===
+      'Unauthorized'
     ){
 
       showAuth();
@@ -2754,7 +3232,7 @@ async function loadReports(){
     }else{
 
       alert(
-        '❌ Gagal mengambil laporan: '+
+        '❌ Gagal mengambil laporan: ' +
         e.message
       );
 
@@ -2767,15 +3245,17 @@ async function loadReports(){
 
 /* RESET PASSWORD TOKEN */
 
-const token=
+const token =
   new URLSearchParams(
     location.search
-  ).get('reset');
+  ).get(
+    'reset'
+  );
 
 
 if(token){
 
-  const np=
+  const np =
     prompt(
       'Masukkan password baru minimal 8 karakter:'
     );
@@ -2788,31 +3268,39 @@ if(token){
       {
         method:'POST',
         headers:{
-          'Content-Type':'application/json'
+          'Content-Type':
+            'application/json'
         },
-        body:JSON.stringify({
-          token,
-          password:np
-        })
+        body:
+          JSON.stringify({
+            token,
+            password:np
+          })
       }
     )
-    .then(j=>{
+    .then(
+      j => {
 
-      alert(
-        '✅ '+(
-          j.message ||
-          'Password berhasil diubah. Silakan login.'
-        )
-      );
+        alert(
+          '✅ ' +
+          (
+            j.message ||
+            'Password berhasil diubah. Silakan login.'
+          )
+        );
 
-    })
-    .catch(e=>{
+      }
+    )
+    .catch(
+      e => {
 
-      alert(
-        '❌ '+e.message
-      );
+        alert(
+          '❌ ' +
+          e.message
+        );
 
-    });
+      }
+    );
 
   }
 
